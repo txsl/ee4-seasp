@@ -1,0 +1,24 @@
+\documentclass[a4paper]{article}
+\usepackage{subfiles}
+\usepackage{_myincludes}
+
+\begin{document}
+
+\subfile{titlepage.tex}
+
+\tableofcontents
+
+\thispagestyle{empty}
+\clearpage
+
+% Reset the page numbers. See http://tex.stackexchange.com/questions/54333/no-page-numbering
+\pagenumbering{gobble}
+\pagenumbering{arabic}
+
+    \subfile{part_1.tex}
+    \subfile{part_2.tex}
+    \subfile{part_3.tex}
+    \subfile{part_4.tex}
+
+\end{document}
+

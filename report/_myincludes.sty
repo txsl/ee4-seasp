@@ -1,0 +1,159 @@
+\ProvidesPackage{_myincludes}
+
+\usepackage[utf8]{inputenc}
+\usepackage[pdftex]{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{textcomp}
+
+\usepackage{amsmath, amsfonts}
+% To have nice numbering of figures
+\numberwithin{figure}{section}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\usepackage{listings}
+\renewcommand{\lstlistingname}{MATLAB Snippet} % See http://tex.stackexchange.com/questions/64839/how-to-change-listing-caption
+
+\usepackage{subfiles}
+\usepackage{xfrac}
+\usepackage{soul} %highlighting
+%\usepackage{pdfpages}
+%\usepackage{subfigure}
+%\usepackage{subfloat}
+%\usepackage{subcaption}
+
+% To have subfigures
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+%\usepackage{subfloat}
+%\usepackage{subfigure}
+
+\usepackage{tikz, pgfplots,filecontents}
+% \usetikzlibrary{external}
+%   \tikzexternalize
+
+\newlength\figureheight
+\newlength\figurewidth
+
+  \usepackage{filemod}
+  \newcommand{\includetikz}[2]{%
+    \tikzsetnextfilename{#2}%
+    \filemodCmp{#1#2.tikz}{#1tikz_external/#2.pdf}%
+      {\tikzset{external/remake next}}{}%
+    \input{#1#2.tikz}%
+  }
+
+% This makes captions looks nice
+\usepackage[font=normal,labelfont=bf]{caption}
+
+% for tables
+\usepackage{multirow} 
+
+%this is margin setting
+\usepackage[margin=.5in]{geometry}
+%page number spacing
+
+% For nice looking fractions
+\usepackage{xfrac}
+
+\usepackage{calc} \setlength{\footskip}{\paperheight -(1in+\voffset+\topmargin+\headheight+\headsep+\textheight) -0.35in} %change final value - distance from bottom of page
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\usepackage{titlesec}
+
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+%\pgfplotsset{compat=1.3,
+%    every axis legend/.style={
+%    y tick label style={/pgf/number format/1000 sep=},                  
+%    x tick label style={/pgf/number format/1000 sep=}}}
+%
+% Remove SI. See http://tex.stackexchange.com/questions/74837/removing-scientific-notation-in-tikzpicture-made-by-matlab2tikz
+\pgfplotsset{
+    compat=1.8,
+    every axis/.append style={
+        scaled y ticks = false, 
+        scaled x ticks = false, 
+%         y tick label style={/pgf/number format/.cd, fixed, fixed zerofill,
+%                             int detect,1000 sep={\;},precision=2},
+%         x tick label style={/pgf/number format/.cd, fixed, fixed zerofill,
+%                             int detect, 1000 sep={},precision=1}
+    }
+}
+
+
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\lstset{
+    backgroundcolor=\color{lbcolor},
+    tabsize=4,    
+%   rulecolor=,
+    language=[GNU]C++,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+        showstringspaces=false,
+        extendedchars=false,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        numbers=left,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.026,0.812,0.095},
+        stringstyle=\color[rgb]{0.627,0.126,0.941},
+        numberstyle=\color[rgb]{0.205, 0.142, 0.73},
+}
+\lstset{
+    backgroundcolor=\color{lbcolor},
+    tabsize=4,
+  language=C++,
+  captionpos=b,
+  tabsize=3,
+  frame=lines,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=5pt,
+  breaklines=true,
+  showstringspaces=false,
+  basicstyle=\footnotesize,
+%  identifierstyle=\color{magenta},
+  keywordstyle=\color[rgb]{0,0,1},
+  commentstyle=\color[rgb]{0.026,0.112,0.095},
+  stringstyle=\color{red}
+}
+
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    % basicstyle=\footnotesize
+    backgroundcolor=\color{lbcolor},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
