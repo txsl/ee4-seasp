@@ -6,6 +6,44 @@
 \subsection{The Least Mean Squares (LMS) Algorithm}
 
 \subsubsection{Correlation Matrix}
+The autocorrelation matrix is been defined as $ R \equiv E \begin{bmatrix} \mathbf{x}[n] \mathbf{x}^T[n] \end{bmatrix} $
+
+\begin{equation}
+R = E \begin{bmatrix}
+x^2[n-1] & x[n-1] x[n-2] \\
+x[n-1] x[n-2] & x^2[n-2]
+\end{bmatrix}
+\end{equation}
+\label{eq:3_1_a_R}
+
+We note that $x^2[n-1] = x^2[n-2] $ since this simply represents a shift in the time domain but will not change the expected value. 
+
+We can square $x[n]$ to give us the expected value of the diagonals:
+\begin{subequations}
+\begin{align}
+E[x[n-1]] &= E[ a_1 x[n - 2] + a_2 x[n-3] + \eta[n-1] ] \\
+E[x^2[n-1]] &= E[ a_{1}^2 x^2[n - 2]] + E[ a_{2}^2 x^2[n-3]] + E[ 2 a_{1} a_{2} x[n-1] x[n-2]] + 
+\sigma^2 \\
+R_{xx}(0) = E[x^2[n-1]] &= a_1^2 R_{xx}(0) + a_2^2 R_{xx}(0) + 2 a_{1} a_{2} R_{xx}(1)
+\end{align}
+\end{subequations}
+
+We get to the last line using the equality mentioned above, and we can see the make up of $R_{xx}(1)$ in equation \ref{eq:3_1_a_R}. We can conduct a similar process for $R_{xx}(1)$:
+
+\begin{subequations}
+\begin{align}
+E[x[n-1]] &= E[ a_1 x[n - 2] + a_2 x[n-3] + \eta[n] ] \\
+E[x[n-1]x[n-2]] &= E[ a_1 x^2[n - 2] + a_2 x[n-3]x[n-2] + \eta[n-1]x[n-2] ] \\
+R_{xx}(1) = E[x[n-1]x[n-2]] &= a_1 R_{xx}(0) + a_2 R_{xx}(1) + 0
+\end{align}
+\end{subequations}
+
+We then solve these two equations for $ R_{xx}(0) $ and $ R_{xx}(1) $, to determine that the autocorrelation matrix is 
+$$ R = \begin{bmatrix}
+\frac{25}{27} & \frac{25}{54} \\
+ \frac{25}{54} & \frac{25}{27}
+\end{bmatrix}
+$$
 
 \subsubsection{Implemented LMS Filter}
 
@@ -13,9 +51,9 @@
 
 \subsubsection{Steady State Coefficient Values}
 
-\subsection{Leaky LMS Derivation}
+\subsubsection{Leaky LMS Derivation}
 
-\subsection{Leaky LMS Results}
+\subsubsection{Leaky LMS Results}
 
 
 \subsection{Adaptive Step Sizes}
