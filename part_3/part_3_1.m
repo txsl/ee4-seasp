@@ -11,15 +11,7 @@ w = [0.1; 0.8];
 
 mu_1 = 0.01;
 mu_2 = 0.05;
-
-% e_mu1_sum = zeros(N, 1);
-% e_mu2_sum = zeros(N, 1);
-% e_leaky_sum = zeros(N, 1);
-% 
-% w_est_mu1_sum = zeros(2, 1);
-% w_est_mu2_sum = zeros(2, 1);
-% w_leaky_est_sum = zeros(2, 1);
-% 
+ 
 error_tot_mu_5 = zeros(N, 1);
 w_est_tot_mu_5 = zeros(ORDER, N+1);
 
@@ -63,10 +55,12 @@ w_est_ss_mu_1 =  mean(w_est_tot_mu_1(:, 900:1000), 2)
 error_tot_mu_5 = error_tot_mu_5/N_IT;
 error_tot_mu_1 = error_tot_mu_1/N_IT;
 
+emse_mu_5 = mean(error_tot_mu_5(800:end)) - VAR_PROC
+emse_mu_1 = mean(error_tot_mu_1(800:end)) - VAR_PROC
 
 % Manual misadjustment computation
-emse_mu_5 = mean(error_tot_mu_5(800:end))/VAR_PROC - 1
-emse_mu_1 = mean(error_tot_mu_1(800:end))/VAR_PROC - 1
+misadj_mu_5 = emse_mu_5/VAR_PROC
+misadj_mu_1 = emse_mu_1/VAR_PROC
 
 % Turn error to dB
 error_tot_mu_5_db = 10*log10(error_tot_mu_5);

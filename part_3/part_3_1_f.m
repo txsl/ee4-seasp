@@ -11,7 +11,7 @@ w = [0.1; 0.8];
 
 x_mat = zeros(N, N_IT);
 
-parfor i = 1:N_IT
+for i = 1:N_IT
     wgn = randn(N, 1)*sqrt(VAR_PROC);
 
     x = zeros(N, 1);
@@ -29,11 +29,14 @@ end
 
 figure
 hold on
-for mu = [0.01 0.05]
+colours = hsv(12);
+n = 1;
+
+for mu = 0.01
     error_tot = zeros(N, 1);
     w_est_tot = zeros(ORDER, N+1);
     
-    for leak = [0 0.2 0.8]
+    for leak = [0 0.2 0.5 0.8]
         for i = 1:N_IT
             	[ w_est, error_sq ] = lms(x_mat(:, i), ORDER, mu, leak);
                 error_tot = error_tot + error_sq;
@@ -41,7 +44,8 @@ for mu = [0.01 0.05]
         end
         error_tot = error_tot/N_IT;
         error_db = 10*log10(error_tot);
-        plot(error_db, 'DisplayName', sprintf('mu = %f, gamma = %f', mu, leak))
+        plot(error_db, 'DisplayName', sprintf('mu = %f, gamma = %f', mu, leak), 'color', colours(n,:))
+        n = n + 1;
     end
 end
 
