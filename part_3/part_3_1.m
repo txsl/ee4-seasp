@@ -53,25 +53,9 @@ for i = 1:N_IT
     
 end
 
-
-% Average filter coefficient values - steady state
-w_est_tot_mu_5 = w_est_tot_mu_5/N_IT;
-w_est_tot_mu_1 = w_est_tot_mu_1/N_IT;
-
-w_est_ss_mu_5 =  mean(w_est_tot_mu_5(:, 900:1000), 2)
-w_est_ss_mu_1 =  mean(w_est_tot_mu_1(:, 900:1000), 2)
-
-
 % Average Error (for each iteration)
 error_tot_mu_5 = error_tot_mu_5/N_IT;
 error_tot_mu_1 = error_tot_mu_1/N_IT;
-
-emse_mu_5 = mean(error_tot_mu_5(800:end)) - VAR_PROC
-emse_mu_1 = mean(error_tot_mu_1(800:end)) - VAR_PROC
-
-% Manual misadjustment computation
-misadj_mu_5 = emse_mu_5/VAR_PROC
-misadj_mu_1 = emse_mu_1/VAR_PROC
 
 % Turn error to dB
 error_tot_mu_5_db = 10*log10(error_tot_mu_5);
@@ -79,9 +63,29 @@ error_tot_mu_1_db = 10*log10(error_tot_mu_1);
 
 figure
 plot(1:N, error_tot_mu_1_db, 1:N, error_tot_mu_5_db)
-legend('= 0.01', ' = 0.05')
+legend('\mu= 0.01', '\mu = 0.05')
 grid on;
 title('Mean Error of 100 iterations of LMS filter');
 xlabel('Iteration')
 ylabel('Squared Prediction Error (dB)')
+
+
+%% 3_1_c
+
+% EMSE Calculations
+emse_mu_5 = mean(error_tot_mu_5(800:end)) - VAR_PROC;
+emse_mu_1 = mean(error_tot_mu_1(800:end)) - VAR_PROC;
+
+% Misadjustment computation
+misadj_mu_5 = emse_mu_5/VAR_PROC
+misadj_mu_1 = emse_mu_1/VAR_PROC
+
+
+%% 3_1_d
+% Average filter coefficient values - steady state
+w_est_tot_mu_5 = w_est_tot_mu_5/N_IT;
+w_est_tot_mu_1 = w_est_tot_mu_1/N_IT;
+
+w_est_ss_mu_5 =  mean(w_est_tot_mu_5(:, 800:end), 2)
+w_est_ss_mu_1 =  mean(w_est_tot_mu_1(:, 800:end), 2)
 

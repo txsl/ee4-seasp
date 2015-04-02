@@ -8,20 +8,20 @@
 \subsubsection{Correlation Matrix}
 The autocorrelation matrix is been defined as $ R \equiv E \begin{bmatrix} \mathbf{x}[n] \mathbf{x}^T[n] \end{bmatrix} $
 
-\begin{equation}
+\begin{equation} \label{eq:3_1_a_R}
 R = E \begin{bmatrix}
 x^2[n-1] & x[n-1] x[n-2] \\
 x[n-1] x[n-2] & x^2[n-2]
 \end{bmatrix}
 \end{equation}
-\label{eq:3_1_a_R}
+
 
 We note that $x^2[n-1] = x^2[n-2] $ since this simply represents a shift in the time domain but will not change the expected value. 
 
-We can square $x[n]$ to give us the expected value of the diagonals:
+We can square $x[n-1]$ to give us the expected value of the diagonals:
 \begin{subequations}
 \begin{align}
-E[x[n-1]] &= E[ a_1 x[n - 2] + a_2 x[n-3] + \eta[n-1] ] \\
+E[x^2[n-1]] &= E[ a_{1}^2 x^2[n-2] + a_{2}^2 x^2[n-3] + 2 a_{1} a_{2} x[n-1] x[n-2] + \eta[n-1](a_{1} x[n-2] + a_{2}x[n-3]) \\ \nonumber &+ \eta^2[n-1] ] \\	
 E[x^2[n-1]] &= E[ a_{1}^2 x^2[n - 2]] + E[ a_{2}^2 x^2[n-3]] + E[ 2 a_{1} a_{2} x[n-1] x[n-2]] + 
 \sigma^2 \\
 R_{xx}(0) = E[x^2[n-1]] &= a_1^2 R_{xx}(0) + a_2^2 R_{xx}(0) + 2 a_{1} a_{2} R_{xx}(1)
@@ -32,7 +32,6 @@ We get to the last line using the equality mentioned above, and we can see the m
 
 \begin{subequations}
 \begin{align}
-E[x[n-1]] &= E[ a_1 x[n - 2] + a_2 x[n-3] + \eta[n] ] \\
 E[x[n-1]x[n-2]] &= E[ a_1 x^2[n - 2] + a_2 x[n-3]x[n-2] + \eta[n-1]x[n-2] ] \\
 R_{xx}(1) = E[x[n-1]x[n-2]] &= a_1 R_{xx}(0) + a_2 R_{xx}(1) + 0
 \end{align}
@@ -47,8 +46,8 @@ $$
 
 In order for the filter to converge to the correct parameters, we must satisfy the bounds $ 0 < \mu < \frac{2}{\lambda_{max}} $. In this case, our eigenvalues are $\frac{25}{18}$ and $\frac{25}{54}$. Thus we know that $ 0 < \mu < \frac{108}{25} $ for the LMS to converge in the mean.
 
-\subsubsection{Implemented LMS Filter}
-100 iterations of the AR Process $ x[n] = 0.1 x[n-1] + 0.8 x[n-2] + \eta[n] $ have been generated, with 1000 samples per iteration. Figure \ref{fig:q3_1_b_indiv} shows one trial of this filter, whist figure \ref{fig:q3_1_b} shows the mean error taken across 100 iterations.
+\subsubsection{Implemented LMS Filter} \label{sec:3_1_b}
+100 iterations of the AR Process $ x[n] = 0.1 x[n-1] + 0.8 x[n-2] + \eta[n] $ have been generated, with 1000 samples per iteration. Figure \ref{fig:q3_1_b_indiv} shows one trial of this filter, whist figure \ref{fig:q3_1_b} shows the mean error taken across 100 iterations. We can see that 100 iterations shows a much clearer trend in the error decreasing and becoming steady at around 300 iterations in.
 
 \begin{figure}[h]
 	\centering 
@@ -60,22 +59,85 @@ In order for the filter to converge to the correct parameters, we must satisfy t
 
 \begin{figure}[h]
 	\centering 
- 	\resizebox{\textwidth}{!}{\input{fig/3/3_1_b_leg.tikz}}
+ 	\resizebox{\textwidth}{!}{\input{fig/3/3_1_b_mean.tikz}}
    	\caption{\textit{LMS filter error (dB) for the given AR process, averaged over 100 independent trials}}
    	\label{fig:q3_1_b}
 \end{figure}
 
 
-\subsubsection{Misadjustment}
+\subsubsection{Misadjustment} \label{sec:3_1_c}
 
-Misadjustment is defined as $ \mathcal{M} = \frac{\mathrm{EMSE}}{\sigma^2_\eta}$, where the total mean squared error $ MSE = \lim_{n \to \infty} \mathbb{E} \{ e^2 (n) \} = \sigma^2_\eta + EMSE $. 
+Misadjustment is defined as $ \mathcal{M} = \frac{\mathrm{EMSE}}{\sigma^2_\eta}$, where the total mean squared error $ \mathrm{MSE} = \lim_{n \to \infty} \mathbb{E} \{ e^2 (n) \} = \sigma^2_\eta + \mathrm{EMSE} $. Thus we can compute the measured misadjustment from the known mean squared error, and variance of the White Gaussian Noise. We also know that we can approximate $  \mathcal{M} \approx \frac{\mu}{2} \mathbf{Tr} \{ \mathbf{R} \}$ (for small $\mu$) which allows us to have an idea of its theoretical values.
+
+Based on the data obtained in section \ref{sec:3_1_b}, we have taken the mean error squared of the last two hundred samples (when it is known to be in a steady state) across the 100 iterations of the LMS filter, and computed the misadjustment. Table \ref{tab:3_1_c} shows the theoretical and measured misadjustment values. The results are close to the theoretical values, although running the test multiple times does show that the misadjustment varies between each set of 100 trials.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+$\mu$  & Theoretical $\mathcal{M}$ & Measured $\mathcal{M}$ \\ \hline
+0.01 & 0.0093                    & 0.0028                 \\ \hline
+0.05 & 0.0463                    & 0.0456                 \\ \hline
+\end{tabular}
+\caption{\textit{Theoretical and Actual Misadjustment values measured for different step sizes}}
+\label{tab:3_1_c}
+\end{table}
 
 \subsubsection{Steady State Coefficient Values}
+By taking the mean of the two hundred last values (when we know the filter is in steady state), and then taking the mean across 100 iterations, we can get estimations of the coefficients $a_1$ and $a_2$. The results are shown in table \ref{tab:3_1_d}. We can see that the coefficient estimates for $\mu = 0.01$ is nearer to the true values than for $\mu = 0.05$. We know that there will always be some error, due to the power of the WGN signal (the $ \sigma^2$ term in the Mean Squared Error equation). We also know from section \ref{sec:3_1_c} that the misadjustment for  $\mu = 0.05$ is larger than for $\mu = 0.01 $, hence it is not surprising that it also less close to the known values than  $\mu = 0.01$. However, we know that a larger step size results in faster convergence to the correct value, so it is a case of a trade off between a small steady state error, and fast convergence.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+$\mu$ & True Values & 0.05   & 0.01   \\ \hline
+$a_1$ & 0.1               & 0.0689 & 0.0943 \\ \hline
+$a_2$ & 0.8               & 0.7176 & 0.7691 \\ \hline
+\end{tabular}
+\caption{\textit{Theoretical and Actual Coefficient values measured for different step sizes}}
+\label{tab:3_1_d}
+\end{table}
 
 \subsubsection{Leaky LMS Derivation}
+In order to derive the leaky LMS equation, we differentiate the given cost function:
+
+\begin{subequations}
+\begin{align}
+J(n) &= \frac{1}{2} ( e^2(n) + \gamma \lVert \mathbf{w}(n) \rVert ^2 ) \\
+\nabla J(n)|_{w_n} &= \frac{1}{2}  \nabla ( ( e^2(n) ) |_{w_n} + \gamma \nabla (\lVert \mathbf{w}(n)\rVert ^2 )|_{w_n} ) \\
+\nabla J(n)|_{w_n} &= -e(n) \mathbf{x}(n) + \gamma w(n)
+\end{align}
+\end{subequations}
+
+We then substitute this in to the update function:
+
+\begin{subequations}
+\begin{align}
+\mathbf{w}(n+1) &= \mathbf{w}[n] + \mu (- \nabla J(n)|_{w_n}) \\
+\mathbf{w}(n+1) &= \mathbf{w}[n] + \mu e(n) \mathbf{x}(n) - \mu \gamma \mathbf{w}(n) \\
+\mathbf{w}(n+1) &= (1 - \mu \gamma ) \mathbf{w}[n] + \mu e(n) \mathbf{x}(n)
+\end{align}
+\end{subequations}
+
+
 
 \subsubsection{Leaky LMS Results}
 
+Table \ref{tab:3_1_f} shows estimated parameters for $a_1$ and $a_2$ with varying $\mu$ (the same values used in section \ref{sec:3_1_b}) and $\gamma$ values. We can see that as the leakage parameter $\gamma$ increases, the coefficient estimates get progressively less accurate. $ \lim_{n \to \infty } \mathbb{E}[\mathbf{w}_n] = (\mathbf{R} + \gamma \mathbf{I})^{-1} \mathbf{p} $. The new term added is the $\gamma \mathbf{I} $ term, which effectively introduces noise in to the input matrix $ \mathbf{x} $. Its purpose is to allow the input matrix to have non-zero eigenvalues, as in some cases this can happen, meaning coefficients do not converge. Since the extra term is effectively adding white noise, this explains why the coefficient estimates get progressively worse as $ \gamma $ increases. Since the purpose of Leaky LMS is to help coefficients converge if they otherwise cannot, care should be taken when to add the $ \gamma $ term in, and when it is used to keep it as small as possible, so as to ensure the most accurate results are obtained.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+               & $\mu = 0.01 $                  & $\mu = 0.05 $                  \\ \hline
+$\gamma = 0$   & $a_1 = 0.0939$, $a_2 = 0.7694$ & $a_1 = 0.0695$, $a_2 = 0.7162$ \\ \hline
+$\gamma = 0.2$ & $a_1 = 0.1320$, $a_2 = 0.6078$ & $a_1 = 0.1043$, $a_2 = 0.5463$ \\ \hline
+$\gamma = 0.5$ & $a_1 = 0.1412$, $a_2 = 0.4682$ & $a_1 = 0.1105$, $a_2 = 0.4110$ \\ \hline
+$\gamma = 0.8$ & $a_1 = 0.1349$, $a_2 = 0.3836$ & $a_1 = 0.1050$, $a_2 = 0.3333$ \\ \hline
+\end{tabular}
+\caption{\textit{Estimated AR Coefficients for different $\mu$ and $\gamma$}}
+\label{tab:3_1_f}
+\end{table}
 
 \subsection{Adaptive Step Sizes}
 
