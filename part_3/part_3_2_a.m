@@ -41,7 +41,7 @@ end
 %     w_est_tot = zeros(ORDER, N+1);
 %     
 %     for i=1:N_IT
-%         [ w_est, ~ ] = lms_adaptive(wgn_mat(:, i), x_mat(:, i), 'none', mu, 0, 0);
+%         [ w_est, ~ ] = lms_gass(wgn_mat(:, i), x_mat(:, i), 'none', mu, 0, 0);
 %         w_est_tot = w_est_tot + w_est;
 %     end
 %     
@@ -57,7 +57,7 @@ end
 %         w_est_tot = zeros(ORDER, N+1 );
 % 
 %         for i = 1:N_IT
-%             [ w_est, ~ ] = lms_adaptive(wgn_mat(:, i), x_mat(:, i), method, 0, rho, 0.95);
+%             [ w_est, ~ ] = lms_gass(wgn_mat(:, i), x_mat(:, i), method, 0, rho, 0.95);
 %             w_est_tot = w_est_tot + w_est;
 %         end
 % 
@@ -89,7 +89,7 @@ for mu = [0.01 0.1]
     w_est_tot = zeros(ORDER, N+1);
     
     for i=1:N_IT
-        [ w_est, ~ ] = lms_adaptive(wgn_mat(:, i), x_mat(:, i), 'none', mu, 0, 0);
+        [ w_est, ~ ] = lms_gass(wgn_mat(:, i), x_mat(:, i), 'none', mu, 0, 0);
         w_est_tot = w_est_tot + w_est;
     end
     
@@ -104,7 +104,7 @@ for alpha = alphas
     w_est_tot = zeros(ORDER, N+1);
     
     for i = 1:N_IT
-        [ w_est, ~ ] = lms_adaptive(wgn_mat(:, i), x_mat(:, i), 'ang', 0, 0.001, alpha);
+        [ w_est, ~ ] = lms_gass(wgn_mat(:, i), x_mat(:, i), 'ang', 0, 0.001, alpha);
         w_est_tot = w_est_tot + w_est;
     end
     

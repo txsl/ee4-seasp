@@ -1,4 +1,4 @@
-function [ w_est, error_sq ] = lms_adaptive(wgn, x, step_method, mu, rho, alpha)
+function [ w_est, error_sq ] = lms_gass(wgn, x, step_method, mu, rho, alpha)
 
 N = length(x);
 

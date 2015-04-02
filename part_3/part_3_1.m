@@ -35,11 +35,11 @@ for i = 1:N_IT
         x(n) = fliplr(x(n-2:n-1)') * w + wgn(n);
     end
 
-	[ w_est, error_sq ] = lms(x, ORDER, 0.05, 0);
+	[ w_est, ~, error_sq ] = lms(x, x, ORDER, 0.05, 0);
     error_tot_mu_5 = error_tot_mu_5 + error_sq;
     w_est_tot_mu_5 = w_est_tot_mu_5 + w_est;
 
-    [ w_est, error_sq ] = lms(x, ORDER, 0.01, 0);
+    [ w_est, ~, error_sq ] = lms(x, x, ORDER, 0.01, 0);
     error_tot_mu_1 = error_tot_mu_1 + error_sq;
     w_est_tot_mu_1 = w_est_tot_mu_1 + w_est;
     

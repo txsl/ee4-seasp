@@ -1,4 +1,4 @@
-function [ w_est, error_sq ] = lms( x, order, mu, leak )
+function [ w_est, x_est, error_sq ] = lms(x, d, order, mu, leak )
 
 N = length(x);
 
@@ -8,11 +8,11 @@ x_est = zeros(N, 1);
 
 for n = order+1:N
     
-    x_est(n) = w_est(:, n)' * flipud(x(n-2:n-1));
+    x_est(n) = w_est(:, n)' * flipud(x(n-order:n-1));
     
-    error(n) = x(n) - x_est(n);
+    error(n) = d(n) - x_est(n);
     
-    w_est(:, n+1) = (1-mu*leak)*w_est(:, n) + mu*error(n)*flipud(x(n-2:n-1));
+    w_est(:, n+1) = (1-mu*leak)*w_est(:, n) + mu*error(n)*flipud(x(n-order:n-1));
     
 end
 

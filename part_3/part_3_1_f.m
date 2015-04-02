@@ -39,7 +39,7 @@ for mu = [ 0.01 0.05 ]
         w_est_tot = zeros(ORDER, N+1);
         
         for i = 1:N_IT
-            	[ w_est, error_sq ] = lms(x_mat(:, i), ORDER, mu, leak);
+            	[ w_est, ~, error_sq ] = lms(x_mat(:, i), x_mat(:, i), ORDER, mu, leak);
                 error_tot = error_tot + error_sq;
                 w_est_tot = w_est_tot + w_est;
         end
@@ -52,7 +52,7 @@ for mu = [ 0.01 0.05 ]
         w_est_tot = w_est_tot/N_IT;
         w_est_tot = mean(w_est_tot(:, 800:end), 2);
         
-        disp(sprintf('mu=%f, leak=%f, a1=%f, a2=%f', mu, leak, w_est_tot(1), w_est_tot(2)));
+        fprintf('mu=%f, leak=%f, a1=%f, a2=%f\n', mu, leak, w_est_tot(1), w_est_tot(2));
     end
 end
 
