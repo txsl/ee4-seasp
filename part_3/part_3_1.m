@@ -1,5 +1,5 @@
 
-addpath('../')
+addpath('/../')
 common.init
 
 N = 1000;
@@ -18,6 +18,7 @@ w_est_tot_mu_5 = zeros(ORDER, N+1);
 error_tot_mu_1 = zeros(N, 1);
 w_est_tot_mu_1 = zeros(ORDER, N+1);
 
+start = 0;
 for i = 1:N_IT
 
     wgn = randn(N, 1)*sqrt(VAR_PROC);
@@ -39,6 +40,16 @@ for i = 1:N_IT
     [ w_est, error_sq ] = lms(x, ORDER, 0.01, 0);
     error_tot_mu_1 = error_tot_mu_1 + error_sq;
     w_est_tot_mu_1 = w_est_tot_mu_1 + w_est;
+    
+    if start == 0
+        plot(1:N, 10*log10(error_tot_mu_1), 1:N, 10*log10(error_tot_mu_5))
+        legend('\mu = 0.01', '\mu = 0.05')
+        grid on;
+        title('LMS filter with differing step sizes');
+        xlabel('Iteration')
+        ylabel('Squared Prediction Error (dB)');
+        start = 1;
+    end
     
 end
 
@@ -68,9 +79,9 @@ error_tot_mu_1_db = 10*log10(error_tot_mu_1);
 
 figure
 plot(1:N, error_tot_mu_1_db, 1:N, error_tot_mu_5_db)
-legend('\mu = 0.01', '\mu = 0.05')
+legend('= 0.01', ' = 0.05')
 grid on;
-title('LMS filter with different coefficients');
+title('Mean Error of 100 iterations of LMS filter');
 xlabel('Iteration')
 ylabel('Squared Prediction Error (dB)')
 

@@ -40,14 +40,35 @@ R_{xx}(1) = E[x[n-1]x[n-2]] &= a_1 R_{xx}(0) + a_2 R_{xx}(1) + 0
 
 We then solve these two equations for $ R_{xx}(0) $ and $ R_{xx}(1) $, to determine that the autocorrelation matrix is 
 $$ R = \begin{bmatrix}
-\frac{25}{27} & \frac{25}{54} \\
+\frac{25}{27} & \frac{25}{54} \\[0.3em]
  \frac{25}{54} & \frac{25}{27}
 \end{bmatrix}
 $$
 
+In order for the filter to converge to the correct parameters, we must satisfy the bounds $ 0 < \mu < \frac{2}{\lambda_{max}} $. In this case, our eigenvalues are $\frac{25}{18}$ and $\frac{25}{54}$. Thus we know that $ 0 < \mu < \frac{108}{25} $ for the LMS to converge in the mean.
+
 \subsubsection{Implemented LMS Filter}
+100 iterations of the AR Process $ x[n] = 0.1 x[n-1] + 0.8 x[n-2] + \eta[n] $ have been generated, with 1000 samples per iteration. Figure \ref{fig:q3_1_b_indiv} shows one trial of this filter, whist figure \ref{fig:q3_1_b} shows the mean error taken across 100 iterations.
+
+\begin{figure}[h]
+	\centering 
+ 	\resizebox{\textwidth}{!}{\input{fig/3/3_1_b_indiv.tikz}}
+   	\caption{\textit{LMS filter error (dB) for the given AR process}}
+   	\label{fig:q3_1_b_indiv}
+\end{figure}
+
+
+\begin{figure}[h]
+	\centering 
+ 	\resizebox{\textwidth}{!}{\input{fig/3/3_1_b_leg.tikz}}
+   	\caption{\textit{LMS filter error (dB) for the given AR process, averaged over 100 independent trials}}
+   	\label{fig:q3_1_b}
+\end{figure}
+
 
 \subsubsection{Misadjustment}
+
+Misadjustment is defined as $ \mathcal{M} = \frac{\mathrm{EMSE}}{\sigma^2_\eta}$, where the total mean squared error $ MSE = \lim_{n \to \infty} \mathbb{E} \{ e^2 (n) \} = \sigma^2_\eta + EMSE $. 
 
 \subsubsection{Steady State Coefficient Values}
 

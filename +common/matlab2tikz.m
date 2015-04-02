@@ -191,7 +191,7 @@ function matlab2tikz(varargin)
                           '\\usepackage{amsmath}\n']);
   % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   % scan the options
-  ipp = matlab2tikzInputParser;
+  ipp = common.matlab2tikzInputParser;
 
   ipp = ipp.addOptional(ipp, 'filename',   [], @(x) filenameValidation(x,ipp));
   ipp = ipp.addOptional(ipp, 'filehandle', [], @filehandleValidation);
