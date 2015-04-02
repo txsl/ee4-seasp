@@ -1,4 +1,4 @@
-function [ w_est, error_sq ] = lms_adaptive(wgn, x, step_method, ro, alpha)
+function [ w_est, error_sq ] = lms_adaptive(wgn, x, step_method, mu, rho, alpha)
 
 N = length(x);
 
@@ -7,7 +7,7 @@ error = zeros(N, 1);
 x_est = zeros(N, 1);
 
 step = 0;
-mu = 0;
+
 
 for n = 3:N
     %% Standard LMS Algorithm
@@ -35,7 +35,7 @@ for n = 3:N
     step = 0;
     end
     
-    mu = mu + (ro * error(n) * x(n-1) * step);
+    mu = mu + (rho * error(n) * x(n-1) * step);
 
 end
 
