@@ -74,7 +74,7 @@ Based on the data obtained in section \ref{sec:3_1_b}, we have taken the mean er
 \begin{table}[h]
 \centering
 \begin{tabular}{|l|l|l|}
-\hline
+\hline	
 $\mu$  & Theoretical $\mathcal{M}$ & Measured $\mathcal{M}$ \\ \hline
 0.01 & 0.0093                    & 0.0028                 \\ \hline
 0.05 & 0.0463                    & 0.0456                 \\ \hline
@@ -123,7 +123,7 @@ We then substitute this in to the update function:
 
 \subsubsection{Leaky LMS Results}
 
-Table \ref{tab:3_1_f} shows estimated parameters for $a_1$ and $a_2$ with varying $\mu$ (the same values used in section \ref{sec:3_1_b}) and $\gamma$ values. We can see that as the leakage parameter $\gamma$ increases, the coefficient estimates get progressively less accurate. $ \lim_{n \to \infty } \mathbb{E}[\mathbf{w}_n] = (\mathbf{R} + \gamma \mathbf{I})^{-1} \mathbf{p} $. The new term added is the $\gamma \mathbf{I} $ term, which effectively introduces noise in to the input matrix $ \mathbf{x} $. Its purpose is to allow the input matrix to have non-zero eigenvalues, as in some cases this can happen, meaning coefficients do not converge. Since the extra term is effectively adding white noise, this explains why the coefficient estimates get progressively worse as $ \gamma $ increases. Since the purpose of Leaky LMS is to help coefficients converge if they otherwise cannot, care should be taken when to add the $ \gamma $ term in, and when it is used to keep it as small as possible, so as to ensure the most accurate results are obtained.
+Table \ref{tab:3_1_f} shows estimated parameters for $a_1$ and $a_2$ with varying $\mu$ (the same values used in section \ref{sec:3_1_b}) and $\gamma$ values. We can see that as the leakage parameter $\gamma$ increases, the coefficient estimates get progressively less accurate. \cite{Kamenetsky2004} defines $ \lim_{n \to \infty } \mathbb{E}[\mathbf{w}_n] = (\mathbf{R} + \gamma \mathbf{I})^{-1} \mathbf{p} $. The new term added is the $\gamma \mathbf{I} $ term, which effectively introduces noise in to the input matrix $ \mathbf{x} $. Its purpose is to allow the input matrix to have non-zero eigenvalues, as in some cases this can happen, meaning coefficients do not converge. Since the extra term is effectively adding white noise, this explains why the coefficient estimates get progressively worse as $ \gamma $ increases. Since the purpose of Leaky LMS is to help coefficients converge if they otherwise cannot, care should be taken when to add the $ \gamma $ term in, and when it is used to keep it as small as possible, so as to ensure the most accurate results are obtained.
 
 \begin{table}[h]
 \centering

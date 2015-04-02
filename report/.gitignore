@@ -3,3 +3,9 @@
 *.aux
 *.out
 *.toc
+*.gz
+*.xml
+*.bbl
+*.blg
+*.bib
+!library.bib
