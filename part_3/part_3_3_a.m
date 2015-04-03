@@ -4,20 +4,15 @@ common.init
 
 N = 1000;
 
-M = 1;
-
-v = randn(N, 1);
-noise = zeros(N, 1);
-
-for i = 3:N
-    noise(i) = v(i) + 0.5*v(i-2);
-end
+noise = filter(1, [1 0 0.5], randn(N, 1));
 
 n_corr = xcorr(noise, 'unbiased');
 
 stem(-50:50, n_corr(950:1050));
 common.set_graph_params
-pause
 
-sig = noise + sin(0.01*pi*(1:N))';
+figure
+stem(-20:20, n_corr(980:1020));
+common.set_graph_params
+
 
