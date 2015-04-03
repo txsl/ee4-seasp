@@ -1,4 +1,4 @@
-function [ w_est, x_est, error_sq ] = lms(x, d, order, mu, leak )
+function [ w_est, x_est, error ] = lms(x, d, order, mu, leak )
 
 N = length(x);
 
@@ -16,7 +16,7 @@ for n = order+1:N
     
 end
 
-error_sq = error.^2;
+% error_sq = error.^2;
 
 end
 

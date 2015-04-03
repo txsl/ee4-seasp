@@ -12,7 +12,7 @@ for n = 3:N
     
     error(n) = x(n) - x_est(n);
     
-    w_est(n+1) = w_est(n) + (1/(epsilon(n) + wgn(n-1)^2))*error(n)*wgn(n-1);
+    w_est(n+1) = w_est(n) + (1/(1/mu + wgn(n-1)^2))*error(n)*wgn(n-1);
     
     epsilon(n+1) = epsilon(n) - rho*mu*((error(n)*error(n-1)*wgn(n-1)*wgn(n-2))/((epsilon(n-1) + wgn(n-2)^2 )^2));
 end
