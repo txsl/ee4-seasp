@@ -6,25 +6,33 @@
 \subsection{The Least Mean Squares (LMS) Algorithm}
 
 \subsubsection{Correlation Matrix}
-The autocorrelation matrix is been defined as $ R \equiv E \begin{bmatrix} \mathbf{x}[n] \mathbf{x}^T[n] \end{bmatrix} $
+The autocorrelation matrix is been defined as $ R \equiv E \begin{bmatrix} \mathbf{x}[n] \mathbf{x}^T[n] \end{bmatrix} $, where $ \mathbf{x}(n) = [x(n-1), x(n-2)]^T $
 
 \begin{equation} \label{eq:3_1_a_R}
-R = E \begin{bmatrix}
+R = 
+\begin{bmatrix}
+R_{xx}(0) & R_{xx}(1) \\
+R_{xx}(1) & R_{xx}(0)
+\end{bmatrix}
+= E \left\{ \begin{bmatrix}
 x^2[n-1] & x[n-1] x[n-2] \\
 x[n-1] x[n-2] & x^2[n-2]
+\end{bmatrix} \right\}
+= \begin{bmatrix}
+E \{ x^2[n-1] \} & E \{ x[n-1] x[n-2] \} \\
+E \{ x[n-1] x[n-2] \} & E \{ x^2[n-2] \}
 \end{bmatrix}
 \end{equation}
-
 
 We note that $x^2[n-1] = x^2[n-2] $ since this simply represents a shift in the time domain but will not change the expected value. 
 
 We can square $x[n-1]$ to give us the expected value of the diagonals:
 \begin{subequations}
 \begin{align}
-E[x^2[n-1]] &= E[ a_{1}^2 x^2[n-2] + a_{2}^2 x^2[n-3] + 2 a_{1} a_{2} x[n-1] x[n-2] + \eta[n-1](a_{1} x[n-2] + a_{2}x[n-3]) \\ \nonumber &+ \eta^2[n-1] ] \\	
+E[x^2[n-1]] &= E[ a_{1}^2 x^2[n-2] + a_{2}^2 x^2[n-3] + 2 a_{1} a_{2} x[n-1] x[n-2] + \eta[n-1](a_{1} x[n-2] + a_{2}x[n-3]) \\ \nonumber &\qquad + \eta^2[n-1] ] \\	
 E[x^2[n-1]] &= E[ a_{1}^2 x^2[n - 2]] + E[ a_{2}^2 x^2[n-3]] + E[ 2 a_{1} a_{2} x[n-1] x[n-2]] + 
 \sigma^2 \\
-R_{xx}(0) = E[x^2[n-1]] &= a_1^2 R_{xx}(0) + a_2^2 R_{xx}(0) + 2 a_{1} a_{2} R_{xx}(1)
+R_{xx}(0) = E[x^2[n-1]] &= a_1^2 R_{xx}(0) + a_2^2 R_{xx}(0) + 2 a_{1} a_{2} R_{xx}(1) + \sigma^2
 \end{align}
 \end{subequations}
 
@@ -99,12 +107,12 @@ $a_2$ & 0.8               & 0.7176 & 0.7691 \\ \hline
 \end{table}
 
 \subsubsection{Leaky LMS Derivation}
-In order to derive the leaky LMS equation, we differentiate the given cost function:
+In order to derive the leaky LMS equation, we differentiate the given cost function, using the known result of $ \nabla ( e^2(n) ) |_{w_n}$, and that $ \nabla (\lVert \mathbf{x}(n)\rVert_2^2 )|_{x_n} = 2\mathbf{x} $  :
 
 \begin{subequations}
 \begin{align}
-J(n) &= \frac{1}{2} ( e^2(n) + \gamma \lVert \mathbf{w}(n) \rVert ^2 ) \\
-\nabla J(n)|_{w_n} &= \frac{1}{2}  \nabla ( ( e^2(n) ) |_{w_n} + \gamma \nabla (\lVert \mathbf{w}(n)\rVert ^2 )|_{w_n} ) \\
+J(n) &= \frac{1}{2} ( e^2(n) + \gamma \lVert \mathbf{w}(n) \rVert_2^2 ) \\
+\nabla J(n)|_{w_n} &= \frac{1}{2}  ( \nabla ( e^2(n) ) |_{w_n} + \gamma \nabla (\lVert \mathbf{w}(n)\rVert_2^2 )|_{w_n} ) \\
 \nabla J(n)|_{w_n} &= -e(n) \mathbf{x}(n) + \gamma w(n)
 \end{align}
 \end{subequations}
@@ -145,13 +153,19 @@ $\gamma = 0.8$ & $a_1 = 0.1349$, $a_2 = 0.3836$ & $a_1 = 0.1050$, $a_2 = 0.3333$
 
 \subsubsection{NLMS Algorithm}
 
+The NLMS algorithm is a modification to the LMS algorithm which normalises the power of the input, which for a noisy input signal means the filter is more likely to be stable.
+
+\begin{subequations}
+	\begin{align}
+	\bigtriangleup \mathbf{w}(n) &= \mathbf{w}(n+1) - \mathbf{w}(n) \\
+	\bigtriangleup \mathbf{w}(n) &= \mu e(n) \left[  1 - \mu \frac{\lVert \mathbf{x}(n)\rVert^2}{1 + \mu \lVert \mathbf{x}(n)\rVert^2} \right] \mathbf{x}(n) = \mathbf{w}(n+1) - \mathbf{w}(n) \\
+	\bigtriangleup \mathbf{w}(n) &= e(n) \left[ \frac{\mu + \mu^2  \lVert \mathbf{x}(n)\rVert^2 - \mu^2 \lVert \mathbf{x}(n)\rVert^2}{1 + \mu \lVert \mathbf{x}(n)\rVert^2} \right] \mathbf{x}(n) = \mathbf{w}(n+1) - \mathbf{w}(n) \\
+	\mathbf{w}(n+1) &= \mathbf{w}(n) + e(n)  \mathbf{x}(n) \left[ \frac{1}{\frac{1}{\mu} + \lVert \mathbf{x}(n)\rVert^2 } \right]
+	\end{align}
+\end{subequations}
+
 \subsubsection{GNGD Algorithm}
 
-Maths and boringness ensue
-
-% \begin{equation}
-% S = \frac{1}{N}X' X'^T
-% \end{equation}
 
 
 %  \begin{figure}[h]
