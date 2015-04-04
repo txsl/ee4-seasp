@@ -1,0 +1,107 @@
+% This file was created by matlab2tikz v0.4.7 (commit 84da6da3eee1f984abca8102d577f21df97f7554) running on MATLAB 8.3.
+% Copyright (c) 2008--2014, Nico Schlömer <nico.schloemer@gmail.com>
+% All rights reserved.
+% Minimal pgfplots version: 1.3
+% 
+% The latest updates can be retrieved from
+%   http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz
+% where you can also make suggestions and rate matlab2tikz.
+% 
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.52083333333333in,
+height=2in,
+scale only axis,
+xmin=0,
+xmax=25,
+xlabel={Time Delay $ \bigtriangleup $},
+xmajorgrids,
+ymin=0.2,
+ymax=0.5,
+ylabel={MSPE (Mean Square Prediction Error)},
+ymajorgrids,
+title={Time Delay $ \bigtriangleup $ and MSPE of an Adaptive Line Enhancer},
+axis x line*=bottom,
+axis y line*=left
+]
+\addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
+  table[row sep=crcr]{0	0.457112758906601\\
+};
+\addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
+  table[row sep=crcr]{1	0.457105598994501\\
+};
+\addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
+  table[row sep=crcr]{2	0.264648005573513\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{3	0.263460490384655\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{4	0.226349687179327\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{5	0.234569847762656\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{6	0.229458162435836\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{7	0.235476978572889\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{8	0.244740113347285\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{9	0.256717932440133\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{10	0.262847321334085\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{11	0.268732331957349\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{12	0.275114396677354\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{13	0.28667927857361\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{14	0.296155243031606\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{15	0.304730148097582\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{16	0.315095062870094\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{17	0.324312346853434\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{18	0.334793987827317\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{19	0.346640873844623\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{20	0.355001454398426\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{21	0.365391974658412\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{22	0.376014463963637\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{23	0.393427558802103\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{24	0.405385769010224\\
+};
+\addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
+  table[row sep=crcr]{25	0.413840200854496\\
+};
+\end{axis}
+\end{tikzpicture}%

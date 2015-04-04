@@ -180,6 +180,56 @@ Thus from the comparison of forms, we can equate $ \beta = 1 $ and $ \epsilon = 
 \subsubsection{GNGD Algorithm}
 
 
+\subsection{Adaptive Noise Cancellation}
+
+
+\subsubsection{The Effects of Correlation on the Adaptive Line Enhancement Filter}
+
+
+\subsubsection{Parameters of the Adaptive Line Enhancement Filter}
+Having implemented the ALE filter, we can test two of the parameters which determine its performance: the time delay, $ \bigtriangleup $, applied in the input signal which is fed in to the Linear Predictor, and the order of the LMS filter (the heart of the Linear Predictor) itself.
+
+The signal $S(n)$ is composed of a sine wave and noise, such that $ s(n) = x(n) + \eta(n) $ where $x(n)$ refers to the sine wave (with angular frequency $ \omega_0 = 0.01\pi$) and $ \eta(n) = v(n) + 0.5v(n-2) $ where $v(n) \sim \mathcal{N}(0,1) $.
+
+Figure \ref{fig:3_3_b_sweeps} shows the two parameters which have been varied. In order to ensure reliable results, a `Monte Carlo' style simulation was conducted, taking the average results across ten iterations of the data. The data remained constant between the parameter sweeps, in order to ensure a fair test. Whilst there were specific parameters within which to test the time delay $ \bigtriangleup $ and filter order. But since the code was written, it was decided to explore those parameter values around and between the ones specified. The ones specified are marked on the plots as red circles, with blue stars representing other parameters tested.
+
+Figure \ref{fig:3_3_b_delay} shows how the MSPE changes as the time delay  $ \bigtriangleup $ to the filter input $ \mathbf{u}(n) $ changes. We can see the lowest MSPE lies around $ \bigtriangleup = 4 $ and $ \bigtriangleup = 6$. Unsurprisingly, $ \bigtriangleup $ at low values shows very poor performance - since the noise in $ s(n) $ will still be correlated with $ \mathbf{u}(n) $. At larger values, the MSPE also appears to get worse. By observing the output of the system, you notice that as the delay increases, the output becomes less and less in phase with the input, thus becoming less accurate not because of noise, but because it is out of phase.
+
+Figure \ref{fig:3_3_b_order} shows the relationship between the MSPE and filter order, $M$. We can see the minima of the MSPE is when $M = 5$. The Complexity of an LMS filter is $ 2M + 1 $. Thus for every order we add to the filter, we are increasing the computational complexity of the problem. It is clear that a filter order of $M = 1$ or $M=2$ has very poor performance, but an order of 3 or 4 may be an acceptable trade off for filter order, considering the extra computational cost. This importance of additional computational cost does depend on the device and situation though - here using desktop computers, extra parameters within the bounds of the coursework cause no discernible problem in computational time. If this were for example, on an embedded low power DSP chip, this trade off may become more apparent and need to be anaylsed in further depth. In comparison to many algorithms which are proportional to $ N^2 $ (where $N$ reflects the size of the computational problem), a linear relationship is still fairly good. Thus we can be comfortable selecting the optimal order filter, 5, knowing there is little overhead in doing so.
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.49\textwidth}
+		\resizebox{\textwidth}{2in}{\input{fig/3/3_3_b_delta.tikz}}
+		\caption{\textit{Differing delays plotted against their MSPEs}}
+		\label{fig:3_3_b_delay}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{0.49\textwidth}
+		\resizebox{\textwidth}{2in}{\input{fig/3/3_3_b_order.tikz}}
+		\caption{\textit{Differing filter orders plotted against their MSPEs}}
+		\label{fig:3_3_b_order}
+	\end{subfigure}
+	
+	\label{fig:3_3_b_sweeps}
+	\caption{\textit{MSPE of the Adaptive Line Enhancer, with varying parameters of input delay and filter order}}
+\end{figure}
+
+Using the parameters $ \bigtriangleup = 4$ and $ M = 5$, we can produce a plot of the input signal without noise $x(n)$, once noise has been added, $s(n)$ and the new estimated output. As with other experiments, multiple iterations have been taken, and the mean sampled from these (as has been done in other parts of the coursework, as well). This is shown in figure \ref{fig:3_3_b_overview}. The delay on the output signal as created by $ \mathbf{u}(n) $ is apparent. We also observe that the amplitude of noise is noticeably smaller on the output than the input - so we know the ALE has had some effect to improve the signal.
+
+\begin{figure}[h]
+\centering 
+\resizebox{\textwidth}{!}{\input{fig/3/3_3_b_overview.tikz}}
+\caption{\textit{Sample input and output of an Adaptive Line Enhancer}}
+\label{fig:3_3_b_overview}
+\end{figure}
+
+
+\subsubsection{Adaptive Noise Cancellation Filter}
+
+
+\subsubsection{Removing Mains 50Hz hum from ECG Data}
 
 %  \begin{figure}[h]
 %  	\centering 

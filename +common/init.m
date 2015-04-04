@@ -1,5 +1,7 @@
 close all; clear all; clc;
 
-addpath('../data')
-% addpath('../libs')
-addpath('../libs/voicebox')
+addpath('../libs')
+% addpath('../libs/voicebox')
+
+set(0,'DefaultTextInterpreter','latex'); 
+set(groot, 'DefaultLegendInterpreter', 'latex')
