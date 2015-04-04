@@ -9,27 +9,17 @@ DELAY = 5;
 ORDER = 4;
 
 sig = zeros(N, N_IT);
-
 sine_wave = sin(0.01*pi*(1:N))';
 
-
 for j = 1:N_IT
-    v = randn(N, 1);
-    
-    sig(1:2, j) = sine_wave(1:2);
-
-    for i = 3:N
-        sig(i, j) = v(i) + 0.5*v(i-2) + sine_wave(i);
-    end
+    sig(:, j) = filter(1, [1 0 0.5], randn(N, 1)) + sine_wave;
 end
 
 %% For varying filter orders
 
-orders = 1:20 % [ 5 10 15 20 ];
-cols = common.distinguishable_colors(length(orders));
+orders = [ 5 10 15 20 ];
+cols = distinguishable_colors(length(orders) + 1);
 leg_text = cell(length(orders), 1);
-
-x_est_tot = zeros(N, 1);
 
 figure(1);
 hold on;
@@ -38,34 +28,39 @@ figure(2);
 hold on;
 
 for j = 1:length(orders)
-    x_est_tot = zeros(N, 1);
+    
+    error_tot = zeros(N, N_IT);
+    x_est_tot = zeros(N, N_IT);
+    
     for i = 1:N_IT
         u = zeros(N, 1);
         u(DELAY+1:end) = sig(1:end-DELAY, i);
 
-        [ ~, x_est, error_sq ] = lms(u, sig(:, i), orders(j), .01, 0);
+        [ ~, x_est_tot(:,i), error_tot(:,i) ] = lms(u, sig(:, i), orders(j), .01, 0);
 
-        x_est_tot = x_est_tot + x_est;
     end
     
-    err = mspe(sine_wave, x_est_tot/N_IT);
+    err = mean(mspe(repmat(sine_wave, [1 100]), x_est_tot));
     
     figure(1);
-    plot(10*log10(err), 'color', cols(j, :));
+    plot(mean(x_est_tot, 2), 'color', cols(j, :));
     
     figure(2);
-    plot(orders(j), 10*log10(err), '*');
+    plot(orders(j), err, '*');
     leg_text{j} = sprintf('Order: %i', orders(j));
     
 end
 
 figure(1);
+plot(sine_wave, 'color', cols(end, :));
+leg_text{end+1} = 'Reference Signal';
 legend(leg_text);
 common.set_graph_params;
 
 figure(2);
-legend(leg_text);
 common.set_graph_params;
+xlabel('Filter order');
+ylabel('MSPE (Mean Square Prediction Error');
 
 
 %% For varying delay
@@ -78,25 +73,26 @@ hold on;
 
 
 delays = 0:25; %[ 0 1 5 10 15 20 25 ];
-cols = common.distinguishable_colors(length(delays));
+cols = distinguishable_colors(length(delays));
 leg_text = cell(length(delays), 1);
 
 for j = 1:length(delays)
-    x_est_tot = zeros(N, 1);
+    
+    error_tot = zeros(N, N_IT);
+    x_est_tot = zeros(N, N_IT);
+    
     for i = 1:N_IT
         u = zeros(N, 1);
         u(delays(j)+1:end) = sig(1:end-delays(j), i);
 
-        [ ~, x_est, error_sq ] = lms(u, sig(:, i), 5, .01, 0);
-
-        x_est_tot = x_est_tot + x_est;
+        [ ~, x_est_tot(:,i), error_tot(:,i) ] = lms(u, sig(:, i), 5, .01, 0);
     end
     
-    err = mspe(sine_wave, x_est_tot/N_IT);
+    err = mean(mspe(repmat(sine_wave, [1 100]), x_est_tot));
     
     figure(3);
     hold on;
-    plot(x_est_tot, 'color', cols(j, :));
+    plot(mean(x_est_tot, 2), 'color', cols(j, :));
 
     figure(4);
     hold on;
@@ -110,15 +106,33 @@ legend(leg_text);
 common.set_graph_params;
 
 figure(4);
-hold on;
-legend(leg_text);
 common.set_graph_params;
+xlabel('Delay (delta)');
+ylabel('MSPE (Mean Square Prediction Error');
 
 
-% plot(1:N, x_est_tot, 1:N, mean(sig, 2), 1:N, sin(0.01*pi*(1:N)))
-% legend('X estimated', 'Input Signal', 'Reference Sinusoid')
-% common.set_graph_params
-% 
+%% Optimal Results
+
+D = 4;
+ORD = 5;
+
+error_tot = zeros(N, N_IT);
+x_est_tot = zeros(N, N_IT);
+
+for i = 1:N_IT
+    u = zeros(N, 1);
+    u(D+1:end) = sig(1:end-D, i);
+
+    [ ~, x_est_tot(:,i), error_tot(:,i) ] = lms(u, sig(:, i), ORD, .01, 0);
+end
+    
+err = mean(mspe(repmat(sine_wave, [1 100]), x_est_tot))
+
+figure
+plot(1:N, mean(x_est_tot, 2), 1:N, mean(sig, 2), 1:N, sin(0.01*pi*(1:N)))
+legend('X estimated', 'Input Signal', 'Reference Sinusoid')
+common.set_graph_params
+
 % figure
 % plot(mspe(sine_wave, x_est_tot))
 % common.set_graph_params
