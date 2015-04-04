@@ -150,10 +150,17 @@ $\gamma = 0.8$ & $a_1 = 0.1349$, $a_2 = 0.3836$ & $a_1 = 0.1050$, $a_2 = 0.3333$
 \subsection{Adaptive Step Sizes}
 
 \subsubsection{Implemented GASS Algorithms}
+Gradient Adapive Step-Size Algorithms are designed to change the step size as the algorithm progresses. At the start, a large step size is needed in order for the algorithm to converge quickly, but during steady state a small step size helps to reduce the steady state error (as we have observed in previous parts of this coursework).
+
+The LMS algorithm remains the same in structure, but $\mu$ now becomes $\mu(n)$, thus becoming $  \mathbf{w}(n+1) = \mathbf{w}(n) + \mu(n) e(n) \mathbf{x}(n) $. The algorithm to update the weight is defined as $ \mu(n+1) = \mu(n) + \rho e(n) \mathbf{x}^T(n) \psi(n)$. $ \psi(n) $ is defined by three different GASS algorithms, listed below:
+
+
 
 \subsubsection{NLMS Algorithm}
 
-The NLMS algorithm is a modification to the LMS algorithm which normalises the power of the input, which for a noisy input signal means the filter is more likely to be stable.
+The NLMS algorithm is a modification to the LMS algorithm which normalises the power of the input, which for a particularly noisy (in the power spectrum) input signal means the filter can still get to a stable output, which may not happen with a normal LMS filter, or at least not without manually adjusting the step size.
+
+Given the update equation $ \mathbf{w}(n+1) = \mathbf{w}(n) + \mu e_p(n) \mathbf{x}(n) $ and the \textit{a posteriori} relationship given: $  e_p(n) = d(n) - \mathbf{x}^T(n) \mathbf{w}(n+1) $, we can express $ \bigtriangleup \mathbf{w}(n) = \mathbf{w}(n+1) - \mathbf{w}(n) $ to allow us to equate the update equation to the standard NLMS form:
 
 \begin{subequations}
 	\begin{align}
@@ -167,7 +174,7 @@ The NLMS algorithm is a modification to the LMS algorithm which normalises the p
 We can see that the last line, equation \ref{subeq:3_2_b} now has the same form (and thus is equivalent to, other than the factors which are discussed below) as the NLMS update equation:
 $$ \mathbf{w}(n+1) = \mathbf{w}(n) + \frac{\beta}{\epsilon + \mathbf{x}^T(n)\mathbf{x}(n)} e(n) \mathbf{x}(n) $$
 
-Thus from the comparison of forms, we can determine that $ \beta = 1 $ and $ \epsilon = \frac{1}{\mu} $.
+Thus from the comparison of forms, we can equate $ \beta = 1 $ and $ \epsilon = \frac{1}{\mu} $.
 
 \subsubsection{GNGD Algorithm}
 
