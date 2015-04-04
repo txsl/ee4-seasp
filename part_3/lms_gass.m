@@ -1,41 +1,41 @@
-function [ w_est, error_sq ] = lms_gass(wgn, x, step_method, mu, rho, alpha)
+function [ w_est, error_sq ] = lms_gass(x, d, order, step_method, mu, rho, alpha)
 
-N = length(x);
+N = length(d);
 
-w_est = zeros(1, N);
-error = zeros(N, 1);
-x_est = zeros(N, 1);
+w_est = zeros(order, N);
+error = zeros(N, order);
+x_est = zeros(N, order);
 
-step = 0;
+step = zeros(order, 1);
 
 
-for n = 3:N
+for n = order+2:N
     %% Standard LMS Algorithm
-    x_est(n) = w_est(:, n)' * wgn(n-1);
+    x_est(n) = w_est(:, n)' * flipud(x(n-order:n-1));
     
-    error(n) = x(n) - x_est(n);
+    error(n) = d(n) - x_est(n);
     
-    w_est(:, n+1) = w_est(:, n) + mu*error(n)*wgn(n-1);
-    
+    w_est(:, n+1) = w_est(:, n) + mu*error(n)*flipud(x(n-order:n-1));
+
     %% GASS Algorithms
     % Benveniste
     if strcmp(step_method, 'benveniste') 
-    step = (1 - mu*(wgn(n-2)^2))*step + error(n-1)*wgn(n-2);
+    step = (eye(order) - mu*(flipud(x(n-order-1:n-2)) * flipud(x(n-order:n-1))'))*step + error(n-1)*flipud(x(n-order-1:n-2));
     
     %Ang & Farhang
     elseif strcmp(step_method, 'ang')
-    step = alpha*step + error(n-1)*wgn(n-2);
+    step = alpha*step + error(n-1)*flipud(x(n-order:n-1));
     
     % Matthews & Xie
     elseif strcmp(step_method, 'matthews')
-    step = error(n-1)*wgn(n-2);
+    step = error(n-1)*flipud(x(n-order:n-1));
     
     % Standard LMS
     else
-    step = 0;
+    step = zeros(order, 1);
     end
     
-    mu = mu + (rho * error(n) * x(n-1) * step);
+    mu = mu + (rho * error(n) * flipud(x(n-order:n-1))' * step);
 
 end
 
