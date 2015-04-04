@@ -32,7 +32,7 @@ end
 h_est = zeros(ORDER, N, N_IT);
 
 for i = 1:N_IT
-    [ h_est(:, :, i) , ~, ~ ] = clms(x(:,i), y(:,i), ORDER, MU); 
+    [ h_est(:, :, i), ~, ~ ] = clms(x(:,i), y(:,i), ORDER, MU); 
 end
 
 
@@ -44,6 +44,20 @@ plot(mean(imag(h_est), 3)')
 %% ACLMS
 
 h_est = zeros(ORDER, N, N_IT);
+g_est = zeros(ORDER, N, N_IT);
 for i = 1:N_IT
-    
+    [ h_est(:, :, i), g_est(:, :, i), ~, ~ ] = aclms(x(:,i), y(:,i), ORDER, MU); 
 end
+
+figure
+
+plot(mean(real(h_est), 3)')
+
+figure
+plot(mean(imag(h_est), 3)')
+
+figure
+plot(mean(real(g_est), 3)')
+
+figure
+plot(mean(imag(g_est), 3)')
