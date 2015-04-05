@@ -183,7 +183,7 @@ Thus from the comparison of forms, we can equate $ \beta = 1 $ and $ \epsilon = 
 \subsection{Adaptive Noise Cancellation}
 
 
-\subsubsection{The Effects of Correlation on the Adaptive Line Enhancement Filter}
+\subsubsection{The Effects of Correlation on the Adaptive Line Enhancement Filter} \label{sec:3_3_a}
 
 
 \subsubsection{Parameters of the Adaptive Line Enhancement Filter}
@@ -193,9 +193,9 @@ The signal $S(n)$ is composed of a sine wave and noise, such that $ s(n) = x(n) 
 
 Figure \ref{fig:3_3_b_sweeps} shows the two parameters which have been varied. In order to ensure reliable results, a `Monte Carlo' style simulation was conducted, taking the average results across ten iterations of the data. The data remained constant between the parameter sweeps, in order to ensure a fair test. Whilst there were specific parameters within which to test the time delay $ \bigtriangleup $ and filter order. But since the code was written, it was decided to explore those parameter values around and between the ones specified. The ones specified are marked on the plots as red circles, with blue stars representing other parameters tested.
 
-Figure \ref{fig:3_3_b_delay} shows how the MSPE changes as the time delay  $ \bigtriangleup $ to the filter input $ \mathbf{u}(n) $ changes. We can see the lowest MSPE lies around $ \bigtriangleup = 4 $ and $ \bigtriangleup = 6$. Unsurprisingly, $ \bigtriangleup $ at low values shows very poor performance - since the noise in $ s(n) $ will still be correlated with $ \mathbf{u}(n) $. At larger values, the MSPE also appears to get worse. By observing the output of the system, you notice that as the delay increases, the output becomes less and less in phase with the input, thus becoming less accurate not because of noise, but because it is out of phase.
+Figure \ref{fig:3_3_b_delay} shows how the MSPE changes as the time delay  $ \bigtriangleup $ to the filter input $ \mathbf{u}(n) $ changes. We can see the lowest MSPE lies around $ \bigtriangleup = 4 $ and $ \bigtriangleup = 6$. Unsurprisingly, $ \bigtriangleup $ at low values shows very poor performance - since the noise in $ s(n) $ will still be correlated with $ \mathbf{u}(n) $ (as analysed in Section \ref{sec:3_3_a} ). At larger values, the MSPE also appears to get worse. By observing the output of the system, you notice that as the delay increases, the output becomes less and less in phase with the input, thus becoming less accurate not because of noise itself, but because it is out of phase with the original signal.
 
-Figure \ref{fig:3_3_b_order} shows the relationship between the MSPE and filter order, $M$. We can see the minima of the MSPE is when $M = 5$. The Complexity of an LMS filter is $ 2M + 1 $ \cite{Dhiman2013}. Thus for every order we add to the filter, we are increasing the computational complexity of the problem. It is clear that a filter order of $M = 1$ or $M=2$ has very poor performance, but an order of 3 or 4 may be an acceptable trade off for filter order, considering the extra computational cost. This importance of additional computational cost does depend on the device and situation though - here using desktop computers, extra parameters within the bounds of the coursework cause no discernible problem in computational time. If this were for example, on an embedded low power DSP chip, this trade off may become more apparent and need to be anaylsed in further depth. In comparison to many algorithms which are proportional to $ N^2 $ (where $N$ reflects the size of the computational problem), a linear relationship is still fairly good. Thus we can be comfortable selecting the optimal order filter, 5, knowing there is little overhead in doing so.
+Figure \ref{fig:3_3_b_order} shows the relationship between the MSPE and filter order, $M$. We can see the minima of the MSPE is when $M = 5$. The Complexity of an LMS filter is $ 2M + 1 $ \cite{Dhiman2013}. Thus for every order we add to the filter, we are increasing the computational complexity of the problem. It is clear that a filter order of $M = 1$ or $M=2$ has very poor performance, but an order of 3 or 4 may be an acceptable trade off for filter order, considering the extra computational cost. This importance of additional computational cost does depend on the device and situation though - here using desktop computers, extra parameters within the bounds of the coursework cause no discernible problem in computation time. If this were for example, on an embedded low power DSP chip, this trade off may become more apparent and need to be anaylsed in further depth. In comparison to many algorithms which are proportional to $ N^2 $ (where $N$ reflects the size of the computational problem), a linear relationship is still fairly good. Thus we can be comfortable selecting the optimal order filter, 5, knowing there is little overhead in doing so.
 
 \begin{figure}[h]
 	\centering
@@ -221,7 +221,7 @@ Using the parameters $ \bigtriangleup = 4$ and $ M = 5$, we can produce a plot o
 \begin{figure}[h]
 \centering 
 \resizebox{\textwidth}{!}{\input{fig/3/3_3_b_overview.tikz}}
-\caption{\textit{Sample input and output of an Adaptive Line Enhancer}}
+\caption{\textit{Sample input and output of an Adaptive Line Enhancer (Averaged over 10 trials)}}
 \label{fig:3_3_b_overview}
 \end{figure}
 
