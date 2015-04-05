@@ -52,10 +52,10 @@ $$ R = \begin{bmatrix}
 \end{bmatrix}
 $$
 
-In order for the filter to converge to the correct parameters, we must satisfy the bounds $ 0 < \mu < \frac{2}{\lambda_{max}} $. In this case, our eigenvalues are $\frac{25}{18}$ and $\frac{25}{54}$. Thus we know that $ 0 < \mu < \frac{108}{25} $ for the LMS to converge in the mean.
+In order for the filter to converge to the correct parameters, we must satisfy the bounds $ 0 < \mu < \frac{2}{\lambda_{max}} $. In this case, our eigenvalues are $\frac{25}{18}$ and $\frac{25}{54}$. Thus we know that $ 0 < \mu < \frac{36}{25} ( = 1.44) $ for the LMS to converge in the mean.
 
 \subsubsection{Implemented LMS Filter} \label{sec:3_1_b}
-100 iterations of the AR Process $ x[n] = 0.1 x[n-1] + 0.8 x[n-2] + \eta[n] $ have been generated, with 1000 samples per iteration. Figure \ref{fig:q3_1_b_indiv} shows one trial of this filter, whist figure \ref{fig:q3_1_b} shows the mean error taken across 100 iterations. We can see that 100 iterations shows a much clearer trend in the error decreasing and becoming steady at around 300 iterations in.
+100 iterations of the AR Process $ x[n] = 0.1 x[n-1] + 0.8 x[n-2] + \eta[n] $ have been generated, with 1000 samples per iteration. Figure \ref{fig:q3_1_b_indiv} shows one trial of this filter, whist figure \ref{fig:q3_1_b} shows the mean error taken across 100 iterations. We can see that 100 iterations shows a much clearer trend in the error decreasing and becoming steady at around 300 iterations in. The steady state is around -6dB of prediction error. The Mean Squared Error is defined as $ \sigma^2_\eta + \mathrm{EMSE} $ (discussed further in section \ref{sec:3_1_c}), this term is dominated by the power of the noise, $\sigma^2_\eta  $. We know for this system that $ N \sim \mathcal{N}(0,0.25) $, and if we convert that power to dB, it is -6dB.
 
 \begin{figure}[h]
 	\centering 
@@ -75,9 +75,9 @@ In order for the filter to converge to the correct parameters, we must satisfy t
 
 \subsubsection{Misadjustment} \label{sec:3_1_c}
 
-Misadjustment is defined as $ \mathcal{M} = \frac{\mathrm{EMSE}}{\sigma^2_\eta}$, where the total mean squared error $ \mathrm{MSE} = \lim_{n \to \infty} \mathbb{E} \{ e^2 (n) \} = \sigma^2_\eta + \mathrm{EMSE} $. Thus we can compute the measured misadjustment from the known mean squared error, and variance of the White Gaussian Noise. We also know that we can approximate $  \mathcal{M} \approx \frac{\mu}{2} \mathbf{Tr} \{ \mathbf{R} \}$ (for small $\mu$) which allows us to have an idea of its theoretical values.
+Misadjustment is defined as $ \mathcal{M} = \frac{\mathrm{EMSE}}{\sigma^2_\eta}$, where the total mean squared error $ \mathrm{MSE} = \lim_{n \to \infty} \mathbb{E} \{ e^2 (n) \} = \sigma^2_\eta + \mathrm{EMSE} $. Thus we can compute the measured misadjustment from the known mean squared error, and variance of the White Gaussian Noise. We also know that we can approximate $  \mathcal{M} \approx \frac{\mu}{2} \mathrm{Tr} \{ \mathbf{R} \}$ (for small $\mu$) which allows us to have an idea of its theoretical values.
 
-Based on the data obtained in section \ref{sec:3_1_b}, we have taken the mean error squared of the last two hundred samples (when it is known to be in a steady state) across the 100 iterations of the LMS filter, and computed the misadjustment. Table \ref{tab:3_1_c} shows the theoretical and measured misadjustment values. The results are close to the theoretical values, although running the test multiple times does show that the misadjustment varies between each set of 100 trials.
+Based on the data obtained in section \ref{sec:3_1_b}, we have taken the mean error squared of the last two hundred samples (when it is known to be in a steady state) across the 100 iterations of the LMS filter, and computed the misadjustment. Table \ref{tab:3_1_c} shows the theoretical and measured misadjustment values. The results are close to the theoretical values (and certainly all of the same order), although running the test multiple times does show that the misadjustment varies between each set of 100 trials. It is worth noting that the error (difference away from the theoretical value) at $ \mu = 0.01 $ seems to be greater than the error for $ \mu = 0.05 $.
 
 \begin{table}[h]
 \centering
@@ -92,7 +92,7 @@ $\mu$  & Theoretical $\mathcal{M}$ & Measured $\mathcal{M}$ \\ \hline
 \end{table}
 
 \subsubsection{Steady State Coefficient Values}
-By taking the mean of the two hundred last values (when we know the filter is in steady state), and then taking the mean across 100 iterations, we can get estimations of the coefficients $a_1$ and $a_2$. The results are shown in table \ref{tab:3_1_d}. We can see that the coefficient estimates for $\mu = 0.01$ is nearer to the true values than for $\mu = 0.05$. We know that there will always be some error, due to the power of the WGN signal (the $ \sigma^2$ term in the Mean Squared Error equation). We also know from section \ref{sec:3_1_c} that the misadjustment for  $\mu = 0.05$ is larger than for $\mu = 0.01 $, hence it is not surprising that it also less close to the known values than  $\mu = 0.01$. However, we know that a larger step size results in faster convergence to the correct value, so it is a case of a trade off between a small steady state error, and fast convergence.
+By taking the mean of the two hundred last values (when we know the filter is in steady state), and then taking the mean across 100 iterations, we can get estimations of the coefficients $a_1$ and $a_2$. The results are shown in table \ref{tab:3_1_d}. We can see that the coefficient estimates for $\mu = 0.01$ is nearer to the true values than for $\mu = 0.05$. We know that there will always be some error, due to the power of the WGN signal (the $ \sigma^2$ term in the Mean Squared Error equation). We also know from section \ref{sec:3_1_c} that the misadjustment for  $\mu = 0.05$ is larger than for $\mu = 0.01 $, hence it is not surprising that it also less close to the known values than  $\mu = 0.01$. However, we know from Figure \ref{fig:q3_1_b} that a larger step size results in faster convergence to the correct value, so it is a case of a trade off between a small steady state error, and fast convergence.
 
 \begin{table}[h]
 \centering
@@ -159,7 +159,7 @@ The LMS algorithm remains the same in structure, but $\mu$ now becomes $\mu(n)$,
 
 \subsubsection{NLMS Algorithm}
 
-The NLMS algorithm is a modification to the LMS algorithm which normalises the power of the input, which for a particularly noisy (in the power spectrum) input signal means the filter can still get to a stable output, which may not happen with a normal LMS filter, or at least not without manually adjusting the step size.
+The NLMS algorithm is a modification to the LMS algorithm which normalises the power of the input, which for a particularly noisy (in the power spectrum) input signal means the filter can still get to a stable output, which may not happen with the standard LMS filter, or at least not without manually adjusting the step size.
 
 Given the update equation $ \mathbf{w}(n+1) = \mathbf{w}(n) + \mu e_p(n) \mathbf{x}(n) $ and the \textit{a posteriori} relationship given: $  e_p(n) = d(n) - \mathbf{x}^T(n) \mathbf{w}(n+1) $, we can express $ \bigtriangleup \mathbf{w}(n) = \mathbf{w}(n+1) - \mathbf{w}(n) $ to allow us to equate the update equation to the standard NLMS form:
 

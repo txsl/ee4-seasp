@@ -12,7 +12,7 @@ ORDER = 2;
 
 mu_1 = 0.01;
 mu_2 = 0.05;
- 
+
 error_tot_mu_5 = zeros(N, N_IT);
 w_est_tot_mu_5 = zeros(ORDER, N+1, N_IT);
 
@@ -21,7 +21,6 @@ w_est_tot_mu_1 = zeros(ORDER, N+1, N_IT);
 
 start = 0;
 for i = 1:N_IT
-    wgn = randn(N, 1)*sqrt(VAR_PROC);
     
     % Generate the signal
     x = filter(1, [1 -0.1 -0.8], randn(N, 1)*sqrt(VAR_PROC));
