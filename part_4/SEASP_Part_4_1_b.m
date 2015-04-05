@@ -36,3 +36,28 @@ for i = 1:3
 
 end
 
+%% Let's try modelling it
+
+figure;
+hold on;
+
+plots = { 'oy', '+m', '*c', '.r', 'xg', 'sb' };
+
+for w = 1:3
+    clms_errs = zeros(20, 1);
+    aclms_errs = zeros(20, 1);
+    for i = 1:20
+        [ ~, ~, error ] = clms(v(:, w), v(:, w), i, 0.01);
+        clms_errs(i) = mean(abs(error).^2);
+        
+        [ ~, ~, ~, ~ ] = aclms(v(:, w), v(:, w), i, 0.01);
+        aclms_errs(i) = mean(abs(error).^2);
+    end
+    plot(clms_errs, plots{w})
+    plot(aclms_errs, plots{w+3})
+end
+
+legend('CLMS - Low Speed Wind', 'ACLMS - Low Speed Wind', 'CLMS - Med. Speed Wind', 'ACLMS - Med. Speed Wind', 'CLMS - Hi. Speed Wind', 'ACLMS - Hi. Speed Wind');
+
+
+
