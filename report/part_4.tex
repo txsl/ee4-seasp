@@ -1,11 +1,24 @@
 \documentclass[./main.tex]{subfiles} 
 \begin{document}
 
-\section{First Section here}
+\section{Widely Linear Filtering and Adaptive Spectral Estimation}
 
-\subsection{First subsection here}
+\subsection{Complex LMS and Widely Linear Modelling}
 
-Maths and boringness ensue
+\subsubsection{The CLMS and ACLMS}
+We are introduced to the Complex LMS, which is a modification of the LMS filter, but designed to operate with complex signals. The $ \mathbf{w}$ weight term is replaced with $ \mathbf{h}$, and the estimation is now $ \hat{y}(n) = \mathbf{h}^H(n) \mathbf{x}(n) $, with the weight update being performed as $ \mathbf{h}(n+1) = \mathbf{h}(n) + \mu e^{\ast}(n)\mathbf{x}(n) $.
+
+We are also introduced to the Augmented CLMS, which is designed to capture the second order statistical relationship between 
+
+We generated a WLMA(1) (Widely Linear Moving Average) process which is defined as $ y(n) = x(n) + b_1 x(n-1) + b_2 x^{\ast}(n-2) $, where $ x \sim \mathcal{N} (0,1) $. The coefficients are defined as $ b_1 = 1.5 + 1j $ and $ b_2 = 2.5 - 0.5j$.
+
+%  \begin{figure}[h]
+%  	\centering 
+% 	\resizebox{0.6\textwidth}{!}{\input{q5/q5_cum.tikz}}
+%   	\caption{\textit{Cumulative representation of the variance of each eigenvector}}
+%   	\label{fig:q5_4}
+%  \end{figure}
+
 
 % \begin{equation}
 % S = \frac{1}{N}X' X'^T
