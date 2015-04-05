@@ -12,9 +12,12 @@ MU = 0.01;
 H = zeros(1024, 1500);
 
 for n = 1:1500
-    [ h, ~ ] = freqz(1, [1; h_est(:, n)], 1024);
+    [ h, ~ ] = freqz(1, [1; -h_est(:, n)], 1024);
     H(:,n) = abs(h).^2;
 end
 
 medianH = 50*median(median(H));
 H(H > medianH) = medianH;
+
+surf(1:1500, 1:1024, H, 'LineStyle', 'none')
+

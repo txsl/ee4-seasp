@@ -9,7 +9,7 @@ fo = 50;
 fs = 5000;
 
 delta_b = pi/8;
-delta_c = -pi/2.5;
+delta_c = -pi/7;
 
 n = 1:N;
 mults = n*2*pi*fo/fs;
