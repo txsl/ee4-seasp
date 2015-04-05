@@ -1,6 +1,6 @@
-
-addpath('../')
-common.init
+% 
+% addpath('../')
+% common.init
 
 VAR = 0.05;
 FS = 500;
