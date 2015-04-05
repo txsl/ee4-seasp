@@ -3,7 +3,7 @@ addpath('../')
 common.init
 
 N = 1000;
-V = 330;
+V = 1;
 
 fo = 50;
 fs = 5000;
@@ -26,6 +26,7 @@ mults = n*2*pi*fo/fs;
 
 v_bal = sqrt(3/2) * V * exp(1j*(mults));
 
+figure;
 plot(real(v_bal), imag(v_bal), '+');
 
 %% Unbalanced scenario
