@@ -7,8 +7,6 @@ N_IT = 100;
 VAR_PROC = 0.25;
 ORDER = 2;
 
-w = [0.1; 0.8];
-
 x_mat = zeros(N, N_IT);
 
 for i = 1:N_IT
@@ -30,7 +28,11 @@ for mu = [ 0.01 0.05 ]
         w_est_tot = zeros(ORDER, N+1, N_IT);
         
         for i = 1:N_IT
-            [ w_est_tot(:, :, i), ~, error_tot(:, i) ] = lms(x_mat(:, i), x_mat(:, i), ORDER, mu, leak);
+            % Shift our input by 1 to give it the delay it needs
+            x_in = circshift(x_mat(:, i), 1);
+            x_in(1) = 0;
+            
+            [ w_est_tot(:, :, i), ~, error_tot(:, i) ] = lms(x_in, x_mat(:, i), ORDER, mu, leak);
         end
         
         error_db = 10*log10(mean(error_tot.^2, 2));
@@ -44,7 +46,6 @@ for mu = [ 0.01 0.05 ]
 end
 
 legend(gca, 'show')
-grid on;
 title('LMS filter with different step sizes and leak parameters');
 xlabel('Iteration')
 ylabel('Squared Prediction Error (dB)')
