@@ -155,6 +155,20 @@ Gradient Adapive Step-Size Algorithms are designed to change the step size as th
 The LMS algorithm remains the same in structure, but $\mu$ now becomes $\mu(n)$, thus becoming $  \mathbf{w}(n+1) = \mathbf{w}(n) + \mu(n) e(n) \mathbf{x}(n) $. The algorithm to update the weight is defined as $ \mu(n+1) = \mu(n) + \rho e(n) \mathbf{x}^T(n) \psi(n)$. $ \psi(n) $ is defined by three different GASS algorithms, listed below:
 
 
+\begin{figure}[h]
+	\centering 
+	\resizebox{\textwidth}{!}{\input{fig/3/3_2_a_alphas.tikz}}
+	\caption{\textit{LMS filter error (dB) for the given AR process, averaged over 100 independent trials}}
+	\label{fig:q3_1_b}
+\end{figure}
+
+\begin{figure}[h]
+	\centering 
+	\resizebox{\textwidth}{!}{\input{fig/3/3_2_a.tikz}}
+	\caption{\textit{LMS filter error (dB) for the given AR process, averaged over 100 independent trials}}
+	\label{fig:q3_1_b}
+\end{figure}
+
 
 
 \subsubsection{NLMS Algorithm}

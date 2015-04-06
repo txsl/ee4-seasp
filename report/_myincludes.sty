@@ -38,9 +38,23 @@
 % To get nice plots with tikz!
 \usepackage{tikz, pgfplots, filecontents}
 
-% Build tikz files separately from the main pdflatex build
+% Build tikz files separately from the main build
 \usetikzlibrary{external}
 \tikzexternalize
+
+\usepackage{ifplatform}
+
+\ifwindows
+	\tikzset{external/system call={""
+			\tikzexternalcheckshellescape -halt-on-error
+			-interaction=batchmode -jobname "\image" "\texsource"}}
+	\tikzexternalize[prefix=autofigs/]
+\else
+	\tikzset{external/system call={"/usr/texbin/lualatex"
+			\tikzexternalcheckshellescape -halt-on-error
+			-interaction=batchmode -jobname "\image" "\texsource"}}
+	\tikzexternalize[prefix=autofigs/]	
+\fi
 
 \newlength\figureheight
 \newlength\figurewidth

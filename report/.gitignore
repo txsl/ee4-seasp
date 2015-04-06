@@ -8,5 +8,9 @@
 *.bbl
 *.blg
 *.auxlock
+*.md5
+*.gz(busy)
+*.dpth
+
 *.bib
 !library.bib
