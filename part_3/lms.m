@@ -8,7 +8,7 @@ x_est = zeros(N, 1);
 
 for n = order+1:N
     
-    x_n = flipud(x(n-order+1:n));
+    x_n = flipud(x(n-order:n-1));
     
     x_est(n) = w_est(:, n)' * x_n;
     

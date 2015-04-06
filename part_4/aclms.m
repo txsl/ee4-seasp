@@ -9,7 +9,13 @@ y_est = zeros(N, 1);
 
 for n = order+1:N-1
     
-    x_n = flipud(x(n-order:n-1));
+    if n - order + 1 < 1
+        x_n = zeros(order, 1);
+        x_n(end-n+1:end) = x(1:n);
+        x_n = flipud(x_n);
+    else
+        x_n = flipud(x(n-order+1:n));
+    end
     
     y_est(n) = h_est(:, n)' * x_n + g_est(:, n)' * conj(x_n);
     
