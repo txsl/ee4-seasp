@@ -8,9 +8,48 @@
 \subsubsection{The CLMS and ACLMS}
 We are introduced to the Complex LMS, which is a modification of the LMS filter, but designed to operate with complex signals. The $ \mathbf{w}$ weight term is replaced with $ \mathbf{h}$, and the estimation is now $ \hat{y}(n) = \mathbf{h}^H(n) \mathbf{x}(n) $, with the weight update being performed as $ \mathbf{h}(n+1) = \mathbf{h}(n) + \mu e^{\ast}(n)\mathbf{x}(n) $.
 
-We are also introduced to the Augmented CLMS, which is designed to capture the second order statistical relationship between 
+We are also introduced to the Augmented CLMS, which is designed to identify the second order (if there is any) statistical relationship of the input and output. It is effectively an extension of the CLMS, and adds the weights $ \mathbf{g}$, in addition to $ \mathbf{h}$ as defined for the CLMS. The esimtation equation becomes  $ \hat{y}(n) = \mathbf{h}^H(n) \mathbf{x}(n) + \mathbf{g}^H(n) \mathbf{x}^\ast(n) $. The next estimated of $ \mathbf{g}$ is defined as $ \mathbf{g}(n+1) = \mathbf{g}(n) + \mu e^{\ast}(n)\mathbf{x}\ast(n) $.
 
-We generated a WLMA(1) (Widely Linear Moving Average) process which is defined as $ y(n) = x(n) + b_1 x(n-1) + b_2 x^{\ast}(n-2) $, where $ x \sim \mathcal{N} (0,1) $. The coefficients are defined as $ b_1 = 1.5 + 1j $ and $ b_2 = 2.5 - 0.5j$.
+We generated a WLMA(1) (Widely Linear Moving Average) process which is defined as $ y(n) = x(n) + b_1 x(n-1) + b_2 x^{\ast}(n-2) $, where $ x \sim \mathcal{N} (0,1) $. The coefficients are defined as $ b_1 = 1.5 + 1j $ and $ b_2 = 2.5 - 0.5j$. We run this process through both the CLMS and ACLMS filters. 100 indepdent sets of noise were generated and run through the filters (identical signals), with the mean of at each iteration taken. Figure \ref{fig:4_1_a_clms_err} shows the learning error. We can see that even in steady state, it appears to be fairly noisy. This is also apparent in figure \ref{fig:4_1_a_clms_weights} where we can see the estimated weights of $\mathbf{h}$.
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.49\textwidth}
+		\resizebox{\textwidth}{!}{\input{fig/4/4_1_a_clms.tikz}}
+		\caption{\textit{Learning Curve of the filter, defined as $ 10 \log|e(n)|^2 $}}
+		\label{fig:4_1_a_clms_err}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{0.49\textwidth}
+	 \resizebox{\textwidth}{!}{\input{fig/4/4_1_a_clms_weights.tikz}}
+		\caption{\textit{Esimated Weights (both real and imaginary components)}}
+		\label{fig:4_1_a_clms_weights}
+	\end{subfigure}
+	\caption{\textit{Learning Curve and Estimated Weights from the CLMS fitler}}
+\end{figure}
+
+Figure \ref{fig:4_1_a_aclms} shows the same plots but this time from the ACLMS filter. We can immediately see that the learning curve in figure \ref{fig:4_1_a_aclms_err} is significantly better than those seen in figure \ref{fig:4_1_a_clms_err} with the CLMS filter. This is also evident in the weights in figure \ref{fig:4_1_a_aclms_weights}. Whereas with the CLMS they appeared to not have a smooth steady state (which is backed up by the learning curve), here appear to be smooht. We also observe that we can see 4 weights (the real and imaginary components of both $ \mathbf{g}$ and $ \mathbf{h}$), as opposed to the two seen in the CLMS. We can observe that the values associated with $ b_2 $ are represented by $ \mathbf{g} $.
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.49\textwidth}
+		\resizebox{\textwidth}{!}{\input{fig/4/4_1_a_aclms.tikz}}
+		\caption{\textit{Learning Curve of the filter, defined as $ 10 \log|e(n)|^2 $}}
+		\label{fig:4_1_a_aclms_err}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{0.49\textwidth}
+		\resizebox{\textwidth}{!}{\input{fig/4/4_1_a_aclms_weights.tikz}}
+		\caption{\textit{Esimated Weights (both real and imaginary components)}}
+		\label{fig:4_1_a_aclms_weights}
+	\end{subfigure}
+	\caption{\textit{Learning Curve and Estimated Weights from the ACLMS fitler}}
+	\label{fig:4_1_a_aclms}
+\end{figure}
+
+We can conclude that the CLMS was unable to represent the WLMA properly - the coefficients of $b_2$ which were from the conjugate of $x$ were nowhere to be seen in the CLMS, but very clear in the ACLMS. The fact that the learning curve of the CLMS showed a large error is evidence that the model was a poor fit for the CLMS. From the work carried out here, there appears to be no mathematical disadvantage to using the ACLMS, even if the data does not need it to be represented, since in the worst case the $ \mathbf{g} $ terms would settle at 0 (and it would behave as if it were a CLMS filter).
 
 %  \begin{figure}[h]
 %  	\centering 

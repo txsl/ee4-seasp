@@ -14,8 +14,8 @@
 \begin{tikzpicture}
 
 \begin{axis}[%
-width=15.5in,
-height=8.52354166666667in,
+width=4.27916666666667in,
+height=2.5in,
 scale only axis,
 xmin=0,
 xmax=1000,
@@ -1032,7 +1032,7 @@ legend style={draw=black,fill=white,legend cell align=left}
 999	1.49320833089901\\
 1000	1.49410212892433\\
 };
-\addlegendentry{$\mathfrak{R}\{\mathbb{h^H}\}$};
+\addlegendentry{$\mathfrak{R} \{ \mathbf{h}^H \} $};
 
 \addplot [color=black!50!green,solid]
   table[row sep=crcr]{1	0\\
@@ -2036,7 +2036,7 @@ legend style={draw=black,fill=white,legend cell align=left}
 999	0.989820666000325\\
 1000	0.989625096067373\\
 };
-\addlegendentry{$\mathfrak{I}\{\mathbb{h^H}\}$};
+\addlegendentry{$\mathfrak{I} \{ \mathbf{h}^H \} $};
 
 \addplot [color=red,solid]
   table[row sep=crcr]{1	0\\
@@ -3040,7 +3040,7 @@ legend style={draw=black,fill=white,legend cell align=left}
 999	2.50146128977583\\
 1000	2.5032815411319\\
 };
-\addlegendentry{$\mathfrak{R}\{\mathbb{g^H}\}$};
+\addlegendentry{$\mathfrak{R} \{ \mathbf{g}^H \} $};
 
 \addplot [color=mycolor1,solid]
   table[row sep=crcr]{1	0\\
@@ -4044,7 +4044,7 @@ legend style={draw=black,fill=white,legend cell align=left}
 999	-0.512776518502112\\
 1000	-0.512837318588329\\
 };
-\addlegendentry{$\mathfrak{I}\{\mathbb{g^H}\}$};
+\addlegendentry{$\mathfrak{I} \{ \mathbf{g}^H \} $};
 
 \end{axis}
 \end{tikzpicture}%

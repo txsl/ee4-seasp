@@ -10,8 +10,8 @@
 \begin{tikzpicture}
 
 \begin{axis}[%
-width=15.5in,
-height=8.52354166666667in,
+width=4.27916666666667in,
+height=2.5in,
 scale only axis,
 xmin=0,
 xmax=1000,
@@ -1028,7 +1028,7 @@ legend style={draw=black,fill=white,legend cell align=left}
 999	1.53312953255594\\
 1000	1.52669613215043\\
 };
-\addlegendentry{$\mathfrak{R}{\mathbb{h^H}}$};
+\addlegendentry{$ \mathfrak{R} \{ \mathbf{h}^H \} $};
 
 \addplot [color=black!50!green,solid]
   table[row sep=crcr]{1	0\\
@@ -2032,7 +2032,7 @@ legend style={draw=black,fill=white,legend cell align=left}
 999	1.00381041184291\\
 1000	1.00247965764009\\
 };
-\addlegendentry{$\mathfrak{I}{\mathbb{h^H}}$};
+\addlegendentry{ $\mathfrak{I} \{ \mathbf{h}^H \} $ };
 
 \end{axis}
 \end{tikzpicture}%

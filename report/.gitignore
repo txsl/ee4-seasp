@@ -7,5 +7,6 @@
 *.xml
 *.bbl
 *.blg
+*.auxlock
 *.bib
 !library.bib
