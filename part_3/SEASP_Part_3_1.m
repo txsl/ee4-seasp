@@ -24,10 +24,14 @@ for i = 1:N_IT
     
     % Generate the signal
     x = filter(1, [1 -0.1 -0.8], randn(N, 1)*sqrt(VAR_PROC));
+    
+    % Shift our input by 1 to give it the delay it needs
+    x_in = circshift(x, 1);
+    x_in(1) = 0;
 
-	[ w_est_tot_mu_5(:, :, i), ~, error_tot_mu_5(:, i) ] = lms(x, x, ORDER, 0.05, 0);
+	[ w_est_tot_mu_5(:, :, i), ~, error_tot_mu_5(:, i) ] = lms(x_in, x, ORDER, 0.05, 0);
 
-    [ w_est_tot_mu_1(:, :, i), ~, error_tot_mu_1(:, i) ] = lms(x, x, ORDER, 0.01, 0);
+    [ w_est_tot_mu_1(:, :, i), ~, error_tot_mu_1(:, i) ] = lms(x_in, x, ORDER, 0.01, 0);
     
     if start == 0
         plot(1:N, 10*log10(error_tot_mu_1(:,1).^2), 1:N, 10*log10(error_tot_mu_5(:,1).^2))

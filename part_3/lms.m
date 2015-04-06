@@ -8,15 +8,15 @@ x_est = zeros(N, 1);
 
 for n = order+1:N
     
-    x_est(n) = w_est(:, n)' * flipud(x(n-order:n-1));
+    x_n = flipud(x(n-order+1:n));
+    
+    x_est(n) = w_est(:, n)' * x_n;
     
     error(n) = d(n) - x_est(n);
     
-    w_est(:, n+1) = (1-mu*leak)*w_est(:, n) + mu*error(n)*flipud(x(n-order:n-1));
+    w_est(:, n+1) = (1-mu*leak)*w_est(:, n) + mu*error(n)*x_n;
     
 end
-
-% error_sq = error.^2;
 
 end
 
