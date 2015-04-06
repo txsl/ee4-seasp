@@ -49,6 +49,14 @@ Using the parameters $ \bigtriangleup = 4$ and $ M = 5$, we can produce a plot o
 
 \subsubsection{Adaptive Noise Cancellation Filter}
 
+The Adaptive Noise Cancellation is a different configuration for denoising a signal. It takes a secondary signal, $\mathbf{u}$ and uses this as the sample noise (instead of taking a delayed copy of the signal itself). In this set up, we generate another signal of White Gaussian noise (defined as $ \eta(n) = v(n) + 0.5v(n-2) $ where $v(n) \sim \mathcal{N}(0,1) $.). Figure \ref{fig:3_3_c} shows the comparative Square Errors between the ALE and ANC configurations. It is apparent that the ANC outperforms the ALE. Taking the Mean Squared Error (ie across every iteration), the MSE for ALE is 1.36, whereas the ANC is 0.238.
+
+\begin{figure}[h]
+	\centering 
+	\resizebox{\textwidth}{!}{\input{fig/3/3_3_c.tikz}}
+	\caption{\textit{Square Error for ANC and ALE configurations for denoising}}
+	\label{fig:3_3_c}
+\end{figure}
 
 \subsubsection{Removing Mains 50Hz hum from ECG Data}
 

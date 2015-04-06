@@ -11,7 +11,7 @@
 
 \begin{axis}[%
 width=7in,
-height=2in,scale only axis,
+height=1.5in,scale only axis,
 xmin=0,
 xmax=1000,
 xmajorgrids,

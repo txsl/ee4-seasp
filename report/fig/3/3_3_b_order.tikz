@@ -1,4 +1,4 @@
-% This file was created by matlab2tikz v0.4.7 (commit 84da6da3eee1f984abca8102d577f21df97f7554) running on MATLAB 8.3.
+% This file was created by matlab2tikz v0.4.7 (commit d4c8764c3916fd1d124533205db34e93e01e5518) running on MATLAB 8.3.
 % Copyright (c) 2008--2014, Nico Schlömer <nico.schloemer@gmail.com>
 % All rights reserved.
 % Minimal pgfplots version: 1.3
@@ -26,64 +26,64 @@ axis x line*=bottom,
 axis y line*=left
 ]
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{1	0.397869761833893\\
+  table[row sep=crcr]{1	0.411259699209019\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{2	0.340514051111545\\
+  table[row sep=crcr]{2	0.357717205568794\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{3	0.262792447374542\\
+  table[row sep=crcr]{3	0.276328738399026\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{4	0.234569847762656\\
+  table[row sep=crcr]{4	0.249515197407873\\
 };
 \addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
-  table[row sep=crcr]{5	0.228670546189837\\
+  table[row sep=crcr]{5	0.240699799461666\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{6	0.231151796216527\\
+  table[row sep=crcr]{6	0.244347593372698\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{7	0.242632558183842\\
+  table[row sep=crcr]{7	0.25362703946698\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{8	0.255148960212925\\
+  table[row sep=crcr]{8	0.265167691260922\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{9	0.267941099593967\\
+  table[row sep=crcr]{9	0.279110030587578\\
 };
 \addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
-  table[row sep=crcr]{10	0.282211632655641\\
+  table[row sep=crcr]{10	0.293620204138095\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{11	0.297029884074176\\
+  table[row sep=crcr]{11	0.311873759443725\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{12	0.312183797234576\\
+  table[row sep=crcr]{12	0.330324907652155\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{13	0.328282149672528\\
+  table[row sep=crcr]{13	0.349170498512911\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{14	0.344816184720712\\
+  table[row sep=crcr]{14	0.368428472022401\\
 };
 \addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
-  table[row sep=crcr]{15	0.361545532074276\\
+  table[row sep=crcr]{15	0.387931776676648\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{16	0.378033133849339\\
+  table[row sep=crcr]{16	0.406918825214346\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{17	0.39732358464934\\
+  table[row sep=crcr]{17	0.426246105232244\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{18	0.416458870375466\\
+  table[row sep=crcr]{18	0.447334585723385\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{19	0.435543906573631\\
+  table[row sep=crcr]{19	0.468931620783603\\
 };
 \addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
-  table[row sep=crcr]{20	0.454002050619523\\
+  table[row sep=crcr]{20	0.490630165046867\\
 };
 \end{axis}
 \end{tikzpicture}%

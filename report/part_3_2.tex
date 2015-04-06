@@ -8,22 +8,27 @@
 \subsubsection{Implemented GASS Algorithms}
 Gradient Adaptive Step-Size Algorithms are designed to change the step size as the algorithm progresses. At the start, a large step size is needed in order for the algorithm to converge quickly, but during steady state a small step size helps to reduce the steady state error (as we have observed in previous parts of this coursework).
 
-The LMS algorithm remains the same in structure, but $\mu$ now becomes $\mu(n)$, thus becoming $  \mathbf{w}(n+1) = \mathbf{w}(n) + \mu(n) e(n) \mathbf{x}(n) $. The algorithm to update the weight is defined as $ \mu(n+1) = \mu(n) + \rho e(n) \mathbf{x}^T(n) \psi(n)$. $ \psi(n) $ is defined by three different GASS algorithms, listed below:
+The LMS algorithm remains the same in structure, but $\mu$ now becomes $\mu(n)$, thus becoming $  \mathbf{w}(n+1) = \mathbf{w}(n) + \mu(n) e(n) \mathbf{x}(n) $. The algorithm to update the weight is defined as $ \mu(n+1) = \mu(n) + \rho e(n) \mathbf{x}^T(n) \boldsymbol{\psi}(n)$. $ \boldsymbol{\psi}(n) $ is defined by three different GASS algorithms, listed below:
 
+\begin{description}
+	\item[Matthews \& Xie] $  \boldsymbol{\psi}(n) = e(n-1) \mathbf{x}(n-1) $
+	\item[Ang \& Farhang] $  \boldsymbol{\psi}(n) = \alpha  \boldsymbol{\psi}(n - 1) +  e(n-1) \mathbf{x}(n-1) $
+	\item[Benveniste] $ \boldsymbol{\psi} = [ \mathbf{I} - \mu(n-1) \mathbf{x}(n-1) \mathbf{x}^T(n-1)  ] \boldsymbol{\psi}(n - 1) + e(n-1) \mathbf{x}(n-1) $
+\end{description}
 
-%\begin{figure}[h]
-%	\centering 
-%	\resizebox{\textwidth}{!}{\input{fig/3/3_2_a_alphas.tikz}}
-%	\caption{\textit{LMS filter error (dB) for the given AR process, averaged over 100 independent trials}}
-%	\label{fig:q3_1_b}
-%\end{figure}
-%
-%\begin{figure}[h]
-%	\centering 
-%	\resizebox{\textwidth}{!}{\input{fig/3/3_2_a.tikz}}
-%	\caption{\textit{LMS filter error (dB) for the given AR process, averaged over 100 independent trials}}
-%	\label{fig:q3_1_b}
-%\end{figure}
+\begin{figure}[h]
+	\centering 
+	\resizebox{\textwidth}{!}{\input{fig/3/3_2_a_alphas.tikz}}
+	\caption{\textit{LMS filter error (dB) for the given AR process, averaged over 100 independent trials}}
+	\label{fig:3_2_a_alpha}
+\end{figure}
+
+\begin{figure}[h]
+	\centering 
+	\resizebox{\textwidth}{!}{\input{fig/3/3_2_a.tikz}}
+	\caption{\textit{LMS filter error (dB) for the given AR process, averaged over 100 independent trials}}
+	\label{fig:3_2_a}
+\end{figure}
 
 
 

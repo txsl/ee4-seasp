@@ -40,7 +40,7 @@ for mu = [0.01 0.1]
     w_est_tot = w_est_tot/N_IT;
     w_est_shift = 0.9 - w_est_tot(1, :);
     plot(w_est_shift, 'Color', cols(col_idx, :));
-    leg{col_idx} = sprintf('LMS: \\mu=%0.3f', mu);
+    leg{col_idx} = sprintf('LMS: \\mu = %0.3f', mu);
     col_idx = col_idx + 1;
 end
 
@@ -60,14 +60,15 @@ for method = methods
         col_idx = col_idx + 1;
     end
 end
-
-legend(leg)
+disp(leg)
+legend(leg, 'interpreter', 'tex')
 title('GASS Methods tested across $\rho$ values, and LMS reference', 'interpreter', 'latex')
 xlabel('Iteration')
 ylabel('Weight Error ($\widehat{w}(n)$)', 'interpreter', 'latex')
 xlim([0 350])
 common.set_graph_params
- 
+
+
 %% Let's explore the value of alpha
 
 alphas = [ 0.01 0.5 0.8 0.9 ];
@@ -88,7 +89,7 @@ for mu = [0.01 0.1]
     w_est_tot = w_est_tot/N_IT;
     w_est_shift = 0.9 - w_est_tot(1, :);
     plot(w_est_shift, 'Color', cols(col_idx, :));
-    leg{col_idx} = sprintf('LMS: \\mu=%0.3f', mu);
+    leg{col_idx} = sprintf('LMS: \\mu =%0.3f', mu);
     col_idx = col_idx + 1;
 end
 
@@ -111,6 +112,6 @@ xlabel('Iteration')
 ylabel('Weight Error ($\widehat{w}(n)$)', 'interpreter', 'latex')
 title('Ang \& Farhang method for varying $\alpha$ values, and LMS reference', 'interpreter', 'latex')
 xlim([1 N])
-legend(leg)
+legend(leg, 'interpreter', 'tex')
 common.set_graph_params
 

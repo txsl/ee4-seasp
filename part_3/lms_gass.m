@@ -7,7 +7,7 @@ error = zeros(N, order);
 x_est = zeros(N, order);
 
 mu = mu*ones(N, 1);
-phi = zeros(order, 1);
+psi = zeros(order, 1);
 
 x_n = x(1:order);
 
@@ -27,22 +27,22 @@ for n = order+1:N
     %% GASS Algorithms
     % Benveniste
     if strcmp(step_method, 'benveniste') 
-    phi = (eye(order) - (mu(n-1) * (x_n_1 * x_n_1'))) * phi + error(n-1)*x_n_1;
+    psi = (eye(order) - (mu(n-1) * (x_n_1 * x_n_1'))) * psi + error(n-1)*x_n_1;
     
     %Ang & Farhang
     elseif strcmp(step_method, 'ang')
-    phi = alpha*phi + error(n-1) * x_n_1;
+    psi = alpha*psi + error(n-1) * x_n_1;
     
     % Matthews & Xie
     elseif strcmp(step_method, 'matthews')
-    phi = error(n-1) * x_n_1;
+    psi = error(n-1) * x_n_1;
     
     % Standard LMS
     else
-    phi = zeros(order, 1);
+    psi = zeros(order, 1);
     end
     
-    mu(n+1) = mu(n) + (rho * error(n) * x_n_1' * phi);
+    mu(n+1) = mu(n) + (rho * error(n) * x_n_1' * psi);
 
 end
 
