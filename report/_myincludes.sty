@@ -45,7 +45,7 @@
 \usepackage{ifplatform}
 
 \ifwindows
-	\tikzset{external/system call={""
+	\tikzset{external/system call={"h:/Software/MikTex/miktex/bin/lualatex.exe"
 			\tikzexternalcheckshellescape -halt-on-error
 			-interaction=batchmode -jobname "\image" "\texsource"}}
 	\tikzexternalize[prefix=autofigs/]

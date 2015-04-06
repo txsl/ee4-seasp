@@ -1,0 +1,54 @@
+\documentclass[./main.tex]{subfiles} 
+\begin{document}
+
+\section{Adaptive Signal Processing}
+
+\subsection{Adaptive Step Sizes}
+
+\subsubsection{Implemented GASS Algorithms}
+Gradient Adaptive Step-Size Algorithms are designed to change the step size as the algorithm progresses. At the start, a large step size is needed in order for the algorithm to converge quickly, but during steady state a small step size helps to reduce the steady state error (as we have observed in previous parts of this coursework).
+
+The LMS algorithm remains the same in structure, but $\mu$ now becomes $\mu(n)$, thus becoming $  \mathbf{w}(n+1) = \mathbf{w}(n) + \mu(n) e(n) \mathbf{x}(n) $. The algorithm to update the weight is defined as $ \mu(n+1) = \mu(n) + \rho e(n) \mathbf{x}^T(n) \psi(n)$. $ \psi(n) $ is defined by three different GASS algorithms, listed below:
+
+
+%\begin{figure}[h]
+%	\centering 
+%	\resizebox{\textwidth}{!}{\input{fig/3/3_2_a_alphas.tikz}}
+%	\caption{\textit{LMS filter error (dB) for the given AR process, averaged over 100 independent trials}}
+%	\label{fig:q3_1_b}
+%\end{figure}
+%
+%\begin{figure}[h]
+%	\centering 
+%	\resizebox{\textwidth}{!}{\input{fig/3/3_2_a.tikz}}
+%	\caption{\textit{LMS filter error (dB) for the given AR process, averaged over 100 independent trials}}
+%	\label{fig:q3_1_b}
+%\end{figure}
+
+
+
+\subsubsection{NLMS Algorithm}
+
+The NLMS algorithm is a modification to the LMS algorithm which normalises the power of the input, which for a particularly noisy (in the power spectrum) input signal means the filter can still get to a stable output, which may not happen with the standard LMS filter, or at least not without manually adjusting the step size.
+
+Given the update equation $ \mathbf{w}(n+1) = \mathbf{w}(n) + \mu e_p(n) \mathbf{x}(n) $ and the \textit{a posteriori} relationship given: $  e_p(n) = d(n) - \mathbf{x}^T(n) \mathbf{w}(n+1) $, we can express $ \bigtriangleup \mathbf{w}(n) = \mathbf{w}(n+1) - \mathbf{w}(n) $ to allow us to equate the update equation to the standard NLMS form:
+
+\begin{subequations}
+	\begin{align}
+	\bigtriangleup \mathbf{w}(n) &= \mathbf{w}(n+1) - \mathbf{w}(n) \\
+	\bigtriangleup \mathbf{w}(n) &= \mu e(n) \left[  1 - \mu \frac{\lVert \mathbf{x}(n)\rVert^2}{1 + \mu \lVert \mathbf{x}(n)\rVert^2} \right] \mathbf{x}(n) = \mathbf{w}(n+1) - \mathbf{w}(n) \\
+	\bigtriangleup \mathbf{w}(n) &= e(n) \left[ \frac{\mu + \mu^2  \lVert \mathbf{x}(n)\rVert^2 - \mu^2 \lVert \mathbf{x}(n)\rVert^2}{1 + \mu \lVert \mathbf{x}(n)\rVert^2} \right] \mathbf{x}(n) = \mathbf{w}(n+1) - \mathbf{w}(n) \\
+	\mathbf{w}(n+1) &= \mathbf{w}(n) + \left[ \frac{1}{\frac{1}{\mu} + \mathbf{x}^T(n)\mathbf{x}(n) } \right] e(n) \mathbf{x}(n)  \label{subeq:3_2_b}
+	\end{align}
+\end{subequations}
+
+We can see that the last line, equation \ref{subeq:3_2_b} now has the same form (and thus is equivalent to, other than the factors which are discussed below) as the NLMS update equation:
+$$ \mathbf{w}(n+1) = \mathbf{w}(n) + \frac{\beta}{\epsilon + \mathbf{x}^T(n)\mathbf{x}(n)} e(n) \mathbf{x}(n) $$
+
+Thus from the comparison of forms, we can equate $ \beta = 1 $ and $ \epsilon = \frac{1}{\mu} $.
+
+\subsubsection{GNGD Algorithm}
+
+
+\end{document}
+
