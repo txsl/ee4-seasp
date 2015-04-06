@@ -35,9 +35,12 @@
 %\usepackage{subfloat}
 %\usepackage{subfigure}
 
-\usepackage{tikz, pgfplots,filecontents}
-% \usetikzlibrary{external}
-%   \tikzexternalize
+% To get nice plots with tikz!
+\usepackage{tikz, pgfplots, filecontents}
+
+% Build tikz files separately from the main pdflatex build
+\usetikzlibrary{external}
+\tikzexternalize
 
 \newlength\figureheight
 \newlength\figurewidth

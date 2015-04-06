@@ -51,12 +51,17 @@ Figure \ref{fig:4_1_a_aclms} shows the same plots but this time from the ACLMS f
 
 We can conclude that the CLMS was unable to represent the WLMA properly - the coefficients of $b_2$ which were from the conjugate of $x$ were nowhere to be seen in the CLMS, but very clear in the ACLMS. The fact that the learning curve of the CLMS showed a large error is evidence that the model was a poor fit for the CLMS. From the work carried out here, there appears to be no mathematical disadvantage to using the ACLMS, even if the data does not need it to be represented, since in the worst case the $ \mathbf{g} $ terms would settle at 0 (and it would behave as if it were a CLMS filter).
 
-%  \begin{figure}[h]
-%  	\centering 
-% 	\resizebox{0.6\textwidth}{!}{\input{q5/q5_cum.tikz}}
-%   	\caption{\textit{Cumulative representation of the variance of each eigenvector}}
-%   	\label{fig:q5_4}
-%  \end{figure}
+\subsubsection{Bivariate Wind Data}
+
+We are given wind data for a slow, medium and high wind regime. The data contains wind East-West wind speeds, as well as North-South wind speeds for a given point in time. We represent these in complex form, as $ v[n] = v_{east}[n] + jv_{north}[n] $. 
+
+
+%\begin{figure}[h]
+%	\centering 
+%	\resizebox{\textwidth}{!}{\input{fig/4/4_1_b_circularity.tikz}}
+%	\caption{\textit{}}
+%	\label{fig:4_1_b}
+%\end{figure}
 
 
 % \begin{equation}
