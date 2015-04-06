@@ -27,8 +27,8 @@ end
 
 %% Reference against Benveniste's Algorithm
 
-ro = 0.001;
-mus = 0.1; % [0.001 0.005 0.01 0.05];
+ro = 0.01;
+mus = 1;
 
 no_lines = length(mus)*2;
 cols = distinguishable_colors(no_lines);

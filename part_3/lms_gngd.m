@@ -5,12 +5,12 @@ N = length(d);
 w_est = zeros(order, N);
 error = zeros(N, 1);
 x_est = zeros(N, 1);
-epsilon = zeros(N, 1);
+epsilon = ones(N, 1);
 
 for n = order+2:N
 
-    x_n = flipud(x(n-order:n-1));
-    x_n_1 = flipud(x(n-order-1:n-2));
+    x_n = flipud(x(n-order+1:n));
+    x_n_1 = flipud(x(n-order:n-1));
 
     x_est(n) = w_est(:, n)' * x_n;
     
