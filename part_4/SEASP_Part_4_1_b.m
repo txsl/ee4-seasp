@@ -26,8 +26,8 @@ for i = 1:3
     subplot(1, 3, i)
     scatter(real(v(:, i)), imag(v(:, i)), 'marker', '.');
     title(sprintf('Circularity Plot: %s', titles{i}));
-    xlabel('$ \mathfrak{R}{v[n]} $');
-    ylabel('$ \mathfrak{I}{v[n]} $');
+    xlabel('$ \Re \{ v[n] \} $');
+    ylabel('$ \Im \{ v[n] \} $');
     
     low = min(min(real(v(:, i))), min(imag(v(:, i))));
     high = max(max(real(v(:, i))), max(imag(v(:, i))));
@@ -50,10 +50,10 @@ for w = 1:3
     aclms_errs = zeros(ORDER_TOP, 1);
     
     for i = 1:ORDER_TOP
-        [ ~, ~, error ] = clms(v(:, w), v(:, w), i, 0.01);
+        [ ~, ~, error ] = clms(v(1:end-1, w), v(2:end, w), i, 0.01);
         clms_errs(i) = 10*log10(mean(abs(error).^2));
         
-        [ ~, ~, ~, error ] = aclms(v(:, w), v(:, w), i, 0.01);
+        [ ~, ~, ~, error ] = aclms(v(1:end-1, w), v(2:end, w), i, 0.01);
         aclms_errs(i) = 10*log10(mean(abs(error).^2));
     end
     
@@ -71,5 +71,6 @@ for w = 1:3
     common.set_graph_params
 end
 
+ylim([-50 500])
 
 

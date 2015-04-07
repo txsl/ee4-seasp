@@ -53,15 +53,27 @@ We can conclude that the CLMS was unable to represent the WLMA properly - the co
 
 \subsubsection{Bivariate Wind Data}
 
-We are given wind data for a slow, medium and high wind regime. The data contains wind East-West wind speeds, as well as North-South wind speeds for a given point in time. We represent these in complex form, as $ v[n] = v_{east}[n] + jv_{north}[n] $. 
+We are given wind data for a slow, medium and high wind regime. The data contains wind East-West wind speeds, as well as North-South wind speeds for a given point in time. We represent these in complex form, as $ v[n] = v_{east}[n] + jv_{north}[n] $. Figure \ref{fig:4_1_b_circ} shows the circularity plots for all three regimes of wind. All of the circularity plots appear to be fairly circular. The low wind seems to have a narrower Real set of data than it does in the Imaginary plane. The high wind appears to be shofted off centre, but also has significantly higher amplitude than the low wind (as we would expect!). It appears to have some correlation, observed on the positive real and negative imaginary axes.
 
-%\begin{figure}[h]
-%	\centering 
-%	\resizebox{\textwidth}{!}{\input{fig/4/4_1_b_circularity.tikz}}
-%	\caption{\textit{}}
-%	\label{fig:4_1_b}
-%\end{figure}
+\begin{figure}[h]
+	\centering 
+	\resizebox{\textwidth}{!}{\input{fig/4/4_1_b_circularity.tikz}}
+	\caption{\textit{Circularity Plots for Wind Data}}
+	\label{fig:4_1_b_circ}
+\end{figure}
 
+With the 5000 data points for each wind regime, we can test out filters to predict the next state of the wind. Figure \ref{fig:4_1_b_order} shows the different regimes tested against both the CLMS and ACLMS filters, with varying model orders. As defined in Section \ref{sec:3_3_a}, we use the Mean Squared Prediction Error to find the optimal filter and order. Although there will be some error during setup as the filter coefficients initialise, this is common to all filters and thus will be considered part of the error. The Low Wind demonstrates good performance, with an MSPE of -19dB at a minimum, with it tending to -22dB as the order increases. The ACLMS appears to outperform the CLMS, although only marginally. Medium Wind has a minimum (ie optimum filter length) at 4, using the ACLMS. It obtains an MSPE of around -12.3dB. Interestingly, the CLMS outperforms the ACLMS at values higher than this. The high wind is interesting, as for high model orders the MSPE is very large (hundreds of dB). With an ACLMS model order of 1, an MSPE of -6.25dB is acheived, which represents reasonable performance, especially when considering what happens with a larger order filter!
+
+In conclusion, we are able to model all three systems effectively (all with an MSPE of -6dB or better) in a next value predictor set up, using widely linear filtering. We find that in all three cases the ACLMS does outperform the CLMS, at least for the optimum values (the minimum of these plots) which we are interested in.
+
+\begin{figure}[h]
+	\centering
+	\setlength\figureheight{0.2\textwidth}
+	\setlength\figurewidth{0.2\textwidth}
+	\resizebox{\textwidth}{!}{\input{fig/4/4_1_b_orders.tikz}}
+	\caption{\textit{Prediction Error Estimates for varying Model Orders}}
+	\label{fig:4_1_b_order}
+\end{figure}
 
 % \begin{equation}
 % S = \frac{1}{N}X' X'^T

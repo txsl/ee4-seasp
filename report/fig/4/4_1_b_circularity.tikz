@@ -10,15 +10,15 @@
 \begin{tikzpicture}
 
 \begin{axis}[%
-width=4.26811594202899in,
-height=8.52354166666667in,
+width=3in,
+height=3in,
 scale only axis,
 xmin=-1.69721556429611,
 xmax=1.88732600704125,
-xlabel={$ \mathfrak{R}{v[n]} $},
+xlabel={$ Re \{v[n] \} $},
 ymin=-1.69721556429611,
 ymax=1.88732600704125,
-ylabel={$ \mathfrak{I}{v[n]} $},
+ylabel={$ \Im \{ v[n] \} $},
 name=plot2,
 title={Circularity Plot: Medium Wind},
 axis x line*=bottom,
@@ -5028,15 +5028,15 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=4.26811594202899in,
-height=8.52354166666667in,
+width=3in,
+height=3in,
 scale only axis,
 xmin=-0.34277977733498,
 xmax=0.397484134958954,
-xlabel={$ \mathfrak{R} \{v[n] \} $},
+xlabel={$ Re \{v[n] \} $},
 ymin=-0.34277977733498,
 ymax=0.397484134958954,
-ylabel={$ \mathfrak{I} \{v[n] \} $},
+ylabel={$ \Im \{ v[n] \} $},
 at=(plot2.left of south west),
 anchor=right of south east,
 title={Circularity Plot: Low Wind},
@@ -10047,15 +10047,15 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=4.26811594202899in,
-height=8.52354166666667in,
+width=3in,
+height=3in,
 scale only axis,
 xmin=-2.98534518474871,
 xmax=3.92676591813807,
-xlabel={$ \mathfrak{R}{v[n]} $},
+xlabel={$ Re \{v[n] \} $},
 ymin=-2.98534518474871,
 ymax=3.92676591813807,
-ylabel={$ \mathfrak{I}{v[n]} $},
+ylabel={$ \Im \{ v[n] \} $},
 at=(plot2.right of south east),
 anchor=left of south west,
 title={Circularity Plot: High Wind},
