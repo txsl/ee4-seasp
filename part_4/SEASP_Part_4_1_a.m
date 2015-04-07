@@ -18,19 +18,13 @@ x = zeros(N, N_IT);
 y = zeros(N, N_IT);
 
 for i = 1:N_IT
-%     sig = sqrt(0.5)*[1 1j]*randn(2,N);
+    
     % Normalisation factor to keep the noise with the correct amplitude
     x(:, i) = sqrt(1/2) * (randn(N, 1) + 1j*randn(N, 1));
-%     x(:, i) = sig;
-%     wlma = zeros(N, 1);
-%     wlma(1) = x(1);
-%     wlma(2:end) = sig(2:end) + b1*sig(1:end-1) + b2*conj(sig(1:end-1));
-%     y(:, i) = wlma;
-%     y(1) = sig(1);
+
     y(1, i) = x(1, i);
     for n = 2:N
         y(n, i) = x(n, i) + b1*x(n-1, i) + b2*conj(x(n-1, i));
-%         y(n, i) = sig(n, i) + b1*sig(n-1, i) + b2*conj(sig(n-1, i));
     end
 end
 
@@ -57,7 +51,7 @@ plot(1:N, mean(real(h_est(2,:,:)), 3)', 1:N, mean(imag(conj(h_est(2,:,:))), 3)')
 title('Estmated Weights using CLMS');
 xlabel('Iteration');
 ylabel('Estimated Weight');
-legend('$\re {\mathbb{h^H}}$', '$\im {\mathbb{h^H}}$', '$\re {\mathbb{h^H}}$', '$\im {\mathbb{h^H}}$', 'interpreter', 'latex')
+legend('$\Re \mathbf{h}_1^H$', '$\Im {\mathbf{h}_1^H}$', '$\Re {\mathbf{h}_2^H}$', '$\Im {\mathbf{h}_2^H}$')
 common.set_graph_params
 
 %% ACLMS
@@ -84,5 +78,5 @@ plot(1:N, mean(real(h_est(2,:,:)), 3)', 1:N, mean(imag(conj(h_est(2,:,:))), 3)',
 title('Estmated Weights using ACLMS');
 xlabel('Iteration');
 ylabel('Estimated Weight');
-legend('$\mathfrak{R}\{\mathbb{h^H}\}$', '$\mathfrak{I}\{\mathbb{h^H}\}$', '$\mathfrak{R}\{\mathbb{g^H}\}$', '$\mathfrak{I}\{\mathbb{g^H}\}$')
+legend('$\Re \{ \mathbf{h}_1^H \}$', '$\Im \{\mathbf{h}_1^H \}$','$\Re \{ \mathbf{g}_1^H \}$', '$\Im \{ \mathbf{g}_1^H \}$', '$\Re \{ \mathbf{h}_2^H \}$', '$\Im \{ \mathbf{h}_2^H \}$','$\Re \{  \mathbf{g}_2^H \}$', '$\Im \{ \mathbf{g}_2^H \}$')
 common.set_graph_params
