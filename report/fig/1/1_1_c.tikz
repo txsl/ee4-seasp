@@ -10,8 +10,8 @@
 \begin{tikzpicture}
 
 \begin{axis}[%
-width=6in,
-height=2in,
+width=4in,
+height=1.5in,
 scale only axis,
 xmin=-500,
 xmax=500,

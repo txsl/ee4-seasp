@@ -1,0 +1,86 @@
+\documentclass[./main.tex]{subfiles} 
+\begin{document}
+
+\subsection{Properties of Power Spectral Density (PSO)}
+
+\subsubsection{Zero Padding}
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.49\textwidth}
+		\resizebox{\textwidth}{!}{\input{fig/1/1_2_a_10.tikz}}
+		\caption{\textit{1 Tree}}
+		\label{fig:1_2_a_10}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	\begin{subfigure}[b]{0.49\textwidth}
+		\resizebox{\textwidth}{!}{\input{fig/1/1_2_a_128.tikz}}
+		\caption{\textit{2 Trees}}
+		\label{fig:1_2_a_128}
+	\end{subfigure}
+	\label{fig:1_2_a}
+	\caption{\textit{DFTs of 20Hz Sine Wave, with $ F_s = 1000 $Hz}}
+\end{figure}
+
+\subsubsection{The Real Component of the PSD}
+
+\subsubsection{Erroneous Spectral Values}
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.49\textwidth}
+		\resizebox{\textwidth}{!}{\input{fig/1/1_2_c_10.tikz}}
+		\caption{\textit{1 Tree}}
+		\label{fig:1_2_c_10}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	\begin{subfigure}[b]{0.49\textwidth}
+		\resizebox{\textwidth}{!}{\input{fig/1/1_2_c_128.tikz}}
+		\caption{\textit{2 Trees}}
+		\label{fig:1_2_c_128}
+	\end{subfigure}
+	\label{fig:1_2_a}
+	\caption{\textit{DFTs of 20Hz Sine Wave, with $ F_s = 1000 $Hz}}
+\end{figure}
+
+
+\subsubsection{Shifting the DFT and Axis Scaling}
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.49\textwidth}
+		\resizebox{\textwidth}{!}{\input{fig/1/1_2_d_ifft_10.tikz}}
+		\caption{\textit{1 Tree}}
+		\label{fig:1_2_d_ifft_10}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	\begin{subfigure}[b]{0.49\textwidth}
+		\resizebox{\textwidth}{!}{\input{fig/1/1_2_d_ifft_128.tikz}}
+		\caption{\textit{2 Trees}}
+		\label{fig:1_2_d_ifft_128}
+	\end{subfigure}
+	\label{fig:1_2_d_ifft}
+	\caption{\textit{DFTs of 20Hz Sine Wave, with $ F_s = 1000 $Hz}}
+\end{figure}
+
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.49\textwidth}
+		\resizebox{\textwidth}{!}{\input{fig/1/1_2_d_dft_odd.tikz}}
+		\caption{\textit{1 Tree}}
+		\label{fig:1_2_d_dft_odd}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	\begin{subfigure}[b]{0.49\textwidth}
+		\resizebox{\textwidth}{!}{\input{fig/1/1_2_d_ifft_odd.tikz}}
+		\caption{\textit{2 Trees}}
+		\label{fig:1_2_d_ifft_odd}
+	\end{subfigure}
+	\label{fig:1_2_d_ifft}
+	\caption{\textit{DFTs of 20Hz Sine Wave, with $ F_s = 1000 $Hz}}
+\end{figure}
+
+
+\end{document}
+
