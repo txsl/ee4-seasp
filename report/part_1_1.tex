@@ -1,11 +1,37 @@
 \documentclass[./main.tex]{subfiles} 
 \begin{document}
 
-\section{First Section here}
+\section{Non-parametric Spectrum Estimation}
 
-\subsection{First subsection here}
+\subsection{Discrete Fourier Transform Basics}
 
-Maths and boringness ensue
+\subsubsection{}
+
+\begin{figure}[h]
+      \centering
+      \begin{subfigure}[b]{0.49\textwidth}
+         \resizebox{\textwidth}{!}{\input{fig/1/1_1_b_100.tikz}}
+  		\caption{\textit{1 Tree}}
+  		\label{fig:1_1_b_100}
+      \end{subfigure}
+      ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+      \begin{subfigure}[b]{0.49\textwidth}
+         \resizebox{\textwidth}{!}{\input{fig/1/1_1_b_1000.tikz}}
+ 			\caption{\textit{2 Trees}}
+  		\label{fig:1_1_b_1000}
+      \end{subfigure}
+	\label{fig:1_1_b}
+	\caption{\textit{DFTs of 20Hz Sine Wave, with $ F_s = 1000 $Hz}}
+  \end{figure}
+
+\subsubsection{Incoherent Sampling}
+
+\begin{figure}[h]
+	\centering 
+	\resizebox{0.7\textwidth}{!}{\input{fig/1/1_1_c.tikz}}
+	\caption{\textit{DFT of a 100 sample 24Hz Sine Wave, with $ F_s = 1000 $Hz}}
+	\label{fig:q5_4}
+\end{figure}
 
 % \begin{equation}
 % S = \frac{1}{N}X' X'^T
