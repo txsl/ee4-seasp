@@ -1,7 +1,10 @@
 function [ r ] = r(k, m )
 %r - generates triangle wave
-
-r = (m - abs(k))/m;
+if abs(k) <= (m-1)
+    r = (m - abs(k))/m;
+else
+    r = 0;
+end
 
 end
 
