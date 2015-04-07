@@ -3,10 +3,12 @@ function [ w_est, error_sq ] = lms_gass(x, d, order, step_method, mu, rho, alpha
 N = length(d);
 
 w_est = zeros(order, N);
-error = zeros(N, order);
-x_est = zeros(N, order);
+error = zeros(N, 1);
+x_est = zeros(N, 1);
 
 mu = mu*ones(N, 1);
+
+% No need to save all the values in time since we only use the previous value for calculating the new one
 psi = zeros(order, 1);
 
 x_n = x(1:order);
