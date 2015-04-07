@@ -36,15 +36,34 @@ The LMS algorithm remains the same in structure, but $\mu$ now becomes $\mu(n)$,
 
 The NLMS algorithm is a modification to the LMS algorithm which normalises the power of the input, which for a particularly noisy (in the power spectrum) input signal means the filter can still get to a stable output, which may not happen with the standard LMS filter, or at least not without manually adjusting the step size.
 
-Given the update equation $ \mathbf{w}(n+1) = \mathbf{w}(n) + \mu e_p(n) \mathbf{x}(n) $ and the \textit{a posteriori} relationship given: $  e_p(n) = d(n) - \mathbf{x}^T(n) \mathbf{w}(n+1) $, we can express $ \bigtriangleup \mathbf{w}(n) = \mathbf{w}(n+1) - \mathbf{w}(n) $ to allow us to equate the update equation to the standard NLMS form:
+Given the update equation $ \mathbf{w}(n+1) = \mathbf{w}(n) + \mu e_p(n) \mathbf{x}(n) $ and the \textit{a posteriori} relationship given: $  e_p(n) = d(n) - \mathbf{x}^T(n) \mathbf{w}(n+1) $, we can express $ \bigtriangleup \mathbf{w}(n) = \mathbf{w}(n+1) - \mathbf{w}(n) $ to allow us to equate the update equation to the standard NLMS form. 
 
+First, we expand the given relationship of $  e_p(n)$:
 \begin{subequations}
 	\begin{align}
-	\bigtriangleup \mathbf{w}(n) &= \mathbf{w}(n+1) - \mathbf{w}(n) \\
-	\bigtriangleup \mathbf{w}(n) &= \mu e(n) \left[  1 - \mu \frac{\lVert \mathbf{x}(n)\rVert^2}{1 + \mu \lVert \mathbf{x}(n)\rVert^2} \right] \mathbf{x}(n) = \mathbf{w}(n+1) - \mathbf{w}(n) \\
-	\bigtriangleup \mathbf{w}(n) &= e(n) \left[ \frac{\mu + \mu^2  \lVert \mathbf{x}(n)\rVert^2 - \mu^2 \lVert \mathbf{x}(n)\rVert^2}{1 + \mu \lVert \mathbf{x}(n)\rVert^2} \right] \mathbf{x}(n) = \mathbf{w}(n+1) - \mathbf{w}(n) \\
-	\mathbf{w}(n+1) &= \mathbf{w}(n) + \left[ \frac{1}{\frac{1}{\mu} + \mathbf{x}^T(n)\mathbf{x}(n) } \right] e(n) \mathbf{x}(n)  \label{subeq:3_2_b}
+		e_p(n) &= d(n) - \mathbf{x}^T(n) \mathbf{w}(n+1) \\
+		e_p(n) &= d(n) - \mathbf{x}^T(n)  \mathbf{w}(n) - \mu \mathbf{x}^T(n) e_p(n) \mathbf{x}(n) && \text{Expanding the $\mathbf{w}(n+1)$ term} \\
+		e_p(n) (1 + \mu \lVert \mathbf{x}(n) \rVert^2 ) &= d(n) - \mathbf{x}^T(n)\mathbf{w}(n) \\
+		e_p(n) & = \frac{e(n)}{1 + \mu \lVert \mathbf{x}(n) \rVert^2 }
 	\end{align}
+\end{subequations}
+
+We now substitute this in to the update equation:
+\begin{subequations}
+	\begin{align}
+	\mathbf{w}(n+1) &= \mathbf{w}(n) + \mu e_p(n) \mathbf{x}(n) \\
+	\mathbf{w}(n+1) &= \mathbf{w}(n) + \frac{\mu e(n) \mathbf{x}(n)}{1 + \mu \lVert \mathbf{x}(n) \rVert^2 } \\
+	\mathbf{w}(n+1) &= \mathbf{w}(n) + \mu e(n) \left[ \frac{ 1 }{1 + \mu \lVert \mathbf{x}(n) \rVert^2} \right] \mathbf{x}(n) \\
+	%
+	%\bigtriangleup \mathbf{w}(n) &= \mu e(n) \left[ \frac{ 1 + \mu \lVert \mathbf{x}(n) \rVert^2 - \mu \lVert \mathbf{x}(n) \rVert^2 }{1 + \mu \lVert \mathbf{x}(n) \rVert^2} \right] \mathbf{x}(n) \\
+	%
+	%\bigtriangleup \mathbf{w}(n) &= \mu e(n) \left[ 1 - \mu \frac{ \lVert \mathbf{x}(n) \rVert^2 }{1 + \mu \lVert \mathbf{x}(n) \rVert^2} \right] \mathbf{x}(n) \\
+	%
+	%\mathbf{w}(n+1) &= \mathbf{w}(n) + e(n) \left[ \frac{\mu ( 1 + \mu  \lVert \mathbf{x}(n)\rVert^2 - \mu \lVert \mathbf{x}(n)\rVert^2 )}{1 + \mu \lVert \mathbf{x}(n)\rVert^2} \right] \mathbf{x}(n) \\
+	%
+	%\mathbf{w}(n+1) &= \mathbf{w}(n) + e(n) \left[ \frac{\mu + \mu^2  \lVert \mathbf{x}(n)\rVert^2 - \mu^2 \lVert \mathbf{x}(n)\rVert^2}{1 + \mu \lVert \mathbf{x}(n)\rVert^2} \right] \mathbf{x}(n) \\
+	%
+	\mathbf{w}(n+1) &= \mathbf{w}(n) + \left[ \frac{1}{\frac{1}{\mu} + \mathbf{x}^T(n)\mathbf{x}(n) } \right] e(n) \mathbf{x}(n)  \label{subeq:3_2_b}	\end{align}
 \end{subequations}
 
 We can see that the last line, equation \ref{subeq:3_2_b} now has the same form (and thus is equivalent to, other than the factors which are discussed below) as the NLMS update equation:
