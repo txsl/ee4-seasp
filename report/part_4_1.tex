@@ -68,67 +68,30 @@ In conclusion, we are able to model all three systems effectively (all with an M
 
 \begin{figure}[h]
 	\centering
-	\setlength\figureheight{0.2\textwidth}
-	\setlength\figurewidth{0.2\textwidth}
 	\resizebox{\textwidth}{!}{\input{fig/4/4_1_b_orders.tikz}}
 	\caption{\textit{Prediction Error Estimates for varying Model Orders}}
 	\label{fig:4_1_b_order}
 \end{figure}
 
-% \begin{equation}
-% S = \frac{1}{N}X' X'^T
-% \end{equation}
+\subsubsection{Three Phase Power: Balanced \& Unbalanced Systems}
+
+Using the Clarke Voltage, we can compute $v(n)$ for both a balanced and unbalanced system. Figure \ref{fig:4_1_c} shows the circularity diagram of the complex voltage (both a balanced and unbalanced system). The balanced system has a circular shape to it, whereas the unbalanced system's circularity diagram is more akin to a rugby ball than a circle. The unbalanced nature of the system was demonstated when either a phase shift is introduced in to one or two of the lines, or the voltage across each phase is different. In this case, a phase shift of $\frac{\pi}{8}$ has been applied to one phase, with another having phase shift $-\frac{\pi}{7}$.
+
+\begin{figure}[h]
+	\centering
+	\resizebox{0.45\textwidth}{!}{\input{fig/4/4_1_c.tikz}}
+	\caption{\textit{Balanced and Unbalanced Complex Voltages}}
+	\label{fig:4_1_c}
+\end{figure}
+
+Assuming a fault on the system will either cause a disturbance in voltage levels, or shift the phase, its circularity plot would start no longer looking like a circle, but instead take a distorted shape like that observed in Figure \ref{fig:lab_3_1 } for the unbalanced system.
 
 
-%  \begin{figure}[h]
-%  	\centering 
-% 	\resizebox{0.6\textwidth}{!}{\input{q5/q5_cum.tikz}}
-%   	\caption{\textit{Cumulative representation of the variance of each eigenvector}}
-%   	\label{fig:q5_4}
-%  \end{figure}
+\subsubsection{Three Phase Power: Widely Linear AR models}
+We are given the strictly linear and widely linear AR(1) models used on three phase power systems, and from this we are able to determine the frequency of the Clarke Voltage.
 
-% \begin{figure}[h]
-% 	\centering 
-%  	\setlength\figureheight{0.4\textwidth}
-% 	\setlength\figurewidth{0.7\textwidth} 
-%  	\input{p_1/1.tikz}
-%  	\caption{\textit{The four randomly generated subsets}}
-%  	\label{fig:q1}
-% \end{figure}
+For the strictly linear case, we know the model is defined as $ v(n+1) = h^\ast (n) v(n) $. Using the definition of the Clarke voltage for a 
 
-
-%  \begin{figure}[h]
-%          \centering
-%          \begin{subfigure}[b]{0.45\textwidth}
-%             \resizebox{\textwidth}{!}{\input{part_4/q8_num_1.tikz}}
-%   			\caption{\textit{1 Tree}}
-%          \end{subfigure}
-%          ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-%           %(or a blank line to force the subfigure onto a new line)
-%          \begin{subfigure}[b]{0.45\textwidth}
-%             \resizebox{\textwidth}{!}{\input{part_4/q8_num_3.tikz}}
-%   			\caption{\textit{2 Trees}}
-%          \end{subfigure}
- 		
-%          \begin{subfigure}[b]{0.45\textwidth}
-%             \resizebox{\textwidth}{!}{\input{part_4/q8_num_5.tikz}}
-%   			\caption{\textit{5 Trees}}
-%          \end{subfigure}
-%          ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-%           %(or a blank line to force the subfigure onto a new line)
-%          \begin{subfigure}[b]{0.45\textwidth}
-%             \resizebox{\textwidth}{!}{\input{part_4/q8_num_10.tikz}}
-%   			\caption{\textit{10 Trees}}
-%          \end{subfigure}
-         
-%          \begin{subfigure}[b]{0.45\textwidth}
-%             \resizebox{\textwidth}{!}{\input{part_4/q8_num_20.tikz}}
-%   			\caption{\textit{20 Trees}}
-%          \end{subfigure}
- 		
-%  		\label{q9i}
-% 		\caption{\textit{Varying the Number of Trees in the Forest}}
-%  \end{figure}
 
 \end{document}
 
