@@ -11,15 +11,8 @@ z_10 = zeros(L, 1);
 m = 10;
 
 for i = 1:m
-    disp(i)
-    disp(-m+i-2)
-    disp(i+m-1)
-    disp(i-1)
-%     disp(r(-i-1, m)m)
-%     disp(i+m-1)
     z_10(i) = r(-m+i-2, m);
     z_10(i+m-1) = r(i-1, m);
-%     z(end-i+1) = r(-i, m);
 end
 
 
@@ -55,15 +48,8 @@ z_10 = zeros(L, 1);
 m = 128;
 
 for i = 1:m
-    disp(i)
-    disp(-m+i-2)
-    disp(i+m-1)
-    disp(i-1)
-%     disp(r(-i-1, m)m)
-%     disp(i+m-1)
     z_10(i) = r(-m+i-2, m);
     z_10(i+m-1) = r(i-1, m);
-%     z(end-i+1) = r(-i, m);
 end
 
 
