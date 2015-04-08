@@ -1,0 +1,65 @@
+\documentclass[./main.tex]{subfiles} 
+\begin{document}
+	
+\subsection{Resolution and Leakage of Periodogram-based Methods}
+
+\subsubsection{Sidelobes of the Bartlett Window}
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.22\textwidth}
+		\resizebox{\textwidth}{!}{\input{fig/1/1_3_a_16.tikz}}
+		\caption{\textit{1 Tree}}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	\begin{subfigure}[b]{0.22\textwidth}
+		\resizebox{\textwidth}{!}{\input{fig/1/1_3_a_64.tikz}}
+		\caption{\textit{1 Tree}}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	\begin{subfigure}[b]{0.22\textwidth}
+		\resizebox{\textwidth}{!}{\input{fig/1/1_3_a_128.tikz}}
+		\caption{\textit{1 Tree}}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	\begin{subfigure}[b]{0.22\textwidth}
+		\resizebox{\textwidth}{!}{\input{fig/1/1_3_a_512.tikz}}
+		\caption{\textit{1 Tree}}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+%	\label{fig:1_2_a}
+%	\caption{\textit{DFTs of 20Hz Sine Wave, with $ F_s = 1000 $Hz}}
+\end{figure}
+
+\begin{minipage}{.5\textwidth}
+%	\begin{figure}[h]
+		\center
+		\resizebox{\textwidth}{!}{\input{fig/1/1_3_a_3db_width.tikz}}
+		\captionof{figure}{\textit{Prediction Error Estimates for varying Model Orders}}
+		\label{fig:}
+%	\end{figure}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+	%	\begin{figure}[h]
+	\center
+	\resizebox{\textwidth}{!}{\input{fig/1/1_3_a_sidelobe_level.tikz}}
+	\captionof{figure}{\textit{Prediction Error Estimates for varying Model Orders}}
+	\label{fig:}
+	%	\end{figure}
+\end{minipage}
+
+%Some typing here
+%%\begin{minipage}{.5\textwidth}
+%\begin{figure}[h]
+%	\centering
+%	\resizebox{\textwidth}{!}{\input{fig/1/1_3_a_3db_width.tikz}}
+%	\caption{\textit{Prediction Error Estimates for varying Model Orders}}
+%	\label{fig:4_1_b_order}
+%\end{figure}
+%%\end{minipage}
+
+
+
+\end{document}
+
