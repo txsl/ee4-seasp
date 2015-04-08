@@ -4,7 +4,7 @@ common.init
 
 %% Setup
 
-N = 1000;
+N = 100000;
 N_IT = 100;
 MU = 0.01;
 ORDER = 2;
