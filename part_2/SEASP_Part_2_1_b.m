@@ -4,17 +4,16 @@ common.init
 
 %% Setup
 
-N = 512;
+N = 1024;
 N_IT = 100;
 
 PAD = 1;
 
-% psds = zeros((2*(N-1))+1, N_IT);
 fft_len = PAD*N;
 psds = zeros(fft_len, N_IT);
 
 % x_ax_scale = [0.1 0.3];
-x_ax_scale = [0 1];
+x_ax_scale = [0 0.5];
 
 %% Generate signals and take the FFT
 
@@ -37,17 +36,17 @@ hold on;
 
  
 for i = 1:N_IT
-    plot(w, psds(:,i), ':g')
+    ens = plot(w, psds(:,i), ':r');
 end
 
 h1 = plot(w, mean(psds, 2));
 set(h1, 'LineWidth', 2)
-legend(h1, 'Mean')
+legend([h1 ens], 'Mean', 'Ensemble Iterations')
 
 xlim(x_ax_scale)
 xlabel('Normalised Frequency')
 ylabel('Power')
-title('PSD Estimate - Mean of Ensemble and all signals')
+title('PSD Estimate - Ensemble and Mean')
 common.set_graph_params
 
 
