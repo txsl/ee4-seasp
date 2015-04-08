@@ -12,6 +12,7 @@ clear tmp
 delete('tmp.mat')
 
 addpath('../libs')
+addpath('../part_1')
 % addpath('../libs/voicebox')
 
 set(0,'DefaultTextInterpreter','latex'); 
