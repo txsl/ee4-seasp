@@ -19,7 +19,7 @@ x_ax_scale = [0 0.5];
 
 for i = 1:N_IT
     
-    noisy_wave = sqrt(0.2)*randn(N, 1) + 0.1*sin(0.2*pi*(1:N))' + 0.1*sin(0.23*pi*(1:N))';
+    noisy_wave = sqrt(0.2)*randn(N, 1) + 0.1*sin(0.2*pi*(0:(N-1)))' + 0.1*sin(0.23*pi*(0:(N-1)))';
 
     auto_cor = xcorr(noisy_wave, 'biased');
     
