@@ -32,6 +32,7 @@ end
 w = limspace(1, fft_len);
 
 figure;
+subplot(1, 2, 1);
 hold on;
 
  
@@ -52,7 +53,10 @@ common.set_graph_params
 
 %% Standard Deviation
 
-figure
+% figure
+
+subplot(1, 2, 2);
+
 plot(w, std(psds, 0, 2))
 xlim(x_ax_scale)
 xlabel('Normalised Frequency')

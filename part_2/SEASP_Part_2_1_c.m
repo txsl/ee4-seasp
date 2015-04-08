@@ -8,6 +8,8 @@ SEASP_Part_2_1_b
 
 figure;
 
+subplot(1, 2, 1);
+
 xlim(x_ax_scale)
 xlabel('Normalised Frequency')
 ylabel('Power (dB)')
@@ -27,7 +29,10 @@ legend([h1 ens], 'Mean', 'Ensemble Iterations')
 
 %% Std Dev in dB
 
-figure;
+% figure;
+
+subplot(1, 2, 2);
+
 plot(w, mag2db(std(psds, 0, 2)))
 xlim(x_ax_scale)
 xlabel('Normalised Frequency')
