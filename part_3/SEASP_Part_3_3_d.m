@@ -1,7 +1,8 @@
 
 addpath('../')
 common.init
-load 'data/EEG_Data_Assignment2.mat'
+
+load('../data/EEG_Data_Assignment2.mat')
 
 N = length(Cz);
 N_IT = 1;
@@ -13,14 +14,18 @@ for i = 1:N_IT
     noise_sig(:, i) = randn(N, 1) + 2*sine_wave;
 end
 
-% tic
-% parfor i = 1:N_IT
-%     [ ~, ~, errors(:, i) ] = lms(noise_sig(:, i), Cz, 8, .01, 0);
-% end
-% toc
+eeg_spcgm = @(sig) spectrogram(sig, hanning(4096), 3000, 4096, fs, 'yaxis');
+
+
 %% Step Sizes - Generate Data!
 
-mus = [ 0.001 0.01 0.1 ];
+figure;
+subplot(1, 4, 1);
+eeg_spcgm(Cz)
+ylim([0 120])
+title('Original Signal')
+
+mus = [ 0.001 0.01 0.05 ];
 
 mus_errors = cell(length(mus), 1);
 
@@ -28,69 +33,42 @@ for j = 1:length(mus)
     
     errors = zeros(N, N_IT);
     
-    m = mus(j)
+    m = mus(j);
     
     for i = 1:N_IT
         [ ~, ~, errors(:, i) ] = lms(noise_sig(:, i), Cz, 10, m, 0);
     end
+    
+    subplot(1, 4, j+1)
+    eeg_spcgm(mean(errors, 2));
+	ylim([0 120])
+    title(sprintf('$ \\mu = %.3f$', mus(j)))
+
 end
 
-save('mu.mat', 'mus_errors');
 
 %% Filter Orders - Generate Data!
 
-% orders = [ 2 5 10 15 20 ];
-% 
-% figure;
-% subplot(2, 3, 1);
-% specgram(Cz, [], fs)
-% % 
-% % orders_errors = cell(length(orders), 1);
-% for j = 1:length(orders)
-%     
-%     errors = zeros(N, N_IT);
-%     o = orders(j)
-%     for i = 1:N_IT
-%         [ ~, ~, errors(:, i) ] = lms(noise_sig(:, i), Cz, o, 0.01, 0);
-%     end
-% %     orders_errors{j} = errors;
-%     subplot(2, 3, j+1)
-%     specgram(mean(orders, 2), [], fs)
-%     title(sprintf('M = %i', orders(j)))
-% end
-
-%% Step Sizes - Plot Data
-
-load('mu.mat');
+orders = [ 2 5 10 15 20 ];
 
 figure;
-subplot(2, 2, 1);
-specgram(Cz, [], fs)
-title('Original Signal')
+subplot(2, 3, 1);
+eeg_spcgm(Cz);
+ylim([0 120])
 
-for j = 1:length(mus)
+orders_errors = cell(length(orders), 1);
+for j = 1:length(orders)
     
-    subplot(2, 2, j+1)
+    errors = zeros(N, N_IT);
+    o = orders(j);
+    for i = 1:N_IT
+        [ ~, ~, errors(:, i) ] = lms(noise_sig(:, i), Cz, o, 0.002, 0);
+    end
 
-    specgram(mean(mus_errors{j}, 2), [], fs)
-    title(sprintf('$\mu$ = %f', mus(j)))
+    subplot(2, 3, j+1)
+    eeg_spcgm(mean(errors, 2));
+	ylim([0 120])
+    title(sprintf('M = %i', orders(j)))
 end
 
-%% Filter Orders - Plot Data!
-
-
-%% Old
-
-% figure
-% stem(linspace(-fs/2, fs/2, length(Cz)), abs(fftshift(fft(Cz))), 'marker', 'none');
-% 
-% figure
-% stem(linspace(-fs/2, fs/2, length(Cz)), abs(fftshift(fft(mean(errors, 2)))), 'marker', 'none');
-% 
-% 
-% figure
-% specgram(Cz, [], fs)
-% 
-% figure 
-% specgram(mean(errors, 2), [], fs)
 

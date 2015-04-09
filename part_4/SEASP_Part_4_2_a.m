@@ -1,6 +1,6 @@
-% 
-% addpath('../')
-% common.init
+
+addpath('../')
+common.init
 
 VAR = 0.05;
 FS = 500;
@@ -15,4 +15,17 @@ y = exp(1j*(f*2*pi/FS)) + sqrt(VAR)*randn(1500, 1) + 1j*sqrt(VAR)*randn(1500, 1)
 
 ary = aryule(y, 1);
 
-% [h, w] = freqz(1, ary, 1500);
+[h, w] = freqz(1, ary, 1500);
+
+
+h_y = fftshift(abs(fft(y, 3000)).^2);
+
+addpath('../part_1');
+w_y = limspace(pi, 3000);
+
+figure;
+plot(w, mag2db(abs(h).^2), w_y(1501:end), mag2db(h_y(1501:end)))
+axis tight
+xlabel('Frequency $rads^{-1}$');
+ylabel('Power (dB)');
+common.set_graph_params
