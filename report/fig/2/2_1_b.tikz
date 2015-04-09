@@ -10,8 +10,8 @@
 \begin{tikzpicture}
 
 \begin{axis}[%
-width=1.50757575757576in,
-height=3.565625in,
+width=1.5in,
+height=1in,
 scale only axis,
 xmin=0,
 xmax=0.5,
@@ -24,8 +24,7 @@ ymajorgrids,
 name=plot1,
 title={PSD Estimate - Ensemble and Mean},
 axis x line*=bottom,
-axis y line*=left,
-legend style={draw=black,fill=white,legend cell align=left}
+axis y line*=left
 ]
 \addplot [color=red,dotted,forget plot]
   table[row sep=crcr]{-1	0.0286239926739544\\
@@ -102627,7 +102626,6 @@ legend style={draw=black,fill=white,legend cell align=left}
 0.99609375	0.0953262342403051\\
 0.998046875	0.0354097977889355\\
 };
-\addlegendentry{Ensemble Iterations};
 
 \addplot [color=blue,solid,line width=2.0pt]
   table[row sep=crcr]{-1	0.0500621865706862\\
@@ -103655,13 +103653,12 @@ legend style={draw=black,fill=white,legend cell align=left}
 0.99609375	0.0467207242169653\\
 0.998046875	0.0474070394062333\\
 };
-\addlegendentry{Mean};
 
 \end{axis}
 
 \begin{axis}[%
-width=1.50757575757576in,
-height=3.565625in,
+width=1.5in,
+height=1in,
 scale only axis,
 xmin=0,
 xmax=0.5,

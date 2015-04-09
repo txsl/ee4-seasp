@@ -7,51 +7,61 @@
 
 \subsubsection{Biased and Unbiased Autocorrelation, and the Correlogram}
 
+Figure \ref{fig:2_1_a} shows the ACF and Correlogram of Biased and Unbiased ACFs of WGN, Filtered WGN and a Sinusoid. We can see that that the biased ACF tends to get larger as the delay increases, due to the fewer samples which are interacting. The Biased ACF takes care of this, but has the downside that we now appear to be seeing significant amounts of negative power (which as discussed before, is not possible). The specral estimate for the sinusoids is exactly what we expect - a large peak at their operating frequnecies.
+
 \begin{figure}[h]
 	\centering 
 	\resizebox{\textwidth}{!}{\input{fig/2/2_1_a.tikz}}
-	\caption{\textit{Circularity Plots for Wind Data}}
+	\caption{\textit{Biased and Unbiased ACFs and Correlograms of WGN, Filtered WGN and a Sinusoids}}
 	\label{fig:2_1_a}
 \end{figure}
 
 
 \subsubsection{PSD Generation through Ensembles}
 
+Figure \ref{fig:2_1_b} shows the ensemble iterations and mean for the WGN process. It is hard to see the real variation in the ensemble though, as they are all relatively small when compared to the peaks.
+
 \begin{figure}[h]
 	\centering 
 	\resizebox{\textwidth}{!}{\input{fig/2/2_1_b.tikz}}
-	\caption{\textit{Circularity Plots for Wind Data}}
+	\caption{\textit{PSD Estimate and Standard Deviation of Process}}
 	\label{fig:2_1_b}
 \end{figure}
 
 \subsubsection{PSD Analysis in dB}
 
+Figure \ref{fig:2_1_c} shows the same plots as before, but this time in Decibels rather than a linear scale. It is now clearer to see the deviation of the ensemble than before, showing a vibrant contrast in the various iterations. The standard deviation is also clearer at getting the information across. Peaks are reduced, making it easier to see the trends within the data since the peaks are reduced in amplitude (when compared with the bulk of the data) - this is after all one of the main reasons for using a logarithmic scale.
+
 \begin{figure}[h]
 	\centering 
 	\resizebox{\textwidth}{!}{\input{fig/2/2_1_c.tikz}}
-	\caption{\textit{Circularity Plots for Wind Data}}
+	\caption{\textit{PSD Estimate and Standard Deviation of Process - Decibels}}
 	\label{fig:2_1_c}
 \end{figure}
 
 
 \subsubsection{Complex Exponential Signals}
+We have generated a complex signal as provided in code in the coursework handout. We can see that as we increase the signal length (but the size of the DFT is fixed at $N=128$), as shown in figure \ref{fig:2_1_d_N}, the two sinusoids become more noticable. In the signal's `default' parameters as shipped, we are unable to make out the two different sinusoids. In Figure \ref{fig:2_1_d_freq} we vary the frequency of one of the sinusoids. It becomes clear that by increasing the gap between sine waves, the periodogram starts to show the correct spectra.
+
 
 \begin{figure}[h]
 	\centering 
 	\resizebox{\textwidth}{!}{\input{fig/2/2_1_d_N.tikz}}
-	\caption{\textit{Circularity Plots for Wind Data}}
+	\caption{\textit{Varying Signal Length $N$}}
 	\label{fig:2_1_d_N}
 \end{figure}
 
 \begin{figure}[h]
 	\centering 
 	\resizebox{\textwidth}{!}{\input{fig/2/2_1_d_freq.tikz}}
-	\caption{\textit{Circularity Plots for Wind Data}}
+	\caption{\textit{Varying Frequency for one of the sinusoids}}
 	\label{fig:2_1_d_freq}
 \end{figure}
 
 
 \subsubsection{MUSIC Method}
+
+Figure \ref{fig:2_1_e} shows the output of the MUSIC method. It is clearly able to clearly mark the two different spectra in a very different fashion to those seen from PSD estimates.
 
 \begin{figure}[h]
 	\centering 
@@ -60,38 +70,6 @@
 	\label{fig:2_1_e}
 \end{figure}
 
-%  \begin{figure}[h]
-%          \centering
-%          \begin{subfigure}[b]{0.45\textwidth}
-%             \resizebox{\textwidth}{!}{\input{part_4/q8_num_1.tikz}}
-%   			\caption{\textit{1 Tree}}
-%          \end{subfigure}
-%          ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-%           %(or a blank line to force the subfigure onto a new line)
-%          \begin{subfigure}[b]{0.45\textwidth}
-%             \resizebox{\textwidth}{!}{\input{part_4/q8_num_3.tikz}}
-%   			\caption{\textit{2 Trees}}
-%          \end{subfigure}
- 		
-%          \begin{subfigure}[b]{0.45\textwidth}
-%             \resizebox{\textwidth}{!}{\input{part_4/q8_num_5.tikz}}
-%   			\caption{\textit{5 Trees}}
-%          \end{subfigure}
-%          ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-%           %(or a blank line to force the subfigure onto a new line)
-%          \begin{subfigure}[b]{0.45\textwidth}
-%             \resizebox{\textwidth}{!}{\input{part_4/q8_num_10.tikz}}
-%   			\caption{\textit{10 Trees}}
-%          \end{subfigure}
-         
-%          \begin{subfigure}[b]{0.45\textwidth}
-%             \resizebox{\textwidth}{!}{\input{part_4/q8_num_20.tikz}}
-%   			\caption{\textit{20 Trees}}
-%          \end{subfigure}
- 		
-%  		\label{q9i}
-% 		\caption{\textit{Varying the Number of Trees in the Forest}}
-%  \end{figure}
 
 \end{document}
 

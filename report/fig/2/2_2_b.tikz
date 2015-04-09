@@ -16,8 +16,8 @@
 \begin{tikzpicture}
 
 \begin{axis}[%
-width=4.51875in,
-height=3.565625in,
+width=8in,
+height=2in,
 scale only axis,
 xmin=0,
 xmax=0.5,
