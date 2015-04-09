@@ -28,14 +28,15 @@ figure;
 hold on
 leg = cell(length(K)+1, 1);
 leg{1} = 'Measured PSD';
+cols = distinguishable_colors(length(K)+1);
 
-plot(w, true_psd)
+plot(w, true_psd, 'color', cols(1,:))
 
 
 for i = 1:length(K)
 
     [pxx, w] = pyulear(sig, K(i), w);
-    plot(w, mag2db(fftshift(pxx)))
+    plot(w, mag2db(fftshift(pxx)), 'color', cols(i+1,:))
     leg{i+1} = sprintf('AR(%i) Model', K(i));
     
 end
