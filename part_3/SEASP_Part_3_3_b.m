@@ -12,7 +12,7 @@ sig = zeros(N, N_IT);
 sine_wave = sin(0.01*pi*(1:N))';
 
 for j = 1:N_IT
-    sig(:, j) = filter(1, [1 0 0.5], randn(N, 1)) + sine_wave;
+    sig(:, j) = filter([1 0 0.5], 1, randn(N, 1)) + sine_wave;
 end
 
 %% For varying filter orders

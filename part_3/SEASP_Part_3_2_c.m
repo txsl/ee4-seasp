@@ -48,7 +48,7 @@ for mu = mus
     w_est_tot = w_est_tot/N_IT;
     w_est_shift = 0.9 - w_est_tot(1, :);
     plot(w_est_shift, 'Color', cols(col_idx, :));
-    leg{col_idx} = sprintf('Benveniste: \\mu=%f', mu);
+    leg{col_idx} = sprintf('Benveniste: $\\mu=%.2f$', mu);
     col_idx = col_idx + 1;
 end
 
@@ -65,7 +65,7 @@ for mu = mus
     w_est_tot = w_est_tot/N_IT;
     w_est_shift = 0.9 - w_est_tot(1, :);
     plot(w_est_shift, 'Color', cols(col_idx, :));
-    leg{col_idx} = sprintf('GNGD: \\mu=%f', mu);
+    leg{col_idx} = sprintf('GNGD: $\\mu=%.2f$', mu);
     col_idx = col_idx + 1;
 end
 
