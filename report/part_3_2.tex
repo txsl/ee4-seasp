@@ -4,7 +4,7 @@
 \subsection{Adaptive Step Sizes}
 
 \subsubsection{Implemented GASS Algorithms}
-Gradient Adaptive Step-Size Algorithms are designed to change the step size as the algorithm progresses. At the start, a large step size is needed in order for the algorithm to converge quickly, but during steady state a small step size helps to reduce the steady state error (as we have observed in previous parts of this coursework).
+Gradient Adaptive Step-Size Algorithms are designed to change the step size as the algorithm progresses. They all rely on optimising gradient descent so as to iterate quickly down a steep gradient, and then remain very stable when in steady state At the start, a large step size is needed in order for the algorithm to converge quickly, but during steady state a small step size helps to reduce the steady state error (as we have observed in previous parts of this coursework).
 
 The LMS algorithm remains the same in structure, but $\mu$ now becomes $\mu(n)$, thus becoming $  \mathbf{w}(n+1) = \mathbf{w}(n) + \mu(n) e(n) \mathbf{x}(n) $. The algorithm to update the weight is defined as $ \mu(n+1) = \mu(n) + \rho e(n) \mathbf{x}^T(n) \boldsymbol{\psi}(n)$. $ \boldsymbol{\psi}(n) $ is defined by three different GASS algorithms, listed below:
 
@@ -13,6 +13,10 @@ The LMS algorithm remains the same in structure, but $\mu$ now becomes $\mu(n)$,
 	\item[Ang \& Farhang] $  \boldsymbol{\psi}(n) = \alpha  \boldsymbol{\psi}(n - 1) +  e(n-1) \mathbf{x}(n-1) $
 	\item[Benveniste] $ \boldsymbol{\psi} = [ \mathbf{I} - \mu(n-1) \mathbf{x}(n-1) \mathbf{x}^T(n-1)  ] \boldsymbol{\psi}(n - 1) + e(n-1) \mathbf{x}(n-1) $
 \end{description}
+
+Figure \ref{fig:3_2_a_alpha} shows the Ang \& Farhang method with different values of $\alpha$. If $ \alpha $ is set too high, there runs a risk of the system becoming unstale. We can see this when $\alpha = 0.9$.
+
+Figure \ref{fig:3_2_a} shows the three different variants. The winner appears to be the Benveniste algorithm, which overtakes everyt other algorithm to come in to steady state first. This is followed closely by the Ang \& Farhang filter, and lastly Matthews \& Xie. Overall, they clearly able to converge faster than the standard LMS algorithm, whilst at the same time remaining with a low steady state error.
 
 \begin{figure}[h]
 	\centering 
@@ -70,6 +74,10 @@ $$ \mathbf{w}(n+1) = \mathbf{w}(n) + \frac{\beta}{\epsilon + \mathbf{x}^T(n)\mat
 Thus from the comparison of forms, we can equate $ \beta = 1 $ and $ \epsilon = \frac{1}{\mu} $.
 
 \subsubsection{GNGD Algorithm}
+
+The GNGD Algorithm is a specific variety of NLMS filter. Figure \ref{fig:3_2_c} compares its performance to that of the best performing GASS algorithm we saw, the Benveniste algorithm. The GNGD significantly outperforms the Benveniste algorithm at reaching steady state.
+
+Comparing the complexity of each algorithm, they both have vector/matrix multiplications in them. The Benvenieste has marginally more complex mutltiplications, but fundamentally, both algorithms are of order of $N^2$ complexity. Considering their similar computational overhead, the GNGD appears the better algorithm since it is able to reach steady state significantly faster than the Benveniste algorithm.
 
 \begin{figure}[h]
 	\centering 
