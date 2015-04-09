@@ -33,13 +33,13 @@ for i = 1:length(MEANS)
     output_f = zeros(fs*SAMP, n_samps);
     
     for j = 1:n_samps
-        output_f(:, j) = abs(fft(bartlett(input_split(1)).*arrays{j}, fs*SAMP)).^2;
+        output_f(:, j) = abs(fft(arrays{j}, fs*SAMP)).^2;
         output_f_bartlett(:, j) = abs(fft(bartlett(input_split(1)).*arrays{j}, fs*SAMP)).^2;
         output_f_hamming(:, j) = abs(fft(hamming(input_split(1)).*arrays{j}, fs*SAMP)).^2;
     end
-    psd_hamming = mag2db(mean(output_f_bartlett, 2));
+    psd = mag2db(mean(output_f, 2));
     psd_bartlett = mag2db(mean(output_f_bartlett, 2));
-    psd = mag2db(mean(output_f_bartlett, 2));
+    psd_hamming = mag2db(mean(output_f_hamming, 2));
     
     figure
     subplot(3, 1, 1)
@@ -49,12 +49,12 @@ for i = 1:length(MEANS)
     
     subplot(3, 1, 2)
     plot(w, fftshift(psd_bartlett));
-    title(sprintf('Averaged Periodogram for Window Length %is', MEANS(i)));
+    title(sprintf('Barlett Averaged Periodogram for Window Length %is', MEANS(i)));
     xlim([0 high_lim])
     
     subplot(3, 1, 3)
     plot(w, fftshift(psd_hamming));
-    title(sprintf('Averaged Periodogram for Window Length %is', MEANS(i)));
+    title(sprintf('Hamming Averaged Periodogram for Window Length %is', MEANS(i)));
     xlim([0 high_lim])       
     
 end
