@@ -3,28 +3,69 @@
 
 \subsection{Properties of Power Spectral Density (PSO)}
 
+One definition of the PSD is from its DTFT:
+
+\begin{equation}
+P(\omega) = \lim\limits_{N \to \infty} \mathbb{E} \left\{ \frac{1}{N} \left| \sum_{n=0}^{N-1} x(n) e^{-j n \omega} \right|^2 \right\}
+\end{equation}
+
+Since it is complex, we can refer to it as
+
+\begin{equation}
+\begin{split}
+P(\omega) &= \lim\limits_{N \to \infty} \mathbb{E} \left\{ \frac{1}{N} \sum_{n=0}^{N-1} x(n) e^{-j n \omega} \sum_{k=0}^{N-1} x(k)^\ast e^{j k \omega}  \right\} \\
+&= \lim\limits_{N \to \infty}  \mathbb{E} \left\{ \sum_{n=0}^{N-1} \sum_{k=0}^{N-1} x(n) \exp^{-j n \omega} x(k)^\ast e^{j k \omega} \right\} \label{eq:1_2_1}
+\end{split}
+\end{equation}
+
+The autocorrelation sequence of a complex signal can be defined as
+\begin{equation}
+\begin{split}
+r_{xx}(n) = \mathbb{E} \{ x(k) x^\ast(k-n) \} \\
+r_{xx}(k-n) = \mathbb{E} \{ x(k) x^\ast(n) \}
+\end{split}
+\end{equation}
+
+Thus we can substitute this in to \ref{eq:1_2_1}, to say 
+\begin{equation}
+\lim\limits_{N \to \infty}   \sum_{n=0}^{N-1} \sum_{k=0}^{N-1} r_{xx}(k-n) e^{-j(n-k)\omega}
+\end{equation}
+
+In \cite{Mandic2014}, it is defined that a double summation can be converted to a single triangle summation, such that $  \sum_{k=-M}^{M} \sum_{l=-M}^{M} g(k-l) = \sum_{\tau=-2M}^{2M}(2M + 1 - |\tau|) g(\tau)$. Substituting this in to our summation, we are left with 
+
+\begin{equation}
+\lim\limits_{N \to \infty} \sum_{\tau=-2N+2)}^{2N - 2} (2N - 1 - |\tau|) r_{xx}(\tau) e^{-j \tau \omega}
+\end{equation}
+
+From which we can see the clear relation to the DFT of the ACF: $ P(\omega) = \sum_{k=-\infty}^{\infty} r(k) e^{-j\omega k} $
+
 \subsubsection{Zero Padding}
+
+Figure \ref{fig:1_2_a} shows the Autocorrelation function for $M=10$ and $M=128$. Beneath the lag plot, we can see their DFTs. Since we are taking the DFT of the ACF, if this were in the time domain, it would be centred around $ \tau = 0$. Since \texttt{MATLAB} does not have the concept of negative indices, we must adapt how we store our data. This results in the `wrap around' which we observe in figure \ref{fig:1_2_a}. In the case of $M=128$, no zero padding is used, since the signal is 268 samples long.
 
 \begin{figure}[h]
 	\centering
 	\begin{subfigure}[b]{0.49\textwidth}
 		\resizebox{\textwidth}{!}{\input{fig/1/1_2_a_10.tikz}}
-		\caption{\textit{1 Tree}}
+		\caption{\textit{ACF for $M=10$}}
 		\label{fig:1_2_a_10}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
 	\begin{subfigure}[b]{0.49\textwidth}
 		\resizebox{\textwidth}{!}{\input{fig/1/1_2_a_128.tikz}}
-		\caption{\textit{2 Trees}}
+		\caption{\textit{ACF for $M=128$}}
 		\label{fig:1_2_a_128}
 	\end{subfigure}
 	\label{fig:1_2_a}
-	\caption{\textit{DFTs of 20Hz Sine Wave, with $ F_s = 1000 $Hz}}
+	\caption{\textit{Autocorrelation Functions and their DFTs}}
 \end{figure}
 
 \subsubsection{The Real Component of the PSD}
+The DFTs in Figure \ref{fig:1_2_a} show the real components of the DFT of the ACF. 
 
 \subsubsection{Erroneous Spectral Values}
+
+By taking the incorrect wrap around, as observed for the modified ACF function, visible in Figure \ref{fig:1_2_c}, we observe negative power from the DFT of the ACF (which, as demonstrated earlier, represents the PSD). This is clearly incorrect (in this context, we cannot have negative power), and demonstrates the need to be careful when representing the ACF in a programming environment such as \texttt{MATLAB}. Effectively, we must wrap around the information which would have been stored in negative indices round to the last samples of the signal.
 
 \begin{figure}[h]
 	\centering
@@ -39,28 +80,30 @@
 		\caption{\textit{2 Trees}}
 		\label{fig:1_2_c_128}
 	\end{subfigure}
-	\label{fig:1_2_a}
-	\caption{\textit{DFTs of 20Hz Sine Wave, with $ F_s = 1000 $Hz}}
+	\label{fig:1_2_c}
+	\caption{\textit{Improperly shifted Autocorrelation Functions and their DFTs}}
 \end{figure}
 
 
 \subsubsection{Shifting the DFT and Axis Scaling}
 
+Through the figures so far, the custom function \texttt{limspace} (a play on the author's surname) has been used to set the axis scales. The key is to ensure that a sample is able to sit at 0, so the DFT is symettric about 0. The \texttt{MATLAB} function \texttt{linspace} returns a vector of linearly space points given an input, however it fails to take in to account the need for a value at 0. It does however work for odd length signals, since the point in the centre of the FT will naturally fall at 0. For even length signals, we generate a vector between 0 and the signal length - 1. This is then scaled by an 2 times arbitrary parameter (often 1, as has been the case in plots so far), and shifted down so that the central value of the vector represents 0.
+
+By taking the IFFT (Inverse Fourier Transform) and using a shift, we can regenrate the true autocorrelation sequence they represented. This is shown in figure \ref{fig:1_2_d_ifft}. Figure \ref{fig:1_2_d_ifft_odd} also shows odd length functions and how they are still correctly located on their axes.
+
 \begin{figure}[h]
 	\centering
 	\begin{subfigure}[b]{0.49\textwidth}
 		\resizebox{\textwidth}{!}{\input{fig/1/1_2_d_ifft_10.tikz}}
-		\caption{\textit{1 Tree}}
 		\label{fig:1_2_d_ifft_10}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
 	\begin{subfigure}[b]{0.49\textwidth}
 		\resizebox{\textwidth}{!}{\input{fig/1/1_2_d_ifft_128.tikz}}
-		\caption{\textit{2 Trees}}
 		\label{fig:1_2_d_ifft_128}
 	\end{subfigure}
 	\label{fig:1_2_d_ifft}
-	\caption{\textit{DFTs of 20Hz Sine Wave, with $ F_s = 1000 $Hz}}
+	\caption{\textit{Shifted IFFTs of the PSD}}
 \end{figure}
 
 
@@ -68,17 +111,15 @@
 	\centering
 	\begin{subfigure}[b]{0.49\textwidth}
 		\resizebox{\textwidth}{!}{\input{fig/1/1_2_d_dft_odd.tikz}}
-		\caption{\textit{1 Tree}}
 		\label{fig:1_2_d_dft_odd}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
 	\begin{subfigure}[b]{0.49\textwidth}
 		\resizebox{\textwidth}{!}{\input{fig/1/1_2_d_ifft_odd.tikz}}
-		\caption{\textit{2 Trees}}
 		\label{fig:1_2_d_ifft_odd}
 	\end{subfigure}
 	\label{fig:1_2_d_ifft}
-	\caption{\textit{DFTs of 20Hz Sine Wave, with $ F_s = 1000 $Hz}}
+	\caption{\textit{Odd length DFT and IFFT functions, demonstrating the correct shift to reconstruct the ACF}}
 \end{figure}
 
 
