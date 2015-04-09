@@ -49,7 +49,7 @@ Using the parameters $ \bigtriangleup = 4$ and $ M = 5$, we can produce a plot o
 
 \subsubsection{Adaptive Noise Cancellation Filter}
 
-The Adaptive Noise Cancellation is a different configuration for denoising a signal. It takes a secondary signal, $\mathbf{u}$ and uses this as the sample noise (instead of taking a delayed copy of the signal itself). In this set up, we generate another signal of White Gaussian noise (defined as $ \eta(n) = v(n) + 0.5v(n-2) $ where $v(n) \sim \mathcal{N}(0,1) $.). Figure \ref{fig:3_3_c} shows the comparative Square Errors between the ALE and ANC configurations. It is apparent that the ANC outperforms the ALE. Taking the Mean Squared Error (ie across every iteration), the MSE for ALE is 1.36, whereas the ANC is 0.238.
+The Adaptive Noise Cancellation is a different configuration for denoising a signal. It takes a secondary signal, $\mathbf{u}$ and uses this as the sample noise (instead of taking a delayed copy of the signal itself). In this set up, we generate another signal of White Gaussian noise (defined as $ \eta(n) = v(n) + 0.5v(n-2) $ where $v(n) \sim \mathcal{N}(0,1) $.). Figure \ref{fig:3_3_c} shows the comparative Square Errors between the ALE and ANC configurations. It is apparent that the ANC outperforms the ALE. Taking the Mean Squared Error (ie across every iteration), the MSE for ALE is 1.27, whereas the ANC is 0.31.
 
 \begin{figure}[h]
 	\centering 
@@ -60,55 +60,6 @@ The Adaptive Noise Cancellation is a different configuration for denoising a sig
 
 \subsubsection{Removing Mains 50Hz hum from ECG Data}
 
-%  \begin{figure}[h]
-%  	\centering 
-% 	\resizebox{0.6\textwidth}{!}{\input{q5/q5_cum.tikz}}
-%   	\caption{\textit{Cumulative representation of the variance of each eigenvector}}
-%   	\label{fig:q5_4}
-%  \end{figure}
-
-% \begin{figure}[h]
-% 	\centering 
-%  	\setlength\figureheight{0.4\textwidth}
-% 	\setlength\figurewidth{0.7\textwidth} 
-%  	\input{p_1/1.tikz}
-%  	\caption{\textit{The four randomly generated subsets}}
-%  	\label{fig:q1}
-% \end{figure}
-
-
-%  \begin{figure}[h]
-%          \centering
-%          \begin{subfigure}[b]{0.45\textwidth}
-%             \resizebox{\textwidth}{!}{\input{part_4/q8_num_1.tikz}}
-%   			\caption{\textit{1 Tree}}
-%          \end{subfigure}
-%          ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-%           %(or a blank line to force the subfigure onto a new line)
-%          \begin{subfigure}[b]{0.45\textwidth}
-%             \resizebox{\textwidth}{!}{\input{part_4/q8_num_3.tikz}}
-%   			\caption{\textit{2 Trees}}
-%          \end{subfigure}
- 		
-%          \begin{subfigure}[b]{0.45\textwidth}
-%             \resizebox{\textwidth}{!}{\input{part_4/q8_num_5.tikz}}
-%   			\caption{\textit{5 Trees}}
-%          \end{subfigure}
-%          ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-%           %(or a blank line to force the subfigure onto a new line)
-%          \begin{subfigure}[b]{0.45\textwidth}
-%             \resizebox{\textwidth}{!}{\input{part_4/q8_num_10.tikz}}
-%   			\caption{\textit{10 Trees}}
-%          \end{subfigure}
-         
-%          \begin{subfigure}[b]{0.45\textwidth}
-%             \resizebox{\textwidth}{!}{\input{part_4/q8_num_20.tikz}}
-%   			\caption{\textit{20 Trees}}
-%          \end{subfigure}
- 		
-%  		\label{q9i}
-% 		\caption{\textit{Varying the Number of Trees in the Forest}}
-%  \end{figure}
 
 \end{document}
 
