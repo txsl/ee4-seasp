@@ -16,7 +16,7 @@
 
 \begin{axis}[%
 width=7in,
-height=3in,
+height=2.8in,
 scale only axis,
 xmin=0,
 xmax=1,
