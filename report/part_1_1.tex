@@ -5,24 +5,45 @@
 
 \subsection{Discrete Fourier Transform Basics}
 
-\subsubsection{}
+\subsubsection{Ideal Fourier Spectrum} \label{sec:1_1_a}
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.49\textwidth}
+		\includegraphics[scale=0.5]{fig/1/1_1_a_coherent.jpg}
+		\caption{\textit{20Hz sine wave in the theoretical continuous frequency DTFT}}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	\begin{subfigure}[b]{0.49\textwidth}
+		\includegraphics[scale=0.14]{fig/1/1_1_a_sinc.jpg}
+		\caption{\textit{20Hz sine wave windowed (with an arbitrary window)}}
+	\end{subfigure}
+	\label{fig:1_1_1}
+	\caption{\textit{DFTs of 20Hz Sine Wave, with $ F_s = 1000 $Hz}}
+\end{figure}
+
+Figure \ref{fig:1_1_1} shows a sine wave sampled in the theoretical continuous frequency DTFT, and a windowed sine wave. The result of the windowing is that we no longer see a clean delta in the frequency domain, but instead a sinc function, centred around 20 and -20 Hz.
+
+\subsubsection{Sampled DFT Signals}
 
 \begin{figure}[h]
       \centering
       \begin{subfigure}[b]{0.49\textwidth}
          \resizebox{\textwidth}{!}{\input{fig/1/1_1_b_100.tikz}}
-  		\caption{\textit{1 Tree}}
+  		\caption{\textit{20 Hz sine wave, with $N=100$ points sampled on the $K = 100$ DFT}}
   		\label{fig:1_1_b_100}
       \end{subfigure}
       ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
       \begin{subfigure}[b]{0.49\textwidth}
          \resizebox{\textwidth}{!}{\input{fig/1/1_1_b_1000.tikz}}
- 			\caption{\textit{2 Trees}}
+ 			\caption{\textit{20 Hz sine wave, with $N=100$ points sampled on the $K = 1000$ DFT}}
   		\label{fig:1_1_b_1000}
       \end{subfigure}
 	\label{fig:1_1_b}
 	\caption{\textit{DFTs of 20Hz Sine Wave, with $ F_s = 1000 $Hz}}
   \end{figure}
+
+Figure \ref{fig:1_1_b} shows a sine wave of 20 Hz with length N=100 samples, sampled with $K=100$ (Figure \ref{fig:1_1_b_100}) and $K=1000$ (Figure \ref{fig:1_1_b_1000}). They resemble the plots in Section \ref{sec:1_1_a}. Figure \ref{fig:1_1_b_1000} shows the absolute value of each bin, but still represents a sinc function as sketched. When we take the DFT for $K=1000$ but with $N=100$ samples, we are zero padding the signal, which is equivalent to applying a rectangular gate to an otherwise infinite sinusoid (it appeared infinite in the $K=100$ sample since it was the length of the signal). This rectangular gating causes sinc function we we observe in the Frequency domain.
 
 \subsubsection{Incoherent Sampling}
 
@@ -30,63 +51,10 @@
 	\centering 
 	\resizebox{0.7\textwidth}{!}{\input{fig/1/1_1_c.tikz}}
 	\caption{\textit{DFT of a 100 sample 24Hz Sine Wave, with $ F_s = 1000 $Hz}}
-	\label{fig:q5_4}
+	\label{fig:1_1_c}
 \end{figure}
 
-% \begin{equation}
-% S = \frac{1}{N}X' X'^T
-% \end{equation}
-
-
-%  \begin{figure}[h]
-%  	\centering 
-% 	\resizebox{0.6\textwidth}{!}{\input{q5/q5_cum.tikz}}
-%   	\caption{\textit{Cumulative representation of the variance of each eigenvector}}
-%   	\label{fig:q5_4}
-%  \end{figure}
-
-% \begin{figure}[h]
-% 	\centering 
-%  	\setlength\figureheight{0.4\textwidth}
-% 	\setlength\figurewidth{0.7\textwidth} 
-%  	\input{p_1/1.tikz}
-%  	\caption{\textit{The four randomly generated subsets}}
-%  	\label{fig:q1}
-% \end{figure}
-
-
-%  \begin{figure}[h]
-%          \centering
-%          \begin{subfigure}[b]{0.45\textwidth}
-%             \resizebox{\textwidth}{!}{\input{part_4/q8_num_1.tikz}}
-%   			\caption{\textit{1 Tree}}
-%          \end{subfigure}
-%          ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-%           %(or a blank line to force the subfigure onto a new line)
-%          \begin{subfigure}[b]{0.45\textwidth}
-%             \resizebox{\textwidth}{!}{\input{part_4/q8_num_3.tikz}}
-%   			\caption{\textit{2 Trees}}
-%          \end{subfigure}
- 		
-%          \begin{subfigure}[b]{0.45\textwidth}
-%             \resizebox{\textwidth}{!}{\input{part_4/q8_num_5.tikz}}
-%   			\caption{\textit{5 Trees}}
-%          \end{subfigure}
-%          ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-%           %(or a blank line to force the subfigure onto a new line)
-%          \begin{subfigure}[b]{0.45\textwidth}
-%             \resizebox{\textwidth}{!}{\input{part_4/q8_num_10.tikz}}
-%   			\caption{\textit{10 Trees}}
-%          \end{subfigure}
-         
-%          \begin{subfigure}[b]{0.45\textwidth}
-%             \resizebox{\textwidth}{!}{\input{part_4/q8_num_20.tikz}}
-%   			\caption{\textit{20 Trees}}
-%          \end{subfigure}
- 		
-%  		\label{q9i}
-% 		\caption{\textit{Varying the Number of Trees in the Forest}}
-%  \end{figure}
+Figure \ref{fig:1_1_c} shows a 24Hz sine wave sampled with $F_s = 1 kHz$, 100 samples long. 24 kHz does not fit in to any bins for a $K=100$ point DFT. The frequency resolution is defined by $ \bigtriangleup f = \frac{F_s}{N}$, which in this case results in $ \bigtriangleup f = 10 Hz$. Thus we are unable to see 24Hz exactly. In order to increase the resolution, we can either take more samples (which takes more time), or increase the sampling frequency.
 
 \end{document}
 

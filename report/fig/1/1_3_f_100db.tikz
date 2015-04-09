@@ -10,8 +10,8 @@
 \begin{tikzpicture}
 
 \begin{axis}[%
-width=3.13297872340426in,
-height=3.56799418604651in,
+width=3in,
+height=1in,
 scale only axis,
 xmin=0.5,
 xmax=0.7,
@@ -4130,8 +4130,8 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=3.13297872340426in,
-height=3.56799418604651in,
+width=3in,
+height=1in,
 scale only axis,
 xmin=0.5,
 xmax=0.7,
@@ -8252,8 +8252,8 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=3.13297872340426in,
-height=3.56799418604651in,
+width=3in,
+height=1in,
 scale only axis,
 xmin=0.5,
 xmax=0.7,
@@ -12374,8 +12374,8 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=3.13297872340426in,
-height=3.56799418604651in,
+width=3in,
+height=1in,
 scale only axis,
 xmin=0.5,
 xmax=0.7,
@@ -16496,8 +16496,8 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=3.13297872340426in,
-height=3.56799418604651in,
+width=3in,
+height=1in,
 scale only axis,
 xmin=0.5,
 xmax=0.7,
@@ -20618,8 +20618,8 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=3.13297872340426in,
-height=3.56799418604651in,
+width=3in,
+height=1in,
 scale only axis,
 xmin=0.5,
 xmax=0.7,
@@ -24740,8 +24740,8 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=3.13297872340425in,
-height=3.56799418604651in,
+width=3in,
+height=1in,
 scale only axis,
 xmin=0.5,
 xmax=0.7,
@@ -24754,7 +24754,7 @@ ymajorgrids,
 name=plot7,
 at=(plot5.right of south east),
 anchor=left of south west,
-title={Chebyshev Filt. Sig., $ a_2=0.00 $, Sidelobe = 100dB},
+title={Chebyshev Filt. Sig., $ a_2=0.001 $, Sidelobe = 100dB},
 axis x line*=bottom,
 axis y line*=left
 ]
@@ -28862,8 +28862,8 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=3.13297872340425in,
-height=3.56799418604651in,
+width=3in,
+height=1in,
 scale only axis,
 xmin=0.5,
 xmax=0.7,

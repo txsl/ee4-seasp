@@ -5,11 +5,13 @@
 
 \subsubsection{The Sunspot Time Series}
 
+Presented with the Sunspot Time Series data, there are a number of preprocessing techniques we can apply to it before plotting the Periodogram. These are plotted in Figure \ref{fig:1_4_a}. We observe that for the original data there is a high power at 0 frequency. This is the influence of the mean signal, so for other signals we mean centre the data. We can see that the detrended version (the black line) appears to suffer from less noise or jitter in the frequency domain. Taking the logarithm of data and mean centering it (the pink like) showed very interesting results. The line at points appears to jitter even less, for example at 0.35, the other lines suffer from a signficant drop, but it moves little by comparison.
+
 \begin{figure}[h]
 	\centering
 	\resizebox{\textwidth}{!}{\input{fig/1/1_4_a.tikz}}
 	\caption{\textit{Balanced and Unbalanced Complex Voltages}}
-	\label{fig:}
+	\label{fig:1_4_a}
 \end{figure}
 
 \end{document}

@@ -19,7 +19,7 @@
 
 \begin{axis}[%
 width=8in,
-height=2in,
+height=1.5in,
 scale only axis,
 xmin=0,
 xmax=350,

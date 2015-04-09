@@ -5,148 +5,123 @@
 
 \subsubsection{Sidelobes of the Bartlett Window}
 
+Barlett Windows of varying lengths were generated from $N=16$ to $N=4096$, in powers of 2. Some of them have been shown in figure \ref{fig:1_3_a}. Their frequency response both in linear terms and Decibels have been plotted. With these generated windows, the 3dB bandwith has been computed. The theoretical value of the 3dB bandwith (which represents when half of the full power is attenuated) is $ 0.89 \frac{2 \pi}{N} $. It has been plotted in figure \ref{fig:1_3_a_b}, along with the measured results. We also look at the sidelobe height: the difference in gain between the main lobe and the first sidelobe. The theoretical value for a Bartlett Window is -27$dB$, and we can see the measured results in figure \ref{fig:1_3_a_c}.
+
 \begin{figure}[h]
 	\centering 
 	\resizebox{\textwidth}{!}{\input{fig/1/1_3_a_lots.tikz}}
-	\caption{\textit{Circularity Plots for Wind Data}}
-	\label{fig:}
+	\caption{\textit{Barlett Window Frequency Response: Linear Plots (lower) and Decibel Plots (higher)}}
+	\label{fig:1_3_a}
 \end{figure}
-%
-%\begin{figure}[h]
-%	\centering
-%	\begin{subfigure}[b]{0.22\textwidth}
-%		\resizebox{\textwidth}{!}{\input{fig/1/1_3_a_16.tikz}}
-%		\caption{\textit{1 Tree}}
-%	\end{subfigure}
-%	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-%	\begin{subfigure}[b]{0.22\textwidth}
-%		\resizebox{\textwidth}{!}{\input{fig/1/1_3_a_64.tikz}}
-%		\caption{\textit{1 Tree}}
-%	\end{subfigure}
-%	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-%	\begin{subfigure}[b]{0.22\textwidth}
-%		\resizebox{\textwidth}{!}{\input{fig/1/1_3_a_128.tikz}}
-%		\caption{\textit{1 Tree}}
-%	\end{subfigure}
-%	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-%	\begin{subfigure}[b]{0.22\textwidth}
-%		\resizebox{\textwidth}{!}{\input{fig/1/1_3_a_512.tikz}}
-%		\caption{\textit{1 Tree}}
-%	\end{subfigure}
-%%	\label{fig:1_2_a}
-%%	\caption{\textit{DFTs of 20Hz Sine Wave, with $ F_s = 1000 $Hz}}
-%\end{figure}
+
 
 \begin{minipage}{.5\textwidth}
-%	\begin{figure}[h]
 		\center
 		\resizebox{\textwidth}{!}{\input{fig/1/1_3_a_3db_width.tikz}}
-		\captionof{figure}{\textit{Prediction Error Estimates for varying Model Orders}}
-		\label{fig:}
-%	\end{figure}
+		\captionof{figure}{\textit{3dB Bandwidth as a function of Window Length}}
+		\label{fig:1_3_a_b}
 \end{minipage}
 \begin{minipage}{.5\textwidth}
-	%	\begin{figure}[h]
 	\center
 	\resizebox{\textwidth}{!}{\input{fig/1/1_3_a_sidelobe_level.tikz}}
-	\captionof{figure}{\textit{Prediction Error Estimates for varying Model Orders}}
-	\label{fig:}
-	%	\end{figure}
+	\captionof{figure}{\textit{Sidelobe level as a function of Window Length}}
+	\label{fig:1_3_a_c}
 \end{minipage}
 
 
-\subsubsection{Resolution Threshold}
+\subsubsection{Resolution Threshold} \label{sec:1_3_b}
+Given the signal $ x(n) = a_1 \sin(f_0 2 \pi n + \phi_1) + a_2 \sin((f_0 + \frac{\alpha}{N} 2 \pi n + \phi_2) + w(n) $ where $ w \sim \mathcal{N} (0, \sigma^2) $, we pass this signal through a Barlett Window and observe the PSD. We fix all coefficients, remove the WGN as well as fixing the signal length, only varying $ \alpha $. As $ \alpha$ changes, the two peaks will become clear. This is shown for four different values of $ \alpha $ in figure \ref{fig:1_3_b}. We can see at $ \alpha = 0.65 $, the two peaks start to appear. This is very clear by the time we reach $ \alpha = 0.8 $. $ \alpha$ represents how close the two sinusoidal peaks are together. A larger $ \alpha $ means the peaks are furhter away, and become easier to distinguish on the periodogram as two distinct sine waves.
+
 \begin{figure}[h]
 	\centering
 	\begin{subfigure}[b]{0.23\textwidth}
 		\resizebox{\textwidth}{!}{\input{fig/1/1_3_b_060.tikz}}
-		\caption{\textit{1 Tree}}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
 	\begin{subfigure}[b]{0.23\textwidth}
 		\resizebox{\textwidth}{!}{\input{fig/1/1_3_b_065.tikz}}
-		\caption{\textit{1 Tree}}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
 	\begin{subfigure}[b]{0.23\textwidth}
 		\resizebox{\textwidth}{!}{\input{fig/1/1_3_b_080.tikz}}
-		\caption{\textit{1 Tree}}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
 	\begin{subfigure}[b]{0.23\textwidth}
 		\resizebox{\textwidth}{!}{\input{fig/1/1_3_b_090.tikz}}
-		\caption{\textit{1 Tree}}
 	\end{subfigure}
-	%	\label{fig:1_2_a}
-	%	\caption{\textit{DFTs of 20Hz Sine Wave, with $ F_s = 1000 $Hz}}
+	\label{fig:1_3_b}
+	\caption{\textit{Periodograms of Barlett Window with varying $ \alpha $ of input signal}}
 \end{figure}
 
 \subsubsection{Resolution Threshold with a Hamming Window}
-
+We repeat the exercise conducted in \ref{sec:1_3_b}, but this time using a Hamming Window instead of a Bartlett Window. In the interests of comparing the two functions, we keep $ \alpha $ values consistent between them. It is clear from the plots in Figure \ref{fig:1_3_c} that the Hamming Window does not do as good a job as the Barlett Window in allowing us to identify to the two separate peaks. For example, at $ \alpha - 0.65$, the Bartlett Window already shows signs of two peaks, but the Hamming Window does not.
 
 \begin{figure}[h]
 	\centering
 	\begin{subfigure}[b]{0.23\textwidth}
 		\resizebox{\textwidth}{!}{\input{fig/1/1_3_c_060.tikz}}
-		\caption{\textit{1 Tree}}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
 	\begin{subfigure}[b]{0.23\textwidth}
 		\resizebox{\textwidth}{!}{\input{fig/1/1_3_c_070.tikz}}
-		\caption{\textit{1 Tree}}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
 	\begin{subfigure}[b]{0.23\textwidth}
 		\resizebox{\textwidth}{!}{\input{fig/1/1_3_c_080.tikz}}
-		\caption{\textit{1 Tree}}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
 	\begin{subfigure}[b]{0.23\textwidth}
 		\resizebox{\textwidth}{!}{\input{fig/1/1_3_c_090.tikz}}
-		\caption{\textit{1 Tree}}
 	\end{subfigure}
-	%	\label{fig:1_2_a}
-	%	\caption{\textit{DFTs of 20Hz Sine Wave, with $ F_s = 1000 $Hz}}
+	\label{fig:1_3_c}
+	\caption{\textit{Periodograms of Hamming Window with varying $ \alpha $ of input signal}}
 \end{figure}
 
 
 \subsubsection{Leakage Effects on the Periodogram}
 
+Using the same signal as from \ref{sec:1_3_b}, we fix $\alpha$ to 4 or 12, and vary $a_2$. We are spacing the sinusoids further apart than before, and analysing how different they can be in ampliude whilst still being distinguisable from each other. We can see in Figure \ref{fig:1_3_d_1} that by $ a_2 = 0.01 $ it is not distinguisable from the side lobes. Constrat taht with Figure \ref{fig:1_3_d_2} (where $ \alpha = 12$), where for the same value of $a_2$ we can still make out the second sinusoid.
+	 
 \begin{figure}[h]
 	\centering 
 	\resizebox{\textwidth}{!}{\input{fig/1/1_3_c_alpha_4.tikz}}
-	\caption{\textit{Circularity Plots for Wind Data}}
-	\label{fig:}
+	\caption{\textit{Periodogram of varying amplitudes of $a_2$, with $\alpha=4$}}
+	\label{fig:1_3_d_1}
 \end{figure}
 
 \begin{figure}[h]
 	\centering 
 	\resizebox{\textwidth}{!}{\input{fig/1/1_3_c_alpha_12.tikz}}
-	\caption{\textit{Circularity Plots for Wind Data}}
-	\label{fig:}
+	\caption{\textit{Periodogram of varying amplitudes of $a_2$, with $\alpha=12$}}
+	\label{fig:1_3_d_2}
 \end{figure}
 
-\subsubsection{}
+\subsubsection{The Effects of Alpha in relation to the Bartlett Window}
+As the value of $ \alpha$ changes, it moves further and furhter away from the other sine wave. The further away it moves, the deeper in to the side lobes it goes. Once in the side lobes, the signal will be significantly attentuated and thus we will be unable to observe it. As we will see in the next point, we can use a Window with constant sidelobe height to help counteract this problem.
+
+\subsubsection{Chebyshev and Blackman-Tukey Windows}
+
+The Chebyshev Window has a constant sidelobe height, meaning if the sinusoid is less liekly to get lost in a sidelobe. The Blackman-Tukey method is known sometimes as "periodogram smoothing" \cite{Mandic2014}. Effectively, it takes the Periodogram of the autocorrelation matric, aiming to create a more reliable measure of the PSD. Three different sidelobe heights were tested: 20dB, 50dB and 100dB. These are in Figures \ref{fig:1_3_f_20}, \ref{fig:1_3_f_50} and \ref{fig:1_3_f_100}, respectively. With a 20dB sidelobe, the second sinsoid is still visible in the Chebyshev window when $a_2 = 0.01$. Look at the 100dB sidelobes however, and there is still obviously the influence of the second sinusoid when $a_2=0.001$. This gives some idea of the power of choosing the correct window function. The Blackman-Tukey windows also show the presence of a second sinusoid. With data which is void of noise such as this. Its value may be more limited however. When we add noise in, it may prove more useful. In its current from, we are able to extract the information from the Chebyshev PSD directly.
 
 \begin{figure}[h]
 	\centering 
 	\resizebox{\textwidth}{!}{\input{fig/1/1_3_f_20dB.tikz}}
 	\caption{\textit{Circularity Plots for Wind Data}}
-	\label{fig:}
+	\label{fig:1_3_f_20}
 \end{figure}
 
 \begin{figure}[h]
 	\centering 
 	\resizebox{\textwidth}{!}{\input{fig/1/1_3_f_50dB.tikz}}
 	\caption{\textit{Circularity Plots for Wind Data}}
-	\label{fig:}
+	\label{fig:1_3_f_50}
 \end{figure}
 
 \begin{figure}[h]
 	\centering 
 	\resizebox{\textwidth}{!}{\input{fig/1/1_3_f_100dB.tikz}}
 	\caption{\textit{Circularity Plots for Wind Data}}
-	\label{fig:}
+	\label{fig:1_3_f_100}
 \end{figure}
 
 \end{document}

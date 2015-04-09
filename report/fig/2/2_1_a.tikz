@@ -10,8 +10,8 @@
 \begin{tikzpicture}
 
 \begin{axis}[%
-width=4.26811594202899in,
-height=3.56799418604651in,
+width=2in,
+height=1.5in,
 scale only axis,
 xmin=0,
 xmax=999,
@@ -4036,8 +4036,8 @@ legend style={draw=black,fill=white,legend cell align=left}
 \end{axis}
 
 \begin{axis}[%
-width=4.26811594202899in,
-height=3.56799418604651in,
+width=2in,
+height=1.5in,
 scale only axis,
 xmin=0,
 xmax=999,
@@ -8064,8 +8064,8 @@ legend style={draw=black,fill=white,legend cell align=left}
 \end{axis}
 
 \begin{axis}[%
-width=4.26811594202899in,
-height=3.56799418604651in,
+width=2in,
+height=1.5in,
 scale only axis,
 xmin=0,
 xmax=1,
@@ -12092,8 +12092,8 @@ legend style={draw=black,fill=white,legend cell align=left}
 \end{axis}
 
 \begin{axis}[%
-width=4.26811594202899in,
-height=3.56799418604651in,
+width=2in,
+height=1.5in,
 scale only axis,
 xmin=0,
 xmax=1,
@@ -16120,8 +16120,8 @@ legend style={draw=black,fill=white,legend cell align=left}
 \end{axis}
 
 \begin{axis}[%
-width=4.26811594202899in,
-height=3.56799418604651in,
+width=2in,
+height=1.5in,
 scale only axis,
 xmin=0,
 xmax=1,
@@ -20148,8 +20148,8 @@ legend style={draw=black,fill=white,legend cell align=left}
 \end{axis}
 
 \begin{axis}[%
-width=4.26811594202899in,
-height=3.56799418604651in,
+width=2in,
+height=1.5in,
 scale only axis,
 xmin=0,
 xmax=999,

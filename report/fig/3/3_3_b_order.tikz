@@ -1,4 +1,4 @@
-% This file was created by matlab2tikz v0.4.7 (commit d4c8764c3916fd1d124533205db34e93e01e5518) running on MATLAB 8.3.
+% This file was created by matlab2tikz v0.4.7 (commit 1fe4f59b3318f420f97af7fe257e27c8a5568af7) running on MATLAB 8.3.
 % Copyright (c) 2008--2014, Nico Schlömer <nico.schloemer@gmail.com>
 % All rights reserved.
 % Minimal pgfplots version: 1.3
@@ -17,8 +17,8 @@ xmin=0,
 xmax=20,
 xlabel={Filter order},
 xmajorgrids,
-ymin=0.2,
-ymax=0.5,
+ymin=0.3,
+ymax=0.55,
 ylabel={MSPE (Mean Square Prediction Error)},
 ymajorgrids,
 title={Filter Order and MSPE of an Adaptive Line Enhancer},
@@ -26,64 +26,64 @@ axis x line*=bottom,
 axis y line*=left
 ]
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{1	0.411259699209019\\
+  table[row sep=crcr]{1	0.371726381800755\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{2	0.357717205568794\\
+  table[row sep=crcr]{2	0.315391042127382\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{3	0.276328738399026\\
+  table[row sep=crcr]{3	0.310931706311044\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{4	0.249515197407873\\
+  table[row sep=crcr]{4	0.309766821444037\\
 };
 \addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
-  table[row sep=crcr]{5	0.240699799461666\\
+  table[row sep=crcr]{5	0.309828642561204\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{6	0.244347593372698\\
+  table[row sep=crcr]{6	0.313745036439469\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{7	0.25362703946698\\
+  table[row sep=crcr]{7	0.322740841685012\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{8	0.265167691260922\\
+  table[row sep=crcr]{8	0.332408214998103\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{9	0.279110030587578\\
+  table[row sep=crcr]{9	0.344997250858036\\
 };
 \addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
-  table[row sep=crcr]{10	0.293620204138095\\
+  table[row sep=crcr]{10	0.357669285648671\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{11	0.311873759443725\\
+  table[row sep=crcr]{11	0.373487997313038\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{12	0.330324907652155\\
+  table[row sep=crcr]{12	0.387349352597067\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{13	0.349170498512911\\
+  table[row sep=crcr]{13	0.403487857286734\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{14	0.368428472022401\\
+  table[row sep=crcr]{14	0.420809083542202\\
 };
 \addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
-  table[row sep=crcr]{15	0.387931776676648\\
+  table[row sep=crcr]{15	0.437662318060958\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{16	0.406918825214346\\
+  table[row sep=crcr]{16	0.454939357318857\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{17	0.426246105232244\\
+  table[row sep=crcr]{17	0.473212506157483\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{18	0.447334585723385\\
+  table[row sep=crcr]{18	0.490389962458254\\
 };
 \addplot [color=blue,only marks,mark=asterisk,mark options={solid},forget plot]
-  table[row sep=crcr]{19	0.468931620783603\\
+  table[row sep=crcr]{19	0.510532231200158\\
 };
 \addplot [color=red,only marks,mark=o,mark options={solid},forget plot]
-  table[row sep=crcr]{20	0.490630165046867\\
+  table[row sep=crcr]{20	0.528059996011193\\
 };
 \end{axis}
 \end{tikzpicture}%

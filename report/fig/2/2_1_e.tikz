@@ -14,8 +14,8 @@
 \begin{tikzpicture}
 
 \begin{axis}[%
-width=6.02777777777778in,
-height=4.75416666666667in,
+width=5in,
+height=3in,
 scale only axis,
 every outer x axis line/.append style={white!15!black},
 every x tick label/.append style={font=\color{white!15!black}},
