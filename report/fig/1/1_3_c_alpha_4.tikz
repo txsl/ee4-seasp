@@ -10,8 +10,8 @@
 \begin{tikzpicture}
 
 \begin{axis}[%
-width=3.11369680851064in,
-height=8.52354166666667in,
+width=1.5in,
+height=1in,
 scale only axis,
 xmin=0.5,
 xmax=0.65,
@@ -4130,8 +4130,8 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=3.11369680851064in,
-height=8.52354166666667in,
+width=1.5in,
+height=1in,
 scale only axis,
 xmin=0.5,
 xmax=0.65,
@@ -8251,8 +8251,8 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=3.11369680851064in,
-height=8.52354166666667in,
+width=1.5in,
+height=1in,
 scale only axis,
 xmin=0.5,
 xmax=0.65,
@@ -12373,8 +12373,8 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=3.11369680851064in,
-height=8.52354166666667in,
+width=1.5in,
+height=1in,
 scale only axis,
 xmin=0.5,
 xmax=0.65,
@@ -12386,7 +12386,7 @@ ylabel={Power (dB)},
 ymajorgrids,
 at=(plot3.right of south east),
 anchor=left of south west,
-title={Periodogram, $ a_2=0.00 $, $ \alpha= 4$},
+title={Periodogram, $ a_2=0.001 $, $ \alpha= 4$},
 axis x line*=bottom,
 axis y line*=left
 ]

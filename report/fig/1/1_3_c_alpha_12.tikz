@@ -10,8 +10,8 @@
 \begin{tikzpicture}
 
 \begin{axis}[%
-width=3.11369680851064in,
-height=8.52354166666667in,
+width=1.5in,
+height=1in,
 scale only axis,
 xmin=0.45,
 xmax=0.65,
@@ -4130,8 +4130,8 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=3.11369680851064in,
-height=8.52354166666667in,
+width=1.5in,
+height=1in,
 scale only axis,
 xmin=0.45,
 xmax=0.65,
@@ -8251,8 +8251,8 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=3.11369680851064in,
-height=8.52354166666667in,
+width=1.5in,
+height=1in,
 scale only axis,
 xmin=0.45,
 xmax=0.65,
@@ -12373,8 +12373,8 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=3.11369680851064in,
-height=8.52354166666667in,
+width=1.5in,
+height=1in,
 scale only axis,
 xmin=0.45,
 xmax=0.65,

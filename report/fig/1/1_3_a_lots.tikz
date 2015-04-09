@@ -10,8 +10,8 @@
 \begin{tikzpicture}
 
 \begin{axis}[%
-width=3.0303634751773in,
-height=3.42584302325582in,
+width=1.5in,
+height=0.7in,
 scale only axis,
 xmin=-1,
 xmax=0.9921875,
@@ -287,8 +287,8 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=3.0303634751773in,
-height=3.42584302325582in,
+width=1.5in,
+height=0.7in,
 scale only axis,
 xmin=-1,
 xmax=0.96875,
@@ -374,8 +374,8 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=3.0303634751773in,
-height=3.42584302325581in,
+width=1.5in,
+height=0.7in,
 scale only axis,
 xmin=-1,
 xmax=0.96875,
@@ -460,8 +460,8 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=3.0303634751773in,
-height=3.42584302325581in,
+width=1.5in,
+height=0.7in,
 scale only axis,
 xmin=-1,
 xmax=0.9921875,
@@ -738,8 +738,8 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=3.03036347517731in,
-height=3.42584302325581in,
+width=1.5in,
+height=0.7in,
 scale only axis,
 xmin=-1,
 xmax=0.99609375,
@@ -1272,8 +1272,8 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=3.03036347517731in,
-height=3.42584302325582in,
+width=1.5in,
+height=0.7in,
 scale only axis,
 xmin=-1,
 xmax=0.99609375,
@@ -1807,8 +1807,8 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=3.0303634751773in,
-height=3.42584302325582in,
+width=1.5in,
+height=0.7in,
 scale only axis,
 xmin=-1,
 xmax=0.9990234375,
@@ -3878,8 +3878,8 @@ axis y line*=left
 \end{axis}
 
 \begin{axis}[%
-width=3.0303634751773in,
-height=3.42584302325581in,
+width=1.5in,
+height=0.7in,
 scale only axis,
 xmin=-1,
 xmax=0.9990234375,
