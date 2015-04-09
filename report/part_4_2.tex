@@ -3,6 +3,27 @@
 
 \subsection{Adaptive AR Model Based Time-Frequency Estimation}
 
+\subsubsection{Stationary Estimation}
+
+Using the Yule Walker eqations and the \texttt{MATLAB} function \texttt{aryule}, we can try and estimate an AR(1) model. This clearly will be difficult, since the signal is non stationary. Thus the model for the first part of the signal will likely not be valid for the second part of the signal etc. Figure \ref{fig:4_2_a} does show the AR(1) attempt to fit to the signal, but it will likely fail across the entire time of the signal (as it goes through different stationary outputs).
+
+\begin{figure}[h]
+	\centering 
+	\resizebox{\textwidth}{!}{\input{fig/4/4_2_a.tikz}}
+	\caption{\textit{Measured PSD (Green) and Modelled PSD (Blue)}}
+	\label{fig:4_2_a}
+\end{figure}
+
+\subsubsection{CLMS Moving Average AR Estimation}
+
+Instead of using the Yule Walker equations, we have instead used the CLMS algorithm to try and model coefficients. A 3D `surf' plot has been produced, and is in Figure \ref{fig:4_2_b} - similar to a spectrogram, modelling the coffeicients at each iteration. Note how the model changes over time, indicating that the model is non-stationary. It is for this reason that the Yule Walker modelling would not be sufficient to capture this non-stationary process.
+
+\begin{figure}[h]
+	\centering 
+	\includegraphics[scale=1]{fig/4/4_2_b.png}
+	\caption{\textit{3D graph of AR coefficients}}
+	\label{fig:4_2_b}
+\end{figure}
 
 \end{document}
 

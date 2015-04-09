@@ -73,7 +73,7 @@ In conclusion, we are able to model all three systems effectively (all with an M
 	\label{fig:4_1_b_order}
 \end{figure}
 
-\subsubsection{Three Phase Power: Balanced \& Unbalanced Systems}
+\subsubsection{Three Phase Power: Balanced \& Unbalanced Systems} \label{sec:4_1_c}
 
 Using the Clarke Voltage, we can compute $v(n)$ for both a balanced and unbalanced system. Figure \ref{fig:4_1_c} shows the circularity diagram of the complex voltage (both a balanced and unbalanced system). The balanced system has a circular shape to it, whereas the unbalanced system's circularity diagram is more akin to a rugby ball than a circle. The unbalanced nature of the system was demonstated when either a phase shift is introduced in to one or two of the lines, or the voltage across each phase is different. In this case, a phase shift of $\frac{\pi}{8}$ has been applied to one phase, with another having phase shift $-\frac{\pi}{7}$.
 
@@ -87,11 +87,48 @@ Using the Clarke Voltage, we can compute $v(n)$ for both a balanced and unbalanc
 Assuming a fault on the system will either cause a disturbance in voltage levels, or shift the phase, its circularity plot would start no longer looking like a circle, but instead take a distorted shape like that observed in Figure \ref{fig:lab_3_1 } for the unbalanced system.
 
 
-\subsubsection{Three Phase Power: Widely Linear AR models}
+\subsubsection{Three Phase Power: Widely Linear AR models} \label{sec:4_1_d}
 We are given the strictly linear and widely linear AR(1) models used on three phase power systems, and from this we are able to determine the frequency of the Clarke Voltage.
 
-For the strictly linear case, we know the model is defined as $ v(n+1) = h^\ast (n) v(n) $. Using the definition of the Clarke voltage for a 
+For the strictly linear case, we know the model is defined as $ v(n+1) = h^\ast (n) v(n) $. Using the definition of the Clarke voltage for a balanced system [\cite{Mandic2015}], we know that
+\begin{equation}
+v(n) = \sqrt{\frac{3}{2}} V e^{j(2 \pi \frac{f_o}{f_s}n + \phi)}
+\end{equation}
 
+We can equate these two equations together in order to determine the operating frequency from the weights of the CLMS model:
+\begin{equation}
+\begin{split}
+	v(n+1) &= h^\ast (n) v(n) \\
+	e^{j(2 \pi \frac{f_o}{f_s}(n+1) + \phi)} & = h^\ast (n) e^{j(2 \pi \frac{f_o}{f_s}n + \phi)} \\
+	e^{j(2 \pi \frac{f_o}{f_s})} & = h^\ast (n) \\
+	2 \pi \frac{f_o}{f_s} &= \arctan \left( \frac{ - \Im \{ h(n) \} }{ \Re \{ h(n) \} } \right)
+\end{split}
+\end{equation}
+Note: the equations in the coursework handout appear not to have taken in to account the negative conjugate, which is why if applied in \texttt{MATLAB} exactly as here, they will result in producing a negative frequency.
+
+
+The unbalanced system is a slightly more involved derivation. Firstly we use the definitions of the Clarke Voltage and Widely Linear models (respectively) for an unbalaced system:
+
+\begin{equation}
+v(n) = A(n) e^{j(2 \pi \frac{f_o}{f_s}n + \phi)} + B(n) e^{-j(2 \pi \frac{f_o}{f_s}n + \phi)}
+\end{equation}
+\begin{equation}
+v(n+1) = h^\ast(n)v(n) + g^\ast(n)v^\ast(n)
+\end{equation}
+
+We can then substitute these together
+
+\begin{multline}
+ A(n+1) e^{j(2 \pi \frac{f_o}{f_s}(n+1) + \phi)} + B(n+1) e^{-j(2 \pi \frac{f_o}{f_s}(n+1) + \phi)} = h^\ast(n) A(n) e^{j(2 \pi \frac{f_o}{f_s}n + \phi)} + B(n) e^{-j(2 \pi \frac{f_o}{f_s}n + \phi)} + \\g^\ast(n) A^\ast(n) e^{-j(2 \pi \frac{f_o}{f_s}n + \phi)} + B^\ast(n) e^{j(2 \pi \frac{f_o}{f_s}n + \phi)}
+ \end{multline}
+
+
+
+\subsubsection{Estimating the Frquency}
+
+Based on the Strictly and Widely linear filters, we can estimate the frequency. Based on the data produced in section \ref{sec:4_1_c}, we can reverse engineer the system frequency.
+
+For the case of the balanced system, the strictly linear equation returns $ -50Hz$ as the system frequency. As mentioned in \ref{sec:4_1_d}, this is likely due to a conjugate error during derivation. The system also identifies the unbalanced system as $ 50.051Hz $. This was measured using the widely linear input. If we use the strictly linear equations, we are returned the frequency $ -50Hz$ (or $50Hz$). This will be because the stringly linear system does not have the weights and parameters (namely $ \mathbf{g}(n) $) to model the unbalanced system correctly.
 
 \end{document}
 

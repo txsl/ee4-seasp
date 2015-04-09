@@ -14,5 +14,43 @@ Presented with the Sunspot Time Series data, there are a number of preprocessing
 	\label{fig:1_4_a}
 \end{figure}
 
+\subsubsection{Brain Computer Interface (BCI)}
+
+We can see in figure \ref{fig:1_4_b_org} the periodogram taken for the entire signal. There is clearly a lot of noise, and thus analysing the periodogram itself to find the peak. Instead, we take the mean of windowed periodograms. Figures \ref{fig:1_4_b_1s}, \ref{fig:1_4_b_5s} and \ref{fig:1_4_b_10s} show the mean periodograms for windows of 1, 5 and 10s respectively. They have also been run through Hanning and Bartlett windows, as an experiment to see if they imrpove the periodogram. The 1s periodogram is argubly too smooth and as such difficult to interpret any spike between 11$Hz$ and 20$Hz$ (although the lobe at 10$Hz$ is noticable). The 10s periodogram may be a little too noisey, but the 5s mean does seem to represent a good balance between noise and still having obvious peaks. As such, we can estimate that there is a peak at approximately 13 $Hz$ which represents the SSVEP.
+
+In order to get a better quality periodogram, it may well be worth investigating the Welch method next time.
+
+\begin{figure}[h]
+	\centering
+	\resizebox{\textwidth}{!}{\input{fig/1/1_4_b_org.tikz}}
+	\caption{\textit{Periodogram of entire signal length}}
+	\label{fig:1_4_b_org}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.49\textwidth}
+		\resizebox{\textwidth}{!}{\input{fig/1/1_4_b_1s.tikz}}
+		\caption{\textit{Mean Periodogram of 1s Windowed Periodograms}}
+		\label{fig:1_4_b_1s}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{0.49\textwidth}
+		\resizebox{\textwidth}{!}{\input{fig/1/1_4_b_5s.tikz}}
+		\caption{\textit{Mean Periodogram of 5s Windowed Periodograms}}
+		\label{fig:1_4_b_5s}
+	\end{subfigure}
+	
+	\begin{subfigure}[b]{0.49\textwidth}
+		\resizebox{\textwidth}{!}{\input{fig/1/1_4_b_10s.tikz}}
+		\caption{\textit{Mean Periodogram of 10s Windowed Periodograms}}
+		\label{fig:1_4_b_10s}
+	\end{subfigure}
+	
+\end{figure}
+
+
+
 \end{document}
 

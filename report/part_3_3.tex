@@ -60,18 +60,26 @@ The Adaptive Noise Cancellation is a different configuration for denoising a sig
 
 \subsubsection{Removing Mains 50Hz hum from ECG Data}
 
+The ECG data has a clear 50Hz hum, as can been seen on the spectrogram and periodogram. Using an ANC configured filter, we can generate WGN and add it to a 50Hz sine wave, to be used as the input $ \mathbf{u}(n) $. We use the same spectrogram set up as earleir on, with an FFT length of 4096, 3000 sample window overlap, and the Hanning window. The spectrogram showed itself useful with that EEG data, and this is should once again prove useful here.
+
+We will experiment with different filter lengths, as well as different step sizes. Figure \ref{fig:3_3_d_mu} shows different step sizes used. We can see that for large values of $ \mu $, the filter is perhaps a little too agressive: for $ \mu = 0.010 $, there is a clear change of the 100Hz band. And for $ \mu = 0.050$, the whole signal has been signficantly distorted by the filter.
+
+Figure \ref{fig:3_3_d_order} shows different order filters tested out. Order selection appears to be important: too low and the noise is not fully removed. Too high and we see an injection at 100Hz (although this still happens to a minor extent), and for $ M = 20 $ it appears to have taken some of the signal at around the 50$Hz$ band.
+
+Based on our experimentation, we will select a filter with $ \mu = 0.001 $ (or even slightly lower than this), and order 10.
+
 \begin{figure}[h]
 	\centering 
 	\includegraphics[scale=0.4]{fig/3/3_3_d_mu.png}
-	\caption{\textit{Square Error for ANC and ALE configurations for denoising}}
-	\label{fig:3_3_c}
+	\caption{\textit{Various levels of $\mu$ in the ANC filter, and its effect on the output}}
+	\label{fig:3_3_d_mu}
 \end{figure}
 
 \begin{figure}[h]
 	\centering 
 	\includegraphics[scale=0.4]{fig/3/3_3_d_order.png}
-	\caption{\textit{Square Error for ANC and ALE configurations for denoising}}
-	\label{fig:3_3_order}
+	\caption{\textit{Different model order lengths of the ANC filter, and its effect on the output}}
+	\label{fig:3_3_d_order}
 \end{figure}
 
 \end{document}
