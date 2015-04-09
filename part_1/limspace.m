@@ -8,7 +8,6 @@ if mod(L, 2) == 0
     w = 2*R*((0:(L-1))/L) - R;
 else
     w = linspace(-R, R, L);
-%     w = 2*R*((0:(L-1))/L) - R;
 end
 end
 
