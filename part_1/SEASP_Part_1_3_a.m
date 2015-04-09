@@ -7,6 +7,7 @@ window = zeros(length(sizes), 1);
 sidelobe_level = zeros(length(sizes), 1);
 OVERSAMP = 4;
 plots = [ 16 64 128 512 ];
+p_it = 1;
 
 for m =  1:length(sizes)
     %% Generate the window, and take the FFT
@@ -16,7 +17,7 @@ for m =  1:length(sizes)
 
     b_f = fft(b, OVERSAMP*L);
 
-    abs_b_f = fftshift(10*log10(eps + abs(b_f)));
+    abs_b_f = fftshift(mag2db(eps + abs(b_f)));
     w = limspace(1, OVERSAMP*L);
 
     
@@ -55,8 +56,8 @@ for m =  1:length(sizes)
 %         ylabel(hAx(2), 'Magnitude (linear)')
 %         axis tight;
 
-        figure;
-        subplot(2, 1, 1);
+        figure(10);
+        subplot(2, 4, p_it);
         plot(w, abs_b_f)
         title(sprintf('Bartlett Window for $N=%i$', L));
         xlabel('Normalised Frequency')
@@ -64,7 +65,7 @@ for m =  1:length(sizes)
         axis tight
         common.set_graph_params
         
-        subplot(2, 1, 2);
+        subplot(2, 4, p_it + 4);
         plot(w, fftshift(abs(b_f)))
 %         title(sprintf('Bartlett Window for $N=%i$', L));
         xlabel('Normalised Frequency')
@@ -72,6 +73,7 @@ for m =  1:length(sizes)
         axis tight
         common.set_graph_params
         
+        p_it = p_it + 1;
     end
     
 end
@@ -80,20 +82,23 @@ end
 %% Plots
 
 figure;
-plot(sizes, window, sizes, (2*pi)./sizes)
+plot(sizes, window, sizes, (1.28*2*pi)./sizes)
 xlabel('N')
+
 ylabel('3dB Width (Radians)')
 title('3dB Width \& Window Length')
-legend('Measured Result', '\frac{1}{N}');
+legend('Measured', 'Theoretical');
 axis tight;
 common.set_graph_params
 
 figure;
-plot(sizes, sidelobe_level)
+plot(sizes, sidelobe_level, sizes, 27*ones(length(sizes),1))
 title('Sidelobe Level \& Window Length');
 xlabel('N')
 ylabel('Sidelobe Level (dB)')
 axis tight;
+ylim([26.2 27.1])
+legend('Measured', 'Theoretical')
 common.set_graph_params
 
 
