@@ -21,4 +21,6 @@ H(H > medianH) = medianH;
 
 surf(1:1500, 1:1024, H, 'LineStyle', 'none')
 view(2)
-
+xlabel('Iteration ($n$)')
+ylabel('Frequency')
+ylim([0 1024])
